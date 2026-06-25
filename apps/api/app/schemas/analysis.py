@@ -1,6 +1,6 @@
 from typing import Literal
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 
 PathwayId = Literal["ai_automation", "software_fullstack", "embedded_firmware"]
@@ -10,6 +10,8 @@ Confidence = Literal["high", "medium", "low"]
 
 
 class AnalyseRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     resume_text: str = ""
     target_pathway: PathwayId = "ai_automation"
     location: LocationId = "auckland"
@@ -17,16 +19,29 @@ class AnalyseRequest(BaseModel):
     use_demo_data: bool = False
 
 
+class DemoAnalysisRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    resume_text: str = ""
+    target_pathway: PathwayId = "ai_automation"
+    location: LocationId = "new_zealand"
+    github_repo_url: HttpUrl | None = None
+    use_demo_data: bool = True
+
+
 class MarketSnapshot(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     listing_count: int
     distinct_employers: int
     location: str
-    role_pathway: str
     captured_at: str
     sources: list[str]
 
 
 class RolePathway(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     id: PathwayId
     label: str
     evidence_coverage: int = Field(ge=0, le=100)
@@ -35,11 +50,15 @@ class RolePathway(BaseModel):
 
 
 class CandidateEvidence(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     source: str
     excerpt: str
 
 
 class SkillAnalysis(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     name: str
     market_label: str
     demand_score: int = Field(default=0, ge=0, le=100)
@@ -55,24 +74,21 @@ class SkillAnalysis(BaseModel):
 
 
 class BridgePlanItem(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     priority: int
     action_type: Literal["surface", "strengthen", "build"]
-    skill_name: str
     title: str
     time_estimate: str
-    market_signal: str
-    candidate_evidence_found: str
-    confidence: Confidence
-    recommended_action: str
     why: str
     steps: list[str]
     resume_draft: str | None = None
 
 
 class AnalysisResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
     market_snapshot: MarketSnapshot
-    headline: str
     role_pathways: list[RolePathway]
     skills: list[SkillAnalysis]
     bridge_plan: list[BridgePlanItem]
-    methodology: list[str]

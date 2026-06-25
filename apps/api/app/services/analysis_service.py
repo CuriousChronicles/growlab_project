@@ -1,68 +1,217 @@
-from app.schemas.analysis import AnalyseRequest, AnalysisResponse, RolePathway, SkillAnalysis
+import json
+
+from app.schemas.analysis import (
+    AnalyseRequest,
+    AnalysisResponse,
+    CandidateEvidence,
+    LocationId,
+    MarketSnapshot,
+    PathwayId,
+    RolePathway,
+    SkillAnalysis,
+)
+from app.schemas.candidate import CandidateEvidence as CandidateEvidenceInput
+from app.schemas.candidate import DemoCandidate
+from app.schemas.job_snapshot import JobListing
 from app.services.bridge_plan import build_bridge_plan
-from app.services.evidence_matcher import classify_skill, demo_resume_text
-from app.services.job_service import PATHWAY_LABELS, market_summary
+from app.services.demand_counter import SkillDemand, count_skill_demand
+from app.services.entry_level_filter import tag_entry_level_listings
+from app.services.evidence_classifier import SkillEvidenceStatus, classify_in_demand_skills
+from app.services.paths import DATA_DIR
+from app.services.skill_extractor import EvidenceHit, extract_candidate_skill_evidence
+
+
+PATHWAY_LABELS: dict[PathwayId, str] = {
+    "ai_automation": "AI & Automation",
+    "software_fullstack": "Graduate Software / Full-Stack",
+    "embedded_firmware": "Embedded / Firmware",
+}
+
+LOCATION_LABELS: dict[LocationId, str] = {
+    "auckland": "Auckland",
+    "new_zealand": "New Zealand",
+    "remote": "Remote-friendly",
+}
+
+STATUS_WEIGHTS = {
+    "strong_proof": 1.0,
+    "hidden_proof": 0.75,
+    "adjacent_proof": 0.45,
+    "no_proof": 0.0,
+    "no_proof_yet": 0.0,
+}
+
+
+def load_snapshot_payload() -> dict:
+    return json.loads((DATA_DIR / "jobs_snapshot.json").read_text(encoding="utf-8"))
+
+
+def load_jobs() -> list[dict]:
+    payload = load_snapshot_payload()
+    raw_listings = payload["listings"] if isinstance(payload, dict) else payload
+    return [JobListing.model_validate(listing).model_dump(mode="json") for listing in raw_listings]
+
+
+def load_demo_candidate() -> DemoCandidate:
+    payload = json.loads((DATA_DIR / "demo_candidate.json").read_text(encoding="utf-8"))
+    return DemoCandidate.model_validate(payload)
+
+
+def candidate_from_resume_text(resume_text: str) -> DemoCandidate:
+    text = resume_text.strip() or "No resume text supplied."
+    return DemoCandidate(
+        name="Uploaded candidate",
+        headline="Candidate supplied resume text",
+        degree="Unknown",
+        location="Unknown",
+        resume_summary=text,
+        evidence=[CandidateEvidenceInput(source="resume_summary", excerpt=text)],
+    )
+
+
+def location_matches(listing: dict, location: LocationId) -> bool:
+    listing_location = str(listing.get("location", "")).lower()
+    if location == "new_zealand":
+        return True
+    if location == "remote":
+        return "remote" in listing_location or listing_location == "new zealand"
+    return "auckland" in listing_location or "north shore" in listing_location or "takapuna" in listing_location
+
+
+def filtered_relevant_listings(pathway: PathwayId, location: LocationId) -> list[dict]:
+    pathway_listings = [
+        listing
+        for listing in load_jobs()
+        if listing.get("pathway") == pathway and location_matches(listing, location)
+    ]
+    tagged = tag_entry_level_listings(pathway_listings)
+    return [result.listing for result in tagged if result.relevant]
+
+
+def demand_label(employer_count: int, distinct_employers: int) -> str:
+    if distinct_employers == 0:
+        return "Low signal"
+    ratio = employer_count / distinct_employers
+    if ratio >= 0.55:
+        return "Core demand"
+    if ratio >= 0.30:
+        return "Growing signal"
+    if ratio >= 0.12:
+        return "Differentiator"
+    return "Low signal"
+
+
+def confidence_for(status: SkillEvidenceStatus) -> str:
+    if status.status == "no_proof":
+        return "low"
+    return status.confidence
+
+
+def recommended_action_for(status: SkillEvidenceStatus) -> str:
+    if status.status == "strong_proof":
+        return "Surface this skill prominently in a role-targeted project or experience bullet."
+    if status.status == "hidden_proof":
+        return "Add an evidence-backed resume or README bullet so this proof is visible."
+    if status.status == "adjacent_proof":
+        return "Extend an existing project so the adjacent evidence proves this skill directly."
+    return "Build one small, reviewable proof artifact before adding this skill to the resume."
+
+
+def evidence_to_response(hits: list[EvidenceHit]) -> list[CandidateEvidence]:
+    return [CandidateEvidence(source=hit.source, excerpt=hit.excerpt) for hit in hits[:3]]
+
+
+def skill_response(
+    demand: SkillDemand,
+    status: SkillEvidenceStatus,
+    distinct_employers: int,
+) -> SkillAnalysis:
+    market_label = demand_label(demand.employer_count, distinct_employers)
+    status_name = "no_proof_yet" if status.status == "no_proof" else status.status
+    demand_score = round(demand.listing_count / demand.total_listings * 100) if demand.total_listings else 0
+    return SkillAnalysis(
+        name=demand.skill,
+        market_label=market_label,
+        demand_score=demand_score,
+        listing_count=demand.listing_count,
+        total_listings=demand.total_listings,
+        employer_count=demand.employer_count,
+        required_count=demand.required_count,
+        status=status_name,
+        confidence=confidence_for(status),
+        market_evidence=(
+            f"Present in {demand.listing_count} of {demand.total_listings} relevant listings "
+            f"from {demand.employer_count} distinct employers; required in {demand.required_count}."
+        ),
+        candidate_evidence=evidence_to_response(status.evidence),
+        recommended_action=recommended_action_for(status),
+    )
 
 
 def coverage_for(skills: list[SkillAnalysis]) -> int:
     if not skills:
         return 0
-    weights = {"strong_proof": 1.0, "hidden_proof": 0.75, "adjacent_proof": 0.45, "no_proof_yet": 0.0}
     top = skills[:8]
-    return round(sum(weights[skill.status] for skill in top) / len(top) * 100)
+    return round(sum(STATUS_WEIGHTS[skill.status] for skill in top) / len(top) * 100)
 
 
-def analyse(request: AnalyseRequest) -> AnalysisResponse:
-    resume_text = demo_resume_text() if request.use_demo_data and not request.resume_text else request.resume_text
-    summary = market_summary(request.target_pathway, request.location)
-    top_market_skills = summary["skills"][:12]
+def market_demand_for(listing_count: int) -> str:
+    if listing_count >= 25:
+        return "high"
+    if listing_count >= 10:
+        return "medium"
+    return "focused"
 
-    skills = []
-    for market_skill in top_market_skills:
-        evidence = classify_skill(
-            market_skill["name"],
-            resume_text,
-            str(request.github_repo_url) if request.github_repo_url else None,
-            request.use_demo_data,
-        )
-        skills.append(SkillAnalysis(**market_skill, **evidence))
 
-    selected_coverage = coverage_for(skills)
-    role_pathways = []
+def build_skills_for(pathway: PathwayId, location: LocationId, candidate: DemoCandidate) -> tuple[list[SkillAnalysis], list[dict]]:
+    listings = filtered_relevant_listings(pathway, location)
+    demand = count_skill_demand(listings)
+    candidate_evidence = extract_candidate_skill_evidence(candidate)
+    statuses = classify_in_demand_skills(demand, candidate_evidence)
+    employers = {listing["company"] for listing in listings}
+    status_by_skill = {status.skill: status for status in statuses}
+    skills = [
+        skill_response(item, status_by_skill[item.skill], len(employers))
+        for item in demand[:20]
+    ]
+    return skills, listings
+
+
+def build_role_pathways(candidate: DemoCandidate, location: LocationId) -> list[RolePathway]:
+    role_pathways: list[RolePathway] = []
     for pathway_id, label in PATHWAY_LABELS.items():
-        pathway_summary = market_summary(pathway_id, request.location)
-        pathway_skills = []
-        for market_skill in pathway_summary["skills"][:8]:
-            evidence = classify_skill(market_skill["name"], resume_text, None, request.use_demo_data)
-            pathway_skills.append(SkillAnalysis(**market_skill, **evidence))
-        coverage = coverage_for(pathway_skills)
+        skills, listings = build_skills_for(pathway_id, location, candidate)
+        coverage = coverage_for(skills)
         role_pathways.append(
             RolePathway(
                 id=pathway_id,
                 label=label,
                 evidence_coverage=coverage,
-                market_demand="high" if pathway_summary["listing_count"] >= 8 else "medium",
-                summary=f"{coverage}% evidence coverage across the top skills in {pathway_summary['listing_count']} cached roles.",
+                market_demand=market_demand_for(len(listings)),
+                summary=f"{coverage}% evidence coverage across the top recurring skills in {len(listings)} relevant listings.",
             )
         )
-    role_pathways.sort(key=lambda pathway: pathway.evidence_coverage, reverse=True)
+    role_pathways.sort(key=lambda item: item.evidence_coverage, reverse=True)
+    return role_pathways
 
-    best = role_pathways[0]
-    headline = (
-        f"You are closest to {best.label} roles."
-        if best.id == request.target_pathway
-        else f"Your evidence is strongest for {best.label}, with useful overlap for {PATHWAY_LABELS[request.target_pathway]}."
-    )
 
-    return AnalysisResponse(
-        market_snapshot=summary,
-        headline=headline,
-        role_pathways=role_pathways,
+def analyse(request: AnalyseRequest) -> AnalysisResponse:
+    payload = load_snapshot_payload()
+    candidate = load_demo_candidate() if request.use_demo_data else candidate_from_resume_text(request.resume_text)
+    skills, listings = build_skills_for(request.target_pathway, request.location, candidate)
+    employers = {listing["company"] for listing in listings}
+    sources = sorted({str(listing.get("source", "Adzuna NZ")) for listing in listings})
+
+    response = AnalysisResponse(
+        market_snapshot=MarketSnapshot(
+            listing_count=len(listings),
+            distinct_employers=len(employers),
+            location=LOCATION_LABELS[request.location],
+            captured_at=str(payload.get("captured_at", "")),
+            sources=sources,
+        ),
+        role_pathways=build_role_pathways(candidate, request.location),
         skills=skills,
         bridge_plan=build_bridge_plan(skills),
-        methodology=[
-            "Market demand is shown as raw counts from the selected cached snapshot.",
-            "Evidence coverage is not an employability score; it only reflects visible proof against recurring skills.",
-            "Skills are classified with deterministic rules before any language-model style wording would be used.",
-        ],
     )
+    return AnalysisResponse.model_validate(response.model_dump())
