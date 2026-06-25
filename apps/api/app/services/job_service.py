@@ -23,7 +23,10 @@ REQUIRED_RE = re.compile(r"\b(required|essential|must have)\b", re.I)
 
 
 def load_jobs() -> list[dict]:
-    return json.loads((DATA_DIR / "jobs_snapshot.json").read_text(encoding="utf-8"))
+    snapshot = json.loads((DATA_DIR / "jobs_snapshot.json").read_text(encoding="utf-8"))
+    if isinstance(snapshot, dict):
+        return snapshot.get("listings", [])
+    return snapshot
 
 
 def filter_jobs(pathway: PathwayId, location: LocationId) -> list[dict]:
@@ -73,6 +76,7 @@ def market_summary(pathway: PathwayId, location: LocationId) -> dict:
                 "total_listings": len(jobs),
                 "employer_count": employer_count,
                 "required_count": required_counts[skill],
+                "demand_score": round(listing_count / len(jobs) * 100) if jobs else 0,
                 "market_label": demand_label(employer_count, len(employers)),
                 "market_evidence": f"{skill} appeared in {listing_count} of {len(jobs)} relevant roles ({required_counts[skill]} listed it as required).",
             }

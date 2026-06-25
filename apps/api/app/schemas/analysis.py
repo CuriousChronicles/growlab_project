@@ -42,6 +42,7 @@ class CandidateEvidence(BaseModel):
 class SkillAnalysis(BaseModel):
     name: str
     market_label: str
+    demand_score: int = Field(default=0, ge=0, le=100)
     listing_count: int
     total_listings: int
     employer_count: int

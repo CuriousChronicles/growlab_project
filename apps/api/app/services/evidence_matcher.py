@@ -22,7 +22,9 @@ def load_demo_candidate() -> dict:
 
 def demo_resume_text() -> str:
     candidate = load_demo_candidate()
-    return "\n".join(candidate["resume_bullets"])
+    if "resume_bullets" in candidate:
+        return "\n".join(candidate["resume_bullets"])
+    return candidate["resume_summary"]
 
 
 def repository_evidence(skill: str, repo_url: str | None, use_demo_data: bool) -> list[dict]:
@@ -30,10 +32,13 @@ def repository_evidence(skill: str, repo_url: str | None, use_demo_data: bool) -
         return []
     candidate = load_demo_candidate()
     evidence = []
-    for item in candidate["repository_evidence"]:
+    for item in candidate.get("repository_evidence", []):
         text = f"{item['path']} {item['evidence']}"
         if mentions_skill(text, skill):
             evidence.append({"source": f"repository:{item['path']}", "excerpt": item["evidence"]})
+    for item in candidate.get("evidence", []):
+        if item["source"] != "resume_summary" and mentions_skill(item["excerpt"], skill):
+            evidence.append({"source": item["source"], "excerpt": item["excerpt"]})
     return evidence[:2]
 
 

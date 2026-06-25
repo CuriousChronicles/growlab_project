@@ -1,26 +1,51 @@
 {
   "name": "Maya Thompson",
   "headline": "Final-year Computer Systems Engineering graduate",
-  "resume_bullets": [
-    "Built a Python automation tool that cleaned telemetry CSV files with Pandas and produced weekly data visualisation summaries for a capstone team.",
-    "Created a React and TypeScript web app for project tracking, integrating REST APIs and SQLite-backed task storage.",
-    "Implemented STM32 firmware in Embedded C for a CAN-based sensor node, including UART logging and I2C sensor reads.",
-    "Used Git and GitHub for version control across university projects and led project ownership for a multidisciplinary capstone team.",
-    "Presented technical communication updates to academic supervisors and industry mentors during sprint reviews."
-  ],
-  "repository_url": "https://github.com/example/gradbridge-demo",
-  "repository_evidence": [
+  "degree": "Bachelor of Engineering with Honours, Computer Systems Engineering",
+  "location": "Auckland, New Zealand",
+  "resume_summary": "Final-year Computer Systems Engineering graduate with hands-on Python automation, full-stack telemetry, and embedded firmware experience. Built Jarvis, a Python event-scraping automation tool integrating Gemini LLM workflows, SQLite persistence, and Telegram notifications. Delivered an EVolocity capstone telemetry platform using React, TypeScript, Node.js, WebSockets, and PostgreSQL, winning Best Control Systems Project. Completed firmware internship work on STM32U5 microcontrollers using C, CAN-bus messaging, and FreeRTOS. Confident with Git, GitHub, technical communication, team leadership, and student-representative responsibilities.",
+  "evidence": [
     {
-      "path": "Dockerfile",
-      "evidence": "Dockerfile found for the Python automation service, but Docker is not mentioned in the resume."
+      "source": "resume_summary",
+      "excerpt": "Final-year Computer Systems Engineering graduate with hands-on Python automation, full-stack telemetry, and embedded firmware experience."
     },
     {
-      "path": ".github/workflows/test.yml",
-      "evidence": "GitHub Actions CI/CD workflow runs Python tests on pull requests."
+      "source": "resume_summary",
+      "excerpt": "Built Jarvis, a Python event-scraping automation tool integrating Gemini LLM workflows, SQLite persistence, and Telegram notifications."
     },
     {
-      "path": "README.md",
-      "evidence": "README documents REST API setup, SQLite database schema, and project ownership decisions."
+      "source": "project",
+      "excerpt": "Jarvis scraped public event listings, normalised event data with Python, stored deduplicated records in SQLite, used Gemini as the configurable LLM provider for summarisation and classification, and sent Telegram alerts when matching events were found."
+    },
+    {
+      "source": "resume_summary",
+      "excerpt": "Delivered an EVolocity capstone telemetry platform using React, TypeScript, Node.js, WebSockets, and PostgreSQL, winning Best Control Systems Project."
+    },
+    {
+      "source": "project",
+      "excerpt": "EVolocity capstone: built a React and TypeScript dashboard for live wireless vehicle telemetry, with a Node.js backend, WebSocket streaming, PostgreSQL storage, and a Docker container used to run the backend and database consistently during team demos."
+    },
+    {
+      "source": "experience",
+      "excerpt": "Firmware internship: implemented STM32U5 peripheral drivers and CAN-bus message handling in C, debugged UART/I2C sensor integration, and scheduled periodic control tasks with FreeRTOS."
+    },
+    {
+      "source": "resume_summary",
+      "excerpt": "Completed firmware internship work on STM32U5 microcontrollers using C, CAN-bus messaging, and FreeRTOS."
+    },
+    {
+      "source": "experience",
+      "excerpt": "Used Git and GitHub pull requests to review firmware and capstone changes, keep issue history visible, and coordinate integration work across electrical, mechanical, and software teammates."
+    },
+    {
+      "source": "experience",
+      "excerpt": "Acted as capstone team lead and class student representative, organising sprint reviews, summarising technical trade-offs for supervisors, and collecting cohort feedback for teaching staff."
+    },
+    {
+      "source": "skills_section",
+      "excerpt": "Skills: Python, C, TypeScript, JavaScript, React, Node.js, WebSockets, SQL, SQLite, PostgreSQL, Git, GitHub, STM32U5, CAN, FreeRTOS, UART, I2C, technical communication, team leadership."
     }
-  ]
+  ],
+  "portfolio_url": "https://example.com/maya-thompson",
+  "github_url": "https://github.com/example/gradbridge-demo"
 }

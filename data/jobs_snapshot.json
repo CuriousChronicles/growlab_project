@@ -1,227 +1,1276 @@
-[
-  {
-    "id": "ai-akl-01",
-    "title": "Graduate Automation Engineer",
-    "company": "Harbour Robotics",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-20",
-    "description": "Graduate role building Python automation, REST APIs and data pipelines. Python and SQL are required; Docker and GitHub are preferred."
-  },
-  {
-    "id": "ai-akl-02",
-    "title": "Junior AI Workflow Developer",
-    "company": "Koru Digital",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-18",
-    "description": "Entry level developer using Python, LLMs, RAG, REST APIs, Git and Testing. Experience with Docker is a bonus."
-  },
-  {
-    "id": "ai-akl-03",
-    "title": "Associate Data Automation Analyst",
-    "company": "Pacific Insights",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-16",
-    "description": "Recent graduate with Python, Pandas, SQL and Data Visualisation. Technical Communication is essential for stakeholder updates."
-  },
-  {
-    "id": "ai-akl-04",
-    "title": "Graduate Integration Developer",
-    "company": "Tahi Health",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-12",
-    "description": "0-2 years experience. REST APIs, Python, PostgreSQL and Git required. Familiarity with AWS and CI/CD preferred."
-  },
-  {
-    "id": "ai-akl-05",
-    "title": "Junior Process Automation Engineer",
-    "company": "Southern Freight Tech",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-10",
-    "description": "Build internal automation with Python, SQL, Docker and Linux. Testing and Project Ownership are important."
-  },
-  {
-    "id": "ai-akl-06",
-    "title": "Graduate AI Application Engineer",
-    "company": "Fern Labs",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-08",
-    "description": "Python, TypeScript, REST APIs and LLMs required. RAG, React and GitHub are nice to have."
-  },
-  {
-    "id": "ai-akl-07",
-    "title": "Automation Test Developer",
-    "company": "Northstar Systems",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-07",
-    "description": "Junior or graduate engineer. Testing, Python, Git, CI/CD and Linux required. Familiarity with Docker preferred."
-  },
-  {
-    "id": "ai-akl-08",
-    "title": "Data Pipeline Graduate",
-    "company": "Motu Analytics",
-    "location": "Auckland",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-05",
-    "description": "Graduate data role with Python, Data Pipelines, SQL, PostgreSQL and AWS. Pandas is preferred."
-  },
-  {
-    "id": "ai-remote-01",
-    "title": "Remote Junior Automation Developer",
-    "company": "Cloud Weave",
-    "location": "Remote-friendly",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-22",
-    "description": "Entry level remote role. Python, REST APIs, GitHub and Docker required. LLMs and RAG are preferred."
-  },
-  {
-    "id": "ai-remote-02",
-    "title": "Graduate AI Support Engineer",
-    "company": "Aroha AI",
-    "location": "Remote-friendly",
-    "pathway": "ai_automation",
-    "posted_at": "2026-06-15",
-    "description": "Support AI workflow products with Python, SQL, Technical Communication and Testing. Azure is a bonus."
-  },
-  {
-    "id": "sw-akl-01",
-    "title": "Graduate Full-Stack Developer",
-    "company": "Harbour Apps",
-    "location": "Auckland",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-21",
-    "description": "React, TypeScript, Node.js, REST APIs and PostgreSQL required. Git and Testing are essential."
-  },
-  {
-    "id": "sw-akl-02",
-    "title": "Junior Software Engineer",
-    "company": "KauriPay",
-    "location": "Auckland",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-19",
-    "description": "Entry level software role using JavaScript, React, SQL, GitHub and CI/CD. Docker preferred."
-  },
-  {
-    "id": "sw-akl-03",
-    "title": "Associate Web Developer",
-    "company": "Civic Tech NZ",
-    "location": "Auckland",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-14",
-    "description": "HTML/CSS, React, REST APIs and Technical Communication required. Familiarity with TypeScript and Agile."
-  },
-  {
-    "id": "sw-akl-04",
-    "title": "Graduate Platform Developer",
-    "company": "Anchor Cloud",
-    "location": "Auckland",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-11",
-    "description": "Node.js, TypeScript, PostgreSQL, AWS, Docker and Linux. Testing is required."
-  },
-  {
-    "id": "sw-akl-05",
-    "title": "Junior Product Engineer",
-    "company": "Tui SaaS",
-    "location": "Auckland",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-09",
-    "description": "React, TypeScript, REST APIs, Git and Project Ownership. Experience with SQLite or PostgreSQL preferred."
-  },
-  {
-    "id": "sw-akl-06",
-    "title": "Graduate Backend Developer",
-    "company": "Southern Freight Tech",
-    "location": "Auckland",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-06",
-    "description": "Python, Node.js, REST APIs, SQL and Docker required. CI/CD and Linux are nice to have."
-  },
-  {
-    "id": "sw-remote-01",
-    "title": "Remote Junior Frontend Engineer",
-    "company": "Launchpad Studio",
-    "location": "Remote-friendly",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-17",
-    "description": "React, TypeScript, HTML/CSS, Testing and GitHub required for entry level product work."
-  },
-  {
-    "id": "sw-remote-02",
-    "title": "Graduate API Developer",
-    "company": "Blue Current",
-    "location": "Remote-friendly",
-    "pathway": "software_fullstack",
-    "posted_at": "2026-06-13",
-    "description": "REST APIs, PostgreSQL, TypeScript, Node.js and Technical Communication. AWS preferred."
-  },
-  {
-    "id": "fw-akl-01",
-    "title": "Graduate Firmware Engineer",
-    "company": "CircuitWorks",
-    "location": "Auckland",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-20",
-    "description": "Embedded C, C, STM32, UART and Git required. CAN and I2C preferred."
-  },
-  {
-    "id": "fw-akl-02",
-    "title": "Junior Embedded Software Engineer",
-    "company": "NavSense",
-    "location": "Auckland",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-18",
-    "description": "Microcontrollers, C++, RTOS, SPI, I2C and Testing. Technical Communication is essential."
-  },
-  {
-    "id": "fw-akl-03",
-    "title": "Graduate IoT Engineer",
-    "company": "FarmLink Devices",
-    "location": "Auckland",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-15",
-    "description": "Embedded C, Microcontrollers, CAN, REST APIs, Linux and GitHub. PCB Design preferred."
-  },
-  {
-    "id": "fw-akl-04",
-    "title": "Associate Test Firmware Engineer",
-    "company": "AeroLab",
-    "location": "Auckland",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-12",
-    "description": "Testing, C, Embedded C, UART, Python automation and CI/CD required."
-  },
-  {
-    "id": "fw-akl-05",
-    "title": "Graduate Controls Developer",
-    "company": "Southern Robotics",
-    "location": "Auckland",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-08",
-    "description": "STM32, CAN, RTOS, C++ and Project Ownership. Familiarity with Docker for toolchains is a bonus."
-  },
-  {
-    "id": "fw-akl-06",
-    "title": "Junior Hardware Software Engineer",
-    "company": "BrightGrid",
-    "location": "Auckland",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-06",
-    "description": "PCB Design, Microcontrollers, SPI, I2C, Embedded C and Technical Communication required."
-  },
-  {
-    "id": "fw-remote-01",
-    "title": "Remote Graduate Embedded Tooling Engineer",
-    "company": "EdgeOps",
-    "location": "Remote-friendly",
-    "pathway": "embedded_firmware",
-    "posted_at": "2026-06-16",
-    "description": "Python, Linux, C, Testing, Git and CI/CD for embedded tooling. STM32 preferred."
-  }
-]
+{
+  "captured_at": "2026-06-25T05:21:05.929023+00:00",
+  "source": "Adzuna NZ",
+  "location": "Auckland",
+  "listings": [
+    {
+      "title": "Senior Python Data Scraping Engineer (Freelance)",
+      "company": "Mindrift",
+      "location": "New Zealand",
+      "description": "Mindrift is looking for highly skilled Senior Python Data Scraping Engineers to join the Tendem project and drive specialized data scraping workflows within our hybrid AI  human system. In this role, as an AI Pilot – that’s how we refer to this role at Mindrift – you’ll collaborate with Tendem Agents that handle repetitive tasks, while you provide critical thinking, domain expertise, and quality control to deliver accurate and actionable results. This part-time remote opportunity is ideal for t…",
+      "created": "2026-06-17T23:46:04Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5766714687?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Intelligent Automation Architect",
+      "company": "Datacom",
+      "location": "New Zealand",
+      "description": "Intelligent Automation Architect We are seeking an experienced Intelligent Automation Architect to design, govern, and evolve enterprise automation solutions that improve efficiency, reduce manual effort, and create repeatable business value. This role partners closely with sales, presales, delivery, and client stakeholders to shape automation opportunities, define solution architecture, and guide the technical direction of automation initiatives across a broad technology landscape. The role al…",
+      "created": "2026-06-04T01:08:48Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750628578?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Automation Graduate",
+      "company": "Datacom",
+      "location": "Wellington, Greater Wellington",
+      "description": "Launch your career with purpose. Grow with guidance. Datacom's Join Datacom’s Automation team within Application Service are looking for a Graduate In Wellington and Brisbane! This team help simplify the way people work. They focus on building smart, reliable automation solutions that make everyday tasks faster, easier, and more consistent — all powered through ServiceNow and Activate. This is a great opportunity for someone who is looking to gain hands-on experience, learn from experienced eng…",
+      "created": "2026-05-27T20:23:59Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5742064146?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Automation Engineer",
+      "company": "Level",
+      "location": "Takapuna, North Shore",
+      "description": "Automation Engineer Level is a learning technology company dedicated to helping students build real academic and life skills with confidence and joy. We combine proven curriculum principles with world class interactive design to make meaningful practice something students want to come back to, not something they struggle through. We support what teachers, schools, and parents are already doing by increasing student engagement with high quality, standards aligned practice that reinforces classro…",
+      "created": "2026-06-04T08:37:36Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750901010?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Test Automation Engineer",
+      "company": "Resideo",
+      "location": "Auckland, North Island",
+      "description": "Description As a Senior Test Automation Engineer, you will join our technically savvy team to develop and deliver automated test systems to aid in the delivery of Resideo’s leading edge video, AI and imaging products. This is a unique chance to drive Teknique and Resideo to accomplish their mission to \"Protect What Matters Most\" while bringing innovation to the way we live. JOB DUTIES: Collaborate with cross-functional teams including developers, product managers, and quality assurance analysts…",
+      "created": "2026-06-14T08:48:57Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5762803515?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Enterprise AI & Automation Lead",
+      "company": "Adecco",
+      "location": "Auckland, North Island",
+      "description": "What We’re Looking For Experience 6–8 years’ experience in AI, machine learning, data science, or intelligent automation Proven hands-on experience delivering AI/ML solutions (e.g. NLP, predictive analytics, optimization, LLM-based tools) Strong background in RPA or workflow automation Experience integrating AI and automation into existing business systems Demonstrated ability to lead initiatives across cross-functional, agile environments Experience working with vendors, platforms, and third-p…",
+      "created": "2026-06-21T21:25:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771617764?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Systems and Automation Engineer",
+      "company": "AllRecruits",
+      "location": "Ashburton, Canterbury",
+      "description": "Systems and Automation Engineer We are looking for a Systems and Automation Engineer to support automation and process control systems across the site, drive continuous improvement initiatives, and optimise the performance and reliability of automated manufacturing equipment. What you'll be doing ● Developing and supporting industrial automation and process control systems using PLC and SCADA technologies. ● Installing, maintaining and troubleshooting control systems and automation processes ac…",
+      "created": "2026-06-24T08:48:54Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5773921045?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Automation Tester",
+      "company": "Bank of New Zealand",
+      "location": "New Zealand",
+      "description": "Worker Type: Maximum Term/Fixed Term (Fixed Term) Here at BNZ, it's about more than just banking. We work together in an agile, energising environment to create innovative solutions though our promise \"If you can imagine a better future, let's find a way.\" We support wellbeing, flexible working and have a generous leave offering. No two days are the same. Ko mātou tēnei | This is Us The successful candidate will join BNZ's Technology team within the Lending Platforms domain. This team works acr…",
+      "created": "2026-06-15T08:50:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5763801651?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Marketing Automation Specialist",
+      "company": "Stuff Digital Limited",
+      "location": "New Zealand",
+      "description": "Description Stuff reaches millions of New Zealanders every month. Now we're reimagining how we connect with them. We're looking for a marketing automation leader who is excited by what's next. Someone who sees beyond traditional CRM programmes and wants to build intelligent, adaptive customer experiences powered by data, automation and AI. This is an opportunity to shape the future of audience growth, engagement and subscriber revenue for one of New Zealand's most recognised digital brands. You…",
+      "created": "2026-06-12T08:47:03Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760305463?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Marketing Automation Specialist",
+      "company": "",
+      "location": "New Zealand",
+      "description": "Job Type: Ongoing - Full Time Category: Location: Wellington - Wairarapa Date Advertised: 11-JUN-26 Job Reference: NZ/DF-2606019 Job Title: Marketing Automation Specialist Business Unit: Division: Classification: Work Location: Position Type: Job Duration:N/A Contact Name: Contact Phone/Email/Fax: Mō te tūnga | About the role Are you a tech-savvy marketing professional with a passion for leveraging technology to create impactful user experiences? The New Zealand Defence Force (NZDF) is seeking …",
+      "created": "2026-06-19T18:13:52Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5769075347?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Marketing Automation Specialist",
+      "company": "New Zealand Government",
+      "location": "Wairarapa, North Island",
+      "description": "Mō te tūnga | About the role Are you a tech-savvy marketing professional with a passion for leveraging technology to create impactful user experiences? The New Zealand Defence Force (NZDF) is seeking a talented Marketing Automation Specialist to join our dynamic team. In this role, you will be instrumental in designing and maintaining Salesforce Marketing Cloud journeys aimed at recruiting 18–24-year-olds to explore the diverse and fulfilling career opportunities within the Defence Force and to…",
+      "created": "2026-06-12T08:32:23Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760244951?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Automation & Electrical Lead / Engineer",
+      "company": "Adecco",
+      "location": "New Zealand",
+      "description": "We are seeking an experienced Automation & Electrical Lead / Engineer to join a well-established manufacturing operation in the Manawatū region. This is a key leadership role responsible for driving automation, electrical reliability, and continuous improvement initiatives across site operations. We currently have two opportunities available across different environments: General Manufacturing FMCG (Fast-Moving Consumer Goods) Both roles offer the chance to lead from the front and influence per…",
+      "created": "2026-06-21T21:25:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771617754?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Automation & Electrical Team Leader, Dargaville, Site Engineering",
+      "company": "Silver Fern Farms",
+      "location": "Dargaville, Northland",
+      "description": "Description Te Tūranga /About the Role: Silver Fern Farms Dargaville have an exciting opportunity for a highly motivated and skilled tradesperson to join as an Automation & Electrical Team Leader. This role is responsible for the maintenance and installation of industrial automation equipment and systems in our large food processing site. You will have strong leadership, effective time management, and an electrical qualification at Level 4 or higher, with PLC/automation experience preferred but…",
+      "created": "2026-06-10T09:04:05Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5757594582?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Software Engineer – Test Systems & Instrumentation",
+      "company": "Adecco",
+      "location": "New Zealand",
+      "description": "What We’re Looking For Strong Python programming skills ; experience with C/C++ or MATLAB is a plus Experience with databases (PostgreSQL, MySQL, or similar) Familiarity with Docker containers, hardware/software integration, robotics, or automated testing systems Understanding of network protocols, compute clusters, and large-scale data handling Passion for software architecture, APIs, and high-performance modular software Excellent collaboration and communication skills in a cross-functional team environment Nic…",
+      "created": "2026-06-21T21:25:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771617695?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Data Analytics Lead",
+      "company": "Adecco",
+      "location": "Auckland, North Island",
+      "description": "Your Skills Proven leadership in data engineering, BI, data science, and data analytics Expertise in Snowflake, dbt, Airflow, Azure Blob, Docker, and Python programming Strong command of Power BI governance and CI/CD processes Experience with Azure ML orchestration and MLOps practices Mastery of ITSM processes and stakeholder management Benefits Employment Type: Full-time position with competitive industry-standard salary Location: Based in Auckland, New Zealand, offering a vibrant work environment Ind…",
+      "created": "2026-06-21T21:25:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771617700?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Contract - Tech Lead (Java  Spring Boot)",
+      "company": "Datacom",
+      "location": "Auckland, North Island",
+      "description": "Our Why Datacom works with organisations and communities across Australia and New Zealand to make a difference in people’s lives and help organisations use the power of tech to innovate and grow. About the Role (your why) We're on the hunt for a Contract Tech Lead specialising in Java & Spring Boot to become a pivotal part of our dynamic team. If you're passionate about weaving together innovative solutions and crafting seamless experiences, this is the role for you! With your expertise in API …",
+      "created": "2026-06-05T19:37:29Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5752899914?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Data Engineer - SMARTLY",
+      "company": "Datacom",
+      "location": "New Zealand",
+      "description": "A Bit About Smartly, a Datacom Company We exist to make it simpler for Kiwi businesses to look after their people. We’re known as the simple way to sort your payroll for over 20,000 businesses. Our slick software combined with our awesome support team help businesses pay their people on time, accurately and in line with legislation. As a fast-growing FinTech expanding into adjacent markets, Smartly offers a fast paced, fun work environment with great opportunities for personal and professional …",
+      "created": "2026-06-16T13:44:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764877814?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Data Engineer - SMARTLY",
+      "company": "Datacom",
+      "location": "Auckland, North Island",
+      "description": "A Bit About Smartly, a Datacom Company We exist to make it simpler for Kiwi businesses to look after their people. We’re known as the simple way to sort your payroll for over 20,000 businesses. Our slick software combined with our awesome support team help businesses pay their people on time, accurately and in line with legislation. As a fast-growing FinTech expanding into adjacent markets, Smartly offers a fast paced, fun work environment with great opportunities for personal and professional …",
+      "created": "2026-06-16T13:44:48Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764877900?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Security Analyst",
+      "company": "EROAD",
+      "location": "New Zealand",
+      "description": "A career with EROAD offers the unique opportunity to work in a fast-growing organisation that is at the forefront of intelligent transport solutions - enhancing road safety, improving productivity, and reducing environmental impact. EROAD’s mission is to deliver intelligence you can trust, for a better world tomorrow. As a Security Analyst , you will play a key role in helping safeguard EROAD’s data, systems, and services. Working as part of our Information Security team, you will support day‑t…",
+      "created": "2026-05-31T08:36:39Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5745788323?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Cybersecurity Operations Analyst",
+      "company": "DEFEND Limited",
+      "location": "New Zealand",
+      "description": "Senior Cybersecurity Operations Analyst DEFEND | Wellington Ready to hunt threats, reduce risk, and shape the future of cyber defence? At DEFEND, we don’t just respond to cyber threats, we engineer resilience. We’re looking for a Senior Cybersecurity Operations Analyst to lead from the front: driving vulnerability management, hunting adversaries, investigating incidents and partnering with customers to stay one step ahead. Requirements Why this role matters You’ll be at the heart of protecting …",
+      "created": "2026-06-23T19:18:06Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5773315734?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Graduate - Information Management & M365 Solutions",
+      "company": "Datacom",
+      "location": "Wellington, Greater Wellington",
+      "description": "Start Your Career in the Modern Workplace & Information Management Looking to kick-start your career in tech—but not in traditional software development? This is a fantastic opportunity to join a specialised team working at the intersection of Microsoft 365, information governance, and automation . As a graduate in Datacom’s Information Management & Productivity Solutions (IMPS) team, you’ll gain hands-on experience delivering solutions that help organisations manage information, improve compli…",
+      "created": "2026-05-28T17:24:08Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5743131981?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Analyst Tester | Kaiwhakamātau Kaitātari Matua – Tātari",
+      "company": "New Zealand Government",
+      "location": "Canterbury, South Island",
+      "description": "Use your testing expertise to support trusted government data and deliver meaningful impact for communities across Aotearoa * New, hybrid role with room for growth * Technical leadership role in a team of experts * Bring your creativity, passion, innovation, and ideas to work on platform and infrastructure work * Meaningful work contributing to systems used for producing official statistics About Us | Ko mātou Stats NZ | Tatauranga Aotearoa is a Central Government employer of 1300 people across…",
+      "created": "2026-06-12T08:32:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245220?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Systems Engineer",
+      "company": "Gentrack",
+      "location": "Penrose, Auckland City",
+      "description": "The Opportunity This is a hands-on Systems Engineer role within a growing global ICT function. The role has primary responsibility for supporting the New Zealand environment and selected local services, while also contributing to the support, resolution, and continuous improvement of shared services and platforms used across the wider business. This is not a site-only support role. As part of the ANZ engineering team and the broader global ICT function, you will provide local on-site support wh…",
+      "created": "2026-05-30T08:44:57Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744783659?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Lead OSS Engineer",
+      "company": "Ko tā mātou mahi - About the role",
+      "location": "New Zealand",
+      "description": "Description For more than 65 years, we’ve been keeping New Zealanders and their businesses safe, connected and ready for the future. We operate across New Zealand, Australia and the Pacific, delivering mission-critical technology spanning cloud, cyber security, broadcasting, maritime communications and critical communications infrastructure. Backed by a team of 450 experts, we’re trusted by some of New Zealand’s largest organisations to protect what matters most. Ko tā mātou mahi - About the ro…",
+      "created": "2026-06-07T08:37:38Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5754691491?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Junior Data & AI Engineer",
+      "company": "ZURU",
+      "location": "New Zealand",
+      "description": "As a Junior Data and AI Engineer, you will build and maintain data pipelines that power real business decisions across ZURU’s global operations. Working with modern tools like Databricks, dbt, Fivetran, and AWS, you’ll gain end-to-end exposure to data systems while contributing to scalable, production-grade infrastructure. This is a hands-on role with real ownership from day one. This role plays a key part in enabling data-driven decision-making across ZURU’s global business. By building reliab…",
+      "created": "2026-06-04T08:38:40Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750911557?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Principal Infrastructure Engineer",
+      "company": "New Zealand Government",
+      "location": "Waikato, North Island",
+      "description": "Information Technology Services (ITS) Lead the design, security and evolution of the University's end user computing platforms, driving automation, cloud integration and technical excellence across a complex enterprise environment. * Lead modern endpoint and cloud platform engineering * Enable digital innovation across a leading university * Work-life balance practices  professional development opportunities Ngā kōrero mō te tūranga - About the role As Principal Infrastructure Engineer, you wil…",
+      "created": "2026-06-12T08:32:24Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245159?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Engineer",
+      "company": "HAYS",
+      "location": "CBD, Auckland City",
+      "description": "Senior engineer role delivering scalable systems and driving technical leadership Tō kamupene hou | Your new company An established organisation is seeking a Senior Engineer to join a growing technology function. This role offers the opportunity to work on complex systems, contribute to technical direction, and play a key role in delivering high-quality engineering outcomes within a collaborative environment. Tō tūranga hou | Your new role This is a senior, hands-on engineering position suited …",
+      "created": "2026-06-12T14:36:17Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760846241?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Junior AI Integration Engineer",
+      "company": "ZURU",
+      "location": "New Zealand",
+      "description": "Ready to Lead AI Sprints, Build Smart Tools, and Put Automation Into Action from Day One?  About ZURU ZURU is on a mission to disrupt industries, challenge the status quo, and catalyze change through radical innovation and advances in automation. This is in play in different pillars of the company: ZURU Toys are re-imagining what it means to play; ZURU Tech is shaping a better future by leading the next building revolution; and ZURU Edge is pioneering new-generation FMCG brands to better serve…",
+      "created": "2026-06-04T08:37:56Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750904144?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Bid and Response Specialist",
+      "company": "Docuvera",
+      "location": "Thorndon, Wellington",
+      "description": "The part you’ll play As a Bid and Response Specialist at Docuvera, your purpose is to own the end-to-end process for the complex, cross-functional customer and prospect requests that shape how our customers evaluate us as a partner — RFIs, RFPs, vendor questionnaires, security questionnaires, and other due diligence requests. You act as the single intake point and directly responsible individual (DRI) for every response in flight. When a bid arrives, you document the submission requirements, bu…",
+      "created": "2026-06-02T08:37:03Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5748142798?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Data Engineer (Database Operations)",
+      "company": "Serko Ltd",
+      "location": "Auckland, North Island",
+      "description": "Serko is a cutting-edge tech platform in global business travel & expense technology. When you join Serko, you become part of a team of passionate travellers and technologists bringing people together, using the world’s leading business travel marketplace. We are proud to be an equal-opportunity employer, we embrace the richness of diversity, showing up authentically to create a positive impact. Requirements Make an impact The Data Engineer is responsible for implementing solutions to ever-chan…",
+      "created": "2026-06-16T13:44:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764877816?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "Bank of New Zealand",
+      "location": "New Zealand",
+      "description": "Worker Type: Permanent Here at BNZ, it's about more than just banking. We work together in an agile, energising environment to create innovative solutions through our promise \"If you can imagine a better future, let's find a way.\" We support wellbeing, flexible working and have a generous leave offering. There is the opportunity for growth, learning and career development. No two days are the same. We’re seeking a Dev O ps Engineer to join our Corporate Services Domain within BNZ Technology. Pl…",
+      "created": "2026-05-30T08:43:55Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744778226?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Data/Analytics Engineer",
+      "company": "Trimble",
+      "location": "Christchurch, Canterbury",
+      "description": "Your Title: Data/Analytics Engineer Job Location: Westminster CO, or Christchurch NZ Our Department: Field Systems Data/Analytics Engineer - Customer 360 Data Pipelines About the Team: The Field Systems Data Team at Trimble is actively building and maturing our data strategy. We are seeking a dedicated Data Engineer to join our Business Intelligence team and actively shape our data backend and infrastructure in a dynamic environment, proactively breaking down data silos. The Role: As a Data/Ana…",
+      "created": "2026-06-05T08:51:17Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5752256950?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Data Scientist",
+      "company": "Accident Compensation Corporation New Zealand",
+      "location": "Wellington, Greater Wellington",
+      "description": "Description About us | Mō mātou ACC exists to support people - we help prevent injuries and get New Zealanders and visitors back to everyday life if they’ve had an accident. You can find more about ACC and the work we do here . About the role | Mō te tūranga mahi Join a team of talented and ambitious data scientists at ACC, where you can work on real-world problems using extensive data. This is a role for people who want to build intelligent, production-grade solutions within a supportive team …",
+      "created": "2026-06-19T08:46:32Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5768455560?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Data Scientist",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "About us | Mō mātou ACC exists to support people - we help prevent injuries and get New Zealanders and visitors back to everyday life if they've had an accident. You can find more about ACC and the work we do here. About the role | Mō te tūranga mahi Join a team of talented and ambitious data scientists at ACC, where you can work on real-world problems using extensive data. This is a role for people who want to build intelligent, production-grade solutions within a supportive team environment t…",
+      "created": "2026-06-19T08:34:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5768377359?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Applications Software Engineer",
+      "company": "PeopleZone",
+      "location": "Auckland, North Island",
+      "description": "Introduction Welcome to Temperzone! As the recipient of the 2022 ARBS Product Excellence Award , we stand as Australasia's longest-serving air conditioning manufacturer. Our dedication to quality and eco-conscious initiatives reflects in our internationally acclaimed product line. Joining Temperzone means more than just employment; it's joining a tight-knit family where our culture and values permeate every aspect of our work. Description About the Role Are you passionate about leveraging techn…",
+      "created": "2026-06-18T09:35:14Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767099886?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Martech Specialist",
+      "company": "Halter",
+      "location": "Auckland, North Island",
+      "description": "About Halter At Halter, we’re on a mission to enable farmers and graziers to run the most productive and sustainable operations. Our customers are using Halter to break free from the time-intensive constraints of conventional practices. Imagine watching 500 cattle stand up and walk calmly towards their next break? No quad bikes, no dogs, no fences. Just a group of cattle walking at their own pace. People say it looks like magic. Our customers are revolutionizing grazing with Halter. It's changi…",
+      "created": "2026-06-18T09:34:27Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767096886?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Software Engineer (Quantifi Photonics, New Zealand)",
+      "company": "Teradyne",
+      "location": "Rosedale, Invercargill",
+      "description": "Our Purpose TERADYNE, where experience meets innovation and driving excellence in every connection. We are fuelled by creativity and diversity of thought and in our workforce. Our employees are supported to innovate and learn something new every day. Based in Auckland, Quantifi Photonics is proud to be part of the Teradyne family, combining New Zealand's innovative spirit with the resources of a global leader in test, automation, and robotics. We're growing fast, tackling increasingly complex c…",
+      "created": "2026-06-05T14:17:40Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5752698304?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Data Engineer - 6 Month Contract",
+      "company": "Watercare Services",
+      "location": "New Zealand",
+      "description": "He kōrero mō mātou | About Watercare Ki te ora te wai, ka ora te whenua, ka ora te tangata When the water is healthy, the land and the people are healthy Now is an exciting time to join Watercare, we're planning to spend $14 billion over the next 10 years to ensure we can continue to support our growing city in a climate-resilient way. When you average that out, that's an investment of $3.8 million every day! He whakamārama mō te tūranga mahi | About the role We are looking for 2x Senior Data E…",
+      "created": "2026-06-21T08:49:02Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5770916322?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "System Engineer, Technology & Data",
+      "company": "New Zealand Government",
+      "location": "Nelson, South Island",
+      "description": "Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ Government to protect New Zealand and its people. Mō te tūranga mahi – about the role Join our Technology & Data team and become part of the engine that keeps our Linux‑centric infrastructure humming. Beyond the technology, your voice and experience will help define best‑practice systems and processes to ensure we shape a collaborative, high‑impact culture to deliver value…",
+      "created": "2026-06-12T08:32:23Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245011?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "System Engineer, Technology & Data",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ Government to protect New Zealand and its people. Mō te tūranga mahi – about the role Join our Technology & Data team and become part of the engine that keeps our Linux‑centric infrastructure humming. Beyond the technology, your voice and experience will help define best‑practice systems and processes to ensure we shape a collaborative, high‑impact culture to deliver value…",
+      "created": "2026-06-12T08:32:23Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760244999?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "System Engineer, Technology & Data",
+      "company": "New Zealand Government",
+      "location": "Auckland, North Island",
+      "description": "Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ Government to protect New Zealand and its people. Mō te tūranga mahi – about the role Join our Technology & Data team and become part of the engine that keeps our Linux‑centric infrastructure humming. Beyond the technology, your voice and experience will help define best‑practice systems and processes to ensure we shape a collaborative, high‑impact culture to deliver value…",
+      "created": "2026-06-12T08:32:23Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245008?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Azure Data Consultant",
+      "company": "Arinco",
+      "location": "Auckland, North Island",
+      "description": "Arinco is the Artificial Intelligence Company helping organisations become AI-first. As a specialist Microsoft partner across Australia and New Zealand, and Microsoft’s Australia Partner of the Year 2024, we combine Microsoft innovation, award-winning delivery and our Done Right™ frameworks to take customers from secure cloud and data platforms to production-ready copilots, agents and AI apps. Since 2019, we’ve partnered with more than 200 organisations across government, financial services, he…",
+      "created": "2026-06-16T16:53:57Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5765080335?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Junior Full Stack Web Engineer",
+      "company": "Sunstone Talent",
+      "location": "Christchurch, Canterbury",
+      "description": "An exciting SaaS company is looking for a Junior Full Stack Web Engineer to join a modern, high growth scale up company Love to work in CSS, TypeScript, Python, Node & Golang? What you’ll bring: BSc Computer Science or BEng in Software Engineering or not At least 2 years full stack web development experience in product software engineering You will have been working in a modern JS framework like Angular, Vue or React with TypeScript Ideally CSS, React (or other JS framework), TypeScript, Node &…",
+      "created": "2026-06-18T07:00:59Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5766978397?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior AI Engineer",
+      "company": "Air New Zealand",
+      "location": "Auckland, North Island",
+      "description": "Job Description Kia ora! At Air New Zealand, we’re constantly evolving, embracing innovation and pushing boundaries to create extraordinary experiences for our customers and employees. As we continue to grow and transform, we're seeking individuals who are passionate about making a difference and playing a key role in our journey. This is why we are excited to offer the opportunity to join our Digital team and help design, ship and scale business-changing Generative AI solutions. This is a hand…",
+      "created": "2026-06-16T23:28:30Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5765448061?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Data Warehouse Developer",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "Help shape the future of education in New Zealand Help shape the future of Education We work to shape an education system that delivers equitable and excellent outcomes Our organisation is made up of talented and committed people around Aotearoa, from a wide range of backgrounds and cultures. While we work in different groups and on different things, we all strive every day to make the biggest difference we can for our students in our education system. About this role | Mō tēnei tūranga * Perma…",
+      "created": "2026-06-12T08:32:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245180?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Senior Data Engineer",
+      "company": "Adecco",
+      "location": "Auckland, North Island",
+      "description": "Your Skills Strong experience in data engineering, data modeling, and ETL processes Hands-on expertise with Teradata, Snowflake, dbt (Core & Cloud), and Airflow Proficiency in Python and scripting for data ingestion and transformation Solid understanding of incidents, problems, and change management processes Ability to lead technical discussions and mentor junior engineers Benefits Competitive salary commensurate with experience and industry standards Opportunity to work in a dynamic and innov…",
+      "created": "2026-06-21T21:25:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771617721?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Technical Support Engineer",
+      "company": "Aiven",
+      "location": "New Zealand",
+      "description": "We’re a global team of over 400 people, working together to push the boundaries of open-source technology and multi-cloud solutions. Our vision is to become the trusted Data & AI Platform for everyone, leveraging the most popular open-source technologies like Apache Kafka®, Aiven for PostgreSQL®, Aiven for Clickhouse®, and Aiven for OpenSearch®. to help companies accelerate time-to-market, drive efficiency, and build innovative solutions across any cloud. The Role: Our support team thrives on t…",
+      "created": "2026-06-12T08:47:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760307784?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Specialist Adoption Architect",
+      "company": "Red Hat",
+      "location": "Wellington, Greater Wellington",
+      "description": "Red Hat's Technology Sales & Adoption team seeks a highly energised and self-motivated technical expert to reduce the time to value and optimise customer outcomes, enabling customer adoption of Red Hat products and technologies. Leveraging an engagement-based delivery model, you will work with customers adopting Red Hat platforms, including OpenShift [running on-prem or cloud hyperscalers] and Ansible. You will assist customers with integrating Red Hat products in their enterprise IT environmen…",
+      "created": "2026-05-29T14:15:26Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744154845?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Specialist Adoption Architect",
+      "company": "Red Hat",
+      "location": "Auckland, North Island",
+      "description": "Red Hat's Technology Sales & Adoption team seeks a highly energised and self-motivated technical expert to reduce the time to value and optimise customer outcomes, enabling customer adoption of Red Hat products and technologies. Leveraging an engagement-based delivery model, you will work with customers adopting Red Hat platforms, including OpenShift [running on-prem or cloud hyperscalers] and Ansible. You will assist customers with integrating Red Hat products in their enterprise IT environmen…",
+      "created": "2026-05-29T14:15:26Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744154844?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "D365 & Power Platform Developer",
+      "company": "FUJIFILM Business Innovation",
+      "location": "North Island, New Zealand",
+      "description": "Description About FUJIFILM Business Innovation At FUJIFILM Business Innovation, we never stop finding ways to help Kiwis work smarter. As a team of over 600 people across Aotearoa, we’re passionate about technology, collaboration, and delivering solutions that genuinely move organisations forward. Backed by the global strength of the Fujifilm Group, we combine international innovation with a local mission: solving complex challenges for businesses of every size. Our Process Automation division …",
+      "created": "2026-06-07T08:36:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5754686692?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "ai_automation"
+    },
+    {
+      "title": "Registered Nurse (Emergency Department) - Permanent Contracts - Tasmania - Visa Sponsorship Available!",
+      "company": "Skilled Nursing",
+      "location": "New Zealand",
+      "description": "Details Title: Registered Nurse - Emergency Department Location: North-West Tasmania Position Type: Multiple positions available - permanent, full time shift worker, working up to 76 hours per fortnight, commencing as soon as possible. *hours may be negotiated with the successful applicant. Salary: AUD $80,524 to $109,175 per annum (pro rata)  employer 12% superannuation contribution. Salary range is in accordance with Nurses and Midwives (Tasmania State Service) Agreement 2023. Visa sponsorshi…",
+      "created": "2026-06-20T17:38:28Z",
+      "redirect_url": "https://www.adzuna.co.nz/land/ad/5770259073?se=nN92qVVw8RGrvYF11hqYFQ&utm_medium=api&utm_source=3f4bae13&v=FD76F7C2A33CC91B139B060773A0157962B37F2B",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Registered Nurse - Permanent Contract - West Coast, Tasmania - Sponsorship Available!",
+      "company": "Skilled Nursing",
+      "location": "New Zealand",
+      "description": "Details Title: Registered Nurse Location: West Coast, Tasmania Position Type: Multiple permanent, full time and part time, shift worker position, working up to 76 hours per fortnight. *hours may be negotiated with the successful applicant. Salary: AUD $80,524 to $109,175 per annum (pro rata)  employer 12% superannuation contribution. Salary range is in accordance with Nurses and Midwives (Tasmania State Service) Agreement 2023. Visa sponsorship and relocation support available for eligible UK/I…",
+      "created": "2026-06-20T17:38:28Z",
+      "redirect_url": "https://www.adzuna.co.nz/land/ad/5770259068?se=nN92qVVw8RGrvYF11hqYFQ&utm_medium=api&utm_source=3f4bae13&v=B64C200800ECDE89C804636BB26DEAC638B84154",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Permanent Position - Registered Nurse - King Island, Tasmania - Sponsorship Available!",
+      "company": "Skilled Nursing",
+      "location": "New Zealand",
+      "description": "Details Title: Registered Nurse Location: King Island, Tasmania Position Type: Permanent full time, shift worker (fully rotational) position, working up to 76 hours per fortnight, commencing as soon as possible. *hours may be negotiated with the successful applicant. Salary: AUD $80,524 to $109,175 per annum (pro rata)  employer 12% superannuation contribution. Salary range is in accordance with Nurses and Midwives (Tasmania State Service) Agreement 2023. Visa sponsorship and relocation support…",
+      "created": "2026-06-20T17:38:27Z",
+      "redirect_url": "https://www.adzuna.co.nz/land/ad/5770259067?se=nN92qVVw8RGrvYF11hqYFQ&utm_medium=api&utm_source=3f4bae13&v=589A2A8D5C263170EC4961EC6FB7E3648B5A62D4",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Registered Nurse (Surgical Ward) - Permanent Contract - Launceston, Tasmania - Visa Sponsorship Available!",
+      "company": "Skilled Nursing",
+      "location": "New Zealand",
+      "description": "Details Title: Registered Nurse - Surgical Ward Location: Launceston, Tasmania Position Type: Multiple positions available - permanent, full time shift worker, working up to 76 hours per fortnight, commencing as soon as possible. *hours may be negotiated with the successful applicant. Salary: AUD $80,524 to $109,175 per annum (pro rata)  employer 12% superannuation contribution. Salary range is in accordance with Nurses and Midwives (Tasmania State Service) Agreement 2023. Visa sponsorship and …",
+      "created": "2026-06-20T17:38:28Z",
+      "redirect_url": "https://www.adzuna.co.nz/land/ad/5770259075?se=nN92qVVw8RGrvYF11hqYFQ&utm_medium=api&utm_source=3f4bae13&v=45EA72BCCB927BA0F601F1B19B92E16EA2755FE9",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Permanent Position - Nurse Practitioner (Emergency Department) - Launceston, Tasmania - Sponsorship Available!",
+      "company": "Skilled Nursing",
+      "location": "New Zealand",
+      "description": "Details Title: Nurse Practitioner - Emergency Department Location: Launceston, Tasmania Position Type: Permanent full time, day worker position, working up to 76 hours per fortnight, commencing as soon as possible. *hours may be negotiated with the successful applicant. Salary: AUD $148,470 per annum  employer 12% superannuation contribution. Salary range is in accordance with Nurses and Midwives (Tasmania State Service) Agreement 2023. Visa sponsorship and relocation support available for elig…",
+      "created": "2026-06-20T17:38:28Z",
+      "redirect_url": "https://www.adzuna.co.nz/land/ad/5770259072?se=nN92qVVw8RGrvYF11hqYFQ&utm_medium=api&utm_source=3f4bae13&v=8FB182CC85EFEB6F40C9A310C57D35DF4A1FCA5F",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Back End Java Developer",
+      "company": "Youtap Limited",
+      "location": "Auckland, North Island",
+      "description": "Youtap Limited is seeking a talented Graduate Back End Java Developer to join their team. As a member of the Youtap team, you will have the opportunity to work with cutting-edge technology and provide white-label digital banking and digital wallet solutions to financial institutions and corporates worldwide. You will be responsible for developing and maintaining the company's digital banking, payments, and loyalty applications — using AI tools to move fast and ship features that matter. This is…",
+      "created": "2026-06-18T14:23:52Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767485964?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Permanent Position - Registered Midwife - North West Tasmania - Sponsorship Available!",
+      "company": "Skilled Nursing",
+      "location": "New Zealand",
+      "description": "Details Position: Registered Midwife Salary: AUD $78,179 – $105,995 per annum (pro rata)  12% superannuation Employment Type: Permanent, Full Time (Shift Work – Fully Rotational) Visa sponsorship available for eligible UK/IE candidates. The Position Join the passionate team of healthcare professionals in North West Tasmania, where you'll provide exceptional maternity care in a supportive community environment. We're seeking dedicated Registered Midwives for multiple full-time and part-time posi…",
+      "created": "2026-06-20T17:38:28Z",
+      "redirect_url": "https://www.adzuna.co.nz/land/ad/5770259077?se=nN92qVVw8RGrvYF11hqYFQ&utm_medium=api&utm_source=3f4bae13&v=963E2216EBC2A822494B5057D09D7C5BD2961F6E",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Commercial Graduate",
+      "company": "ZURU",
+      "location": "New Zealand",
+      "description": "Start your global commercial career at ZURU: drive global growth, partner with the world’s biggest retailers, and turn bold ambition into real impact. As a Commercial Graduate you will play a critical role in shaping how we expand and execute our brands successfully across the globe, from growing our retail footprint through to levelling our commercial proposals and establishing central best practices to maximise revenue and profitability. Critical to success will be leveraging your understandi…",
+      "created": "2026-06-04T08:38:46Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750912597?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Engineer",
+      "company": "Powerco",
+      "location": "New Zealand",
+      "description": "Newly revamped two-year graduate programme. Six-monthly remuneration reviews. A culture and environment where you can learn, grow, have fun and be yourself! Graduate Engineer  New Plymouth, Tauranga and Palmerston North  Permanent - Full-time Switch on your career at Powerco At Powerco, we’re more than an electricity and gas distribution network company. Our customers, and the communities we serve, rely on us to deliver safe, reliable and affordable energy solutions. That means maintaining our …",
+      "created": "2026-06-02T16:41:18Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5748752999?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate - Mechanical Engineer",
+      "company": "Waste Management",
+      "location": "Auckland, North Island",
+      "description": "Job Description Why choose WM New Zealand? | Ngā āhuatanga kei a mātou Secure your future – You’ll step into a permanent role right from day one. No need to reapply at the end of the programme. Make a real impact – Contribute to Aotearoa’s circular economy by working with New Zealand’s leader in waste, recycling, and sustainability. Grow with us – With strong support from our leaders, access to EMA Training, In-House Training and mentorship you’ll gain professional skills that set you up for lo…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778132?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate - People & Culture",
+      "company": "Waste Management",
+      "location": "Auckland, North Island",
+      "description": "Job Description Why choose WM New Zealand? | Ngā āhuatanga kei a mātou Secure your future – You’ll step into a permanent role right from day one. No need to reapply at the end of the programme. Make a real impact – Contribute to Aotearoa’s circular economy by working with New Zealand’s leader in waste, recycling, and sustainability. Grow with us – With strong support from our leaders, access to EMA Training, In-House Training and mentorship you’ll gain professional skills that set you up for lo…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778136?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate - Supply Chain and Logistics",
+      "company": "Waste Management",
+      "location": "New Zealand",
+      "description": "Job Description Why choose WM New Zealand? | Ngā āhuatanga kei a mātou Secure your future – You’ll step into a permanent role right from day one. No need to reapply at the end of the programme. Make a real impact – Contribute to Aotearoa’s circular economy by working with New Zealand’s leader in waste, recycling, and sustainability. Grow with us – With strong support from our leaders, access to EMA Training, In-House Training and mentorship you’ll gain professional skills that set you up for lo…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778141?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate - Supply Chain and Logistics",
+      "company": "Waste Management",
+      "location": "Auckland, North Island",
+      "description": "Job Description Why choose WM New Zealand? | Ngā āhuatanga kei a mātou Secure your future – You’ll step into a permanent role right from day one. No need to reapply at the end of the programme. Make a real impact – Contribute to Aotearoa’s circular economy by working with New Zealand’s leader in waste, recycling, and sustainability. Grow with us – With strong support from our leaders, access to EMA Training, In-House Training and mentorship you’ll gain professional skills that set you up for lo…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778134?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Engineer Program 2027",
+      "company": "Egis Group",
+      "location": "Auckland, North Island",
+      "description": "Job Description Are you ready to help shape the future? We're looking for Graduates interested in innovation, sustainability and problem solving to join our Team in Auckland. At Egis we deliver opportunities across diverse sectors and work environments for graduates to apply their Civil, Electrical, Mechanical or Mechatronic Engineering background. Our two-year Graduate Program is dedicated to nurturing the early stages of your consulting career. What We Offer You Peer Mentorship: with a dedica…",
+      "created": "2026-06-18T11:41:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767336773?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Engineer Program 2027",
+      "company": "Egis Group",
+      "location": "New Zealand",
+      "description": "Job Description Are you ready to help shape the future? We're looking for Graduates interested in innovation, sustainability and problem solving to join our Team in Wellington. At Egis we deliver opportunities across diverse sectors and work environments for graduates to apply their Civil, Electrical, Chemical, Mechanical or Mechatronic Engineering background. Our two-year Graduate Program is dedicated to nurturing the early stages of your consulting career. What We Offer You Peer Mentorship: w…",
+      "created": "2026-06-18T11:41:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767336770?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate - Chemical Engineering - CS",
+      "company": "Waste Management",
+      "location": "Hamilton East, Hamilton",
+      "description": "Job Description Why choose WM New Zealand? | Ngā āhuatanga kei a mātou Secure your future – You’ll step into a permanent role right from day one. No need to reapply at the end of the programme. Make a real impact – Contribute to Aotearoa’s circular economy by working with New Zealand’s leader in waste, recycling, and sustainability. Grow with us – With strong support from our leaders, access to EMA Training, In-House Training and mentorship you’ll gain professional skills that set you up for lo…",
+      "created": "2026-06-10T22:50:26Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5758363678?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate - Process (Chemical) Engineer",
+      "company": "Waste Management",
+      "location": "East Tamaki, Manukau",
+      "description": "Job Description About the Programme | Te Whiwhinga mahi Our two-year graduate programme begins in February 2027. As our Process ( Chemical) Engineering Graduate , you’ll gain broad, hands-on experience across the folllowing key areas of the Technical Services division: Process Safety Technical (engineering and projects) Hazardous Waste Treatment Solvent Recovery Medical Waste Treatment Transport Maintenance No two days are the same — you’ll take part in: Real-world projects that contribute to o…",
+      "created": "2026-06-10T22:50:26Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5758363671?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Business Development Administrator",
+      "company": "Beca Limited",
+      "location": "Auckland, North Island",
+      "description": "Te whiwhinga mahi | The opportunity We are growing our Business Development team within Beca’s Buildings busines s , and we are looking for motivated, organised people to join us as Business Development Administrators . This role goes beyond traditional administration and is an exciting entry point into Business Development with in a professional services environment . At Beca, our purpose is to make everyday better, and this role plays a key part in enabling us to deliver great outcomes for ou…",
+      "created": "2026-06-01T08:38:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5746663247?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Regulatory Compliance Engineer",
+      "company": "Enphase Energy",
+      "location": "Christchurch, Canterbury",
+      "description": "Description Enphase Energy is a global energy technology company and a leading provider of solar, battery, and electric vehicle charging products. Founded in 2006, our innovative microinverter technology revolutionized solar power, making it a safer, more reliable, and scalable energy source. Today, the Enphase Energy System enables users to make, use, save, and sell their own power. Enphase is also one of the most successful and innovative clean energy companies in the world, with more than 80…",
+      "created": "2026-05-30T08:45:36Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744786172?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Structural Engineer 2027",
+      "company": "Egis Group",
+      "location": "New Zealand",
+      "description": "Job Description Step into a role where your ideas and curiosity genuinely matter. As a Graduate Structural Engineer, you’ll contribute to real projects from your first week. You’ll support building design and calculations on a wide variety of projects across both New Zealand and Australia. With opportunities available in our Wellington office. Come join our dynamic and high-performing Façades and Sustainability team for 2027 ! What We Offer You Peer Mentorship: with a dedicated buddy system gai…",
+      "created": "2026-06-18T11:41:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767336774?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Principal Developer",
+      "company": "Datacom",
+      "location": "New Zealand",
+      "description": "Our Why Datacom works with organisations and communities across Australia and New Zealand to make a difference in people’s lives and help organisations use the power of tech to innovate and grow. About Us We have over 6,200 people across our global offices, and generate an annual revenue of over $1.2 billion, this makes us one of Australasia’s largest professional IT services companies. We have extensive expertise in operating data centres, providing IT services, software engineering and applic…",
+      "created": "2026-06-10T13:47:52Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5757916101?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Principal Developer",
+      "company": "Datacom",
+      "location": "Auckland, North Island",
+      "description": "Our Why Datacom works with organisations and communities across Australia and New Zealand to make a difference in people’s lives and help organisations use the power of tech to innovate and grow. About Us We have over 6,200 people across our global offices, and generate an annual revenue of over $1.2 billion, this makes us one of Australasia’s largest professional IT services companies. We have extensive expertise in operating data centres, providing IT services, software engineering and applic…",
+      "created": "2026-06-10T13:47:52Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5757916113?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Engineer Program 2027 | Christchurch",
+      "company": "Egis Group",
+      "location": "New Zealand",
+      "description": "Job Description Are you ready to help shape the future? We're looking for Graduates interested in innovation, sustainability and problem solving to join our Team in Christchurch. At Egis we deliver opportunities across diverse sectors and work environments for graduates to apply their Civil or Electrical Engineering background. Our two-year Graduate Program is dedicated to nurturing the early stages of your consulting career. What We Offer You Peer Mentorship: with a dedicated buddy system gain…",
+      "created": "2026-06-18T11:41:47Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767336771?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Surveyor or Survey Technician - Wellington",
+      "company": "Myne Talent",
+      "location": "New Zealand",
+      "description": "/   |  Myne Talent | Specialists in Engineering & Surveying Recruitment in New Zealand & Australia with over 25 years industry experience. We are working with a well-established land development consultancy involved in a diverse range of projects across residential, rural, industrial and commercial developments Due to continued growth, an opportunity has become available for a Graduate Surveyor or Survey Technician to join a highly experienced team delivering projects from feasibility through…",
+      "created": "2026-06-25T08:49:58Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5775233953?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Kaupapa Whakapōtae Z Graduate Programme",
+      "company": "Z Energy",
+      "location": "New Zealand",
+      "description": "Job Description About Z Z has a clear purpose: Powering better journeys, today and tomorrow. As one of New Zealand’s largest transport energy companies, we have a commitment to delivering safe, secure, and reliable transport energy – with the opportunity to deliver new journeys, with new energy solutions in a changing world. We are proud to be the Kiwi contingent of Ampol, an independent Trans-Tasman energy company, with trading offices across the globe, which are united behind our shared purpo…",
+      "created": "2026-06-01T10:29:19Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5746778058?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Development Engineer",
+      "company": "Palmerston North City Council",
+      "location": "New Zealand",
+      "description": "Why join us? Make a Difference: Contribute to the development of Palmerston North City while enjoying a fulfilling career that positively impacts our community Professional Growth: Elevate your career through a range of Learning and Development opportunities at Palmerston North City Council. Benefits: We do more than just pay you a salary too. We have awesome benefits to support you including 5 weeks annual leave and hybrid working. About the role In this role, you will apply your engineering e…",
+      "created": "2026-06-25T08:48:37Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5775223912?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Fullstack Developer",
+      "company": "SkyCity",
+      "location": "New Zealand",
+      "description": "SkyCity Online Malta is the digital heartbeat of SkyCity Entertainment Group, New Zealand’s premier tourism and entertainment destination. Based in a stunning villa in the heart of Malta, we combine a vibrant Mediterranean lifestyle with a focus on delivering world-class, safe, and exciting online gaming experiences, offering the opportunity to help shape the future of online entertainment. About the Role Based in Malta, we are on the hunt for two Senior Full Stack Developers who will be accoun…",
+      "created": "2026-06-10T10:28:36Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5757763787?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Senior Developer",
+      "company": "Bank of New Zealand",
+      "location": "New Zealand",
+      "description": "Worker Type: Maximum Term/Fixed Term (Fixed Term) Here at BNZ, it's about more than just banking. We work together in an agile, energising environment to create innovative solutions though our promise \"If you can imagine a better future, let's find a way.\" We support wellbeing, flexible working and have a generous leave offering. No two days are the same. Ko mātou tēnei | This is Us The successful candidate will join BNZ's Technology team within the Lending Platforms domain, working across the …",
+      "created": "2026-06-15T08:45:41Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5763797362?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Senior Developer",
+      "company": "Powerco",
+      "location": "New Zealand",
+      "description": "Employer of choice! Fully subsidised medical and life insurance Great career development and long-term career opportunities. Senior Developer  New Plymouth, Wellington or Palmerston North  Permanent - Full-time We’re looking for a Senior Developer to join our Data, Digital and Technology team. This role is all about designing and delivering integration solutions that help our business work smarter, faster and more connected. You’ll work closely with other technical and business specialists to u…",
+      "created": "2026-06-16T16:53:53Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5765080024?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Role | Mainfreight Transport Wellington",
+      "company": "Mainfreight Limited NZ",
+      "location": "Thorndon, Wellington",
+      "description": "Here at Mainfreight, we are a one-stop shop for global supply chain and logistics needs. We offer international and domestic freight transportation, managed warehousing, and everything in between. With team and branches across The Americas, Asia, Australia, Europe, and New Zealand, our network of passionate team members will work together to design an effective supply chain solution to suit our customers' needs. Our Culture \"Special people, special company\" embodies Mainfreight and its unique c…",
+      "created": "2026-05-27T08:37:28Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5741458664?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Transmission Lines & Distribution Engineer",
+      "company": "Aurecon",
+      "location": "Tauranga, Bay of Plenty",
+      "description": "Your career adventure starts here | Build your skills. Make an impact. Solve the impossible. Ready to turn what you’re learning into real-world impact? Our Graduate Program is more than a job, it’s the launchpad for your career as an engineering consultant. From day one, you’ll work on meaningful projects with real responsibility, applying your technical knowledge alongside people who think boldly, collaborate openly, and approach the impossible with optimism and purpose. At Aurecon, your caree…",
+      "created": "2026-06-07T08:36:17Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5754681597?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Organisational Development Advisor",
+      "company": "University of Auckland",
+      "location": "Auckland, North Island",
+      "description": "Job Description Building future workforce impact Our Organisational Development team is evolving, and we are making an investment in a cohesive, future-focused Organisational Development capability agenda to support organisational performance, workforce sustainability, and long-term impact. In support of this direction, the OD Advisor plays a key role in progressing organisational development initiatives through structured delivery and coordination. Working closely with OD Managers and Consulta…",
+      "created": "2026-06-02T22:28:44Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5749009910?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Organisational Development Consultant",
+      "company": "University of Auckland",
+      "location": "Auckland, North Island",
+      "description": "Job Description Building future workforce impact Our Organisational Development team is evolving, and we are making an investment in a cohesive, future-focused Organisational Development capability agenda to support organisational performance, workforce sustainability, and long-term impact. As part of this direction, the OD Consultant contributes to the design and delivery of complex organisational development and capability initiatives. Working in partnership with OD Managers, the role applies…",
+      "created": "2026-06-02T22:28:44Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5749009914?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Organisational Development Managers",
+      "company": "University of Auckland",
+      "location": "Auckland, North Island",
+      "description": "Job Description Building future workforce impact Our Organisational Development team is evolving, and we are making an investment in a cohesive, future‑focused Organisational Development capability agenda to support organisational performance, workforce sustainability, and long‑term impact. As part of this exciting change, we are seeking three Organisational Development Managers to work as a connected OD cohort. Each role holds clear ownership of a distinct portfolio, with accountability for sh…",
+      "created": "2026-06-02T22:28:44Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5749009913?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "Northborn",
+      "location": "Auckland, North Island",
+      "description": "Are you a motivated Software Engineer looking for an opportunity to expand your skills, work across the entire tech stack, and make a real impact? Do you thrive in a small, focused environment where your work directly contributes to business success? Join a dedicated, fast-paced team in a small office setting where collaboration is key, and every day brings a new, exciting technical challenge. This successful service-based company is committed to efficiency and innovation, and we need a skilled…",
+      "created": "2026-06-13T06:38:55Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5761529694?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Business Development Manager",
+      "company": "Waste Management",
+      "location": "Christchurch, Canterbury",
+      "description": "Job Description We’re looking for a high‑performing Business Development Manager to grow and retain our tyre collection and recovery services across the South Island. Based in Christchurch, this role involves regular travel across the South Island (typically 1–2 weeks per month) to both win new customers and build durable, long‑term relationships with existing tyre customers. This is a hunter‑led role with a strong retention focus. You’ll own your customer base end‑to‑end — building a target li…",
+      "created": "2026-06-02T22:28:44Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5749009906?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Role | Mainfreight 2Home Wellington",
+      "company": "Mainfreight Limited NZ",
+      "location": "Thorndon, Wellington",
+      "description": "Special People - Special Company! It’s the people in the business that makes Mainfreight such a special company. Our culture, values and philosophy - it’s all driven by our 11,000 global team members, steering towards Mainfreight’s 100-year vision. Will you be the next to join Mainfreight 2Home in Wellington? We are looking for new graduate- people who are wholeheartedly ready for a challenge, are not afraid to get their hands dirty and are ready to bring a positive attitude to work every day. …",
+      "created": "2026-06-14T08:48:42Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5762800040?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Expressions of Interest - 2027 VetPartners Graduate Opportunities",
+      "company": "VetPartners",
+      "location": "New Zealand",
+      "description": "Description Expressions of Interest - 2027 VetPartners Graduate Academy - Small Animal Veterinarians Are you in your final year of your Veterinary degree and looking to start your veterinary career with the right support behind you? At VetPartners, we know that your first role sets the tone for your whole career and we’re here to make sure it’s a great one. We’re opening expressions of interest for our 2027 VetPartners Graduate Academy , designed by vets, for vets, to give new graduate veterina…",
+      "created": "2026-06-12T08:46:22Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760303814?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Engineer (Inflow & Infiltration) - Auckland",
+      "company": "Citycare Water",
+      "location": "Auckland, North Island",
+      "description": "About the job: We’re looking for a keen Graduate Engineer to join our team of everyday heroes in Auckland! You will help identify and investigate sources of water entering wastewater systems where it shouldn’t. This work helps prevent contamination reaching stormwater systems and local beaches. You’ll work both in the field and in the office, investigating drainage networks, collecting environmental data, and contributing to technical reports that support better infrastructure management across…",
+      "created": "2026-06-18T09:35:10Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767099600?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Senior Development Adviser - Pacific Regionalism",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "The Ministry acts in the world to build a safer, more prosperous and more sustainable future for New Zealanders. Kia hangai ake e te Manatu he ao-haumaru, ao-tonui, ao-pumau, ki te oranga tonutanga mo Aotearoa whanui. * Provide strategic advice on Pacific development and regional agencies outcomes * Lead New Zealand’s relationship with the Pacific’s largest regional organisation * Wellington based – Permanent full time Represent NZ, build partnerships, and drive effective regional outcomes toge…",
+      "created": "2026-06-15T08:33:29Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5763792802?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Provisional Audiologist - Student Graduate 2027 intake",
+      "company": "Amplifon",
+      "location": "Takapuna, North Shore",
+      "description": "Description Join Amplifon in your provisional year as a Student Graduate As part of the global Amplifon Group, Bay Audiology and Dilworth Hearing are connected to the world’s largest network of hearing care specialists. Being part of Amplifon means you’ll have access to industry leading training, development programs, and ongoing support designed to help you achieve your full potential. Amplifon’s people first culture is built on care, collaboration, and continuous learning - where your dedicat…",
+      "created": "2026-05-29T08:33:58Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5743752532?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Move to Australia as an Occupational Therapist- Graduate and Experienced",
+      "company": "Connect2Care",
+      "location": "Sydenham, Christchurch",
+      "description": "Thinking of making a move to Australia? We want you! You can move to trendy Melbourne or sunny Brisbane! Connect2Care started as a passion for two physiotherapists and has now become one of the fastest-growing allied health companies in Australia, with services nationwide. As a registered NDIS health provider, Connect2Care provides a range of community-based, allied health services to people of all ages and of all abilities. Growing every day, with opportunities bubbling at every corner, Connec…",
+      "created": "2026-06-21T21:25:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771618696?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Move to Australia as a Speech Pathologist- Graduate and Experienced",
+      "company": "Connect2Care",
+      "location": "Sydenham, Christchurch",
+      "description": "Thinking of making a move to Australia? We want you! You can move to trendy Melbourne or sunny Brisbane! Connect2Care started as a passion for two physiotherapists and has now become one of the fastest-growing allied health companies in Australia, with services nationwide. As a registered NDIS health provider, Connect2Care provides a range of community-based, allied health services to people of all ages and of all abilities. Growing every day, with opportunities bubbling at every corner, Connec…",
+      "created": "2026-06-21T21:25:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771618693?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Move to Australia as a Speech Pathologist- Graduate and Experienced",
+      "company": "Connect2Care",
+      "location": "Penrose, Auckland City",
+      "description": "Thinking of making a move to Australia? We want you! You can move to trendy Melbourne or sunny Brisbane! Connect2Care started as a passion for two physiotherapists and has now become one of the fastest-growing allied health companies in Australia, with services nationwide. As a registered NDIS health provider, Connect2Care provides a range of community-based, allied health services to people of all ages and of all abilities. Growing every day, with opportunities bubbling at every corner, Connec…",
+      "created": "2026-06-21T21:25:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771618694?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Graduate Go-To-Market Roles - North Island",
+      "company": "Halter",
+      "location": "New Zealand",
+      "description": "About Halter At Halter, we’re on a mission to enable farmers and graziers to run the most productive and sustainable operations. Our customers are using Halter to break free from the time-intensive constraints of conventional practices. Imagine watching 500 cattle stand up and walk calmly towards their next break? No quad bikes, no dogs, no fences. Just a group of cattle walking at their own pace. People say it looks like magic. Our customers are revolutionizing grazing with Halter. It's changi…",
+      "created": "2026-05-29T08:34:46Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5743757858?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "software_fullstack"
+    },
+    {
+      "title": "Senior Embedded Software Engineer",
+      "company": "Caterpillar, Inc.",
+      "location": "Christchurch, Canterbury",
+      "description": "Career Area: Engineering Job Description: Your Work Shapes the World at Caterpillar Inc. When you join Caterpillar, you're joining a global team who cares not just about the work we do - but also about each other. We are the makers, problem solvers, and future world builders who are creating stronger, more sustainable communities. We don't just talk about progress and innovation here - we make it happen, with our customers, where we work and live. Together, we are building a better world, so we…",
+      "created": "2026-06-25T14:42:59Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5775689769?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Firmware Internship 2026/2027",
+      "company": "Halter",
+      "location": "Auckland, North Island",
+      "description": "About Halter At Halter, we’re on a mission to enable farmers and graziers to run the most productive and sustainable operations. Our customers are using Halter to break free from the time-intensive constraints of conventional practices. Imagine watching 500 cattle stand up and walk calmly towards their next break? No quad bikes, no dogs, no fences. Just a group of cattle walking at their own pace. People say it looks like magic. Our customers are revolutionizing grazing with Halter. It's changi…",
+      "created": "2026-06-05T08:49:24Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5752251287?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Senior Electrical Design Engineer",
+      "company": "Halter",
+      "location": "Auckland, North Island",
+      "description": "About Halter At Halter, we’re on a mission to enable farmers and graziers to run the most productive and sustainable operations. Our customers are using Halter to break free from the time-intensive constraints of conventional practices. Imagine watching 500 cattle stand up and walk calmly towards their next break? No quad bikes, no dogs, no fences. Just a group of cattle walking at their own pace. People say it looks like magic. Our customers are revolutionizing grazing with Halter. It's changi…",
+      "created": "2026-06-25T08:50:39Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5775239259?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Senior Talent Specialist - Hardware",
+      "company": "Halter",
+      "location": "Auckland, North Island",
+      "description": "About Halter At Halter, we’re on a mission to enable farmers and graziers to run the most productive and sustainable operations. Our customers are using Halter to break free from the time-intensive constraints of conventional practices. Imagine watching 500 cattle stand up and walk calmly towards their next break? No quad bikes, no dogs, no fences. Just a group of cattle walking at their own pace. People say it looks like magic. Our customers are revolutionizing grazing with Halter. It's changi…",
+      "created": "2026-06-13T08:45:19Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5761680379?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Cloud Engineer (Early Career/Intermediate)",
+      "company": "Trimble",
+      "location": "Christchurch, Canterbury",
+      "description": "Shape the Future of Cloud Connectivity as our Next Cloud Engineer (Early Career/Intermediate) Ready to connect the physical and digital worlds while working on large-scale, business-critical platforms? Trimble is looking for a passionate problem-solver like you to join our collaborative cloud services team. About Us: Trimble is a global technology company that connects the physical and digital worlds, transforming the ways work gets done. With relentless innovation in precise positioning, model…",
+      "created": "2026-06-22T08:49:20Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771906711?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Electronics Engineering Internship 2026/2027",
+      "company": "Halter",
+      "location": "Auckland, North Island",
+      "description": "About Halter At Halter, we’re on a mission to enable farmers and graziers to run the most productive and sustainable operations. Our customers are using Halter to break free from the time-intensive constraints of conventional practices. Imagine watching 500 cattle stand up and walk calmly towards their next break? No quad bikes, no dogs, no fences. Just a group of cattle walking at their own pace. People say it looks like magic. Our customers are revolutionizing grazing with Halter. It's changi…",
+      "created": "2026-06-05T08:50:14Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5752254124?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Replenishment Practice & Capability Leads",
+      "company": "Foodstuffs North Island",
+      "location": "New Zealand",
+      "description": "Ko wai mātou – About us Kia ora. We’re Foodies. You know Gilmours, New World, PAK’nSAVE, and Four Square, right? That’s us! With more than 320 stores and over 27,000 Foodies across Te Ika-a-Māui, Foodstuffs North Island is a co-operative proudly owned by our Members. Our purpose is simple – making sure New Zealanders get more out of life, and we’re driven by our aspiration to be one of New Zealand’s most customer-driven and productive retailers. Our Retail Operations & Transformation team are l…",
+      "created": "2026-06-06T08:39:32Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5753450549?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Sales Development Rep — AI-Driven Team | Christchurch Based",
+      "company": "Apprento",
+      "location": "New Zealand",
+      "description": "28th May, 2026 About the Role As an SDR, you'll be the engine that drives our sales pipeline. You'll be reaching out to potential customers, starting conversations, and opening doors for the Account Executive team. It's a role where your personality is your superpower. This isn't a solo grind. You'll be embedded in a close-knit, social team that genuinely enjoys working together — think team lunches, shared wins, and a culture that's as fun as it is driven. What Makes This Role Different We use…",
+      "created": "2026-05-30T08:45:20Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744785066?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Sales Development Rep — AI-Driven Team | Auckland Based",
+      "company": "Apprento",
+      "location": "New Zealand",
+      "description": "28th May, 2026 About the Role As an SDR, you'll be the engine that drives our sales pipeline. You'll be reaching out to potential customers, starting conversations, and opening doors for the Account Executive team. It's a role where your personality is your superpower. This isn't a solo grind. You'll be embedded in a close-knit, social team that genuinely enjoys working together — think team lunches, shared wins, and a culture that's as fun as it is driven. What Makes This Role Different We use…",
+      "created": "2026-05-30T08:43:56Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5744778362?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Manager, Internal Communications",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "About us | Mō mātouACC is a trusted and high'performing organisation, providing care, supporting recovery and promoting injury prevention, now and into the future. You can find more about ACC and the work we do at here. About the role | Mō te tūranga mahiThe Manager Internal Communications leads the development and delivery of ACC's enterprise internal communications strategy, frameworks and channels. This role strengthens organisational alignment, engagement and leadership communication, ensur…",
+      "created": "2026-06-12T08:32:23Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760244977?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Organisational Development Lead",
+      "company": "Powerco",
+      "location": "New Zealand",
+      "description": "Organisational Development Lead  New Plymouth, Tauranga or Wellington  Permanent - Full-time Ready to help shape how leadership, accountability and performance come to life across Powerco? We’re looking for an experienced Organisational Development Lead to translate strategy into practical tools, frameworks and interventions that strengthen organisational capability and lift performance. This is a great opportunity to influence how leaders lead, teams work, and change is embedded across the bus…",
+      "created": "2026-06-11T08:47:43Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5758897099?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Marketing Communications Lead",
+      "company": "NZ Post",
+      "location": "Auckland, North Island",
+      "description": "Marketing Communications Lead * Drive how NZ Post goes to market across brand, marketing, comms and digital - bringing to life and embedding our recently established strategic direction and ways of working * Help shape and support the delivery of our end to end marketing strategy, ensuring consistent execution, with a strong focus on commercial results and frameworks for measuring success * Coach and guide high performing teams * Parental leave cover until April 2027 * Based in Highbrook, Auckl…",
+      "created": "2026-06-12T08:32:22Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760244909?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Senior Flight Software Engineer",
+      "company": "Rocket Lab Corporation",
+      "location": "New Zealand",
+      "description": "ABOUT ROCKET LAB Rocket Lab is an end-to-end space company delivering responsive launch services, complete spacecraft design and manufacturing, payloads, satellite components, and more – all with the goal of opening access to space. The rockets and satellites we build and launch enable some of the most ambitious and vital space missions globally, supporting scientific exploration, Earth observation and missions to combat climate change, national security, and exciting new technology demonstrati…",
+      "created": "2026-06-18T09:35:02Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5767099071?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Equipment, Maintenance & Repair Specialist",
+      "company": "Neptune Pacific",
+      "location": "Auckland, North Island",
+      "description": "Job Description Reporting to the Technical Manager, this role combines deep technical expertise in Equipment Maintenance & Repair (EMR) with frontline coaching, operational training, auditing, and continuous improvement. You will play a critical role in lifting operational capability, improving repair decision quality, strengthening safety outcomes, and embedding consistent standards across multiple sites. This is an opportunity for a highly experienced M&R professional who enjoys being close t…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778146?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Risk Manager (Delivery)",
+      "company": "Description This",
+      "location": "Auckland, North Island",
+      "description": "Description This is a 12-month fixed-term contract. This role coaches and supports Technology Platforms and change teams to adhere to the Enterprise Risk Management Frameworks and supporting requirements by providing expert first line of defence (1LoD) risk and compliance advice to the first line business. You'll partner with Platform Leads, Delivery Leads and Product Owners to strengthen risk maturity, embed effective governance and risk practices, and support the successful delivery of strate…",
+      "created": "2026-06-19T08:46:52Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5768458946?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Environmental Health and Safety Coordinator",
+      "company": "Neptune Pacific",
+      "location": "Auckland, North Island",
+      "description": "Job Description We are currently seeking an Environmental Health & Safety (EHS) Coordinator to join our team and play a key role in supporting and strengthening our Group EHS Management System. This is an exciting opportunity for an emerging EHS professional who enjoys balancing operational support, coordination, reporting, and stakeholder engagement while making a genuine impact on workplace health, safety, and environmental performance. About the Role Reporting to the Group EHS Manager, the E…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778143?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Sharepoint, Power Platform & AI Developer",
+      "company": "Hamilton City Council",
+      "location": "New Zealand",
+      "description": "Job Description He angituutanga: The opportunity Shape the future of how we work Ready to use your SharePoint, Power Platform and AI expertise to make a real impact? Join us and help transform how our organisation works—driving smarter processes, better digital experiences, and innovative solutions that support our community. At Hamilton City Council, our purpose is to improve the wellbeing of Hamiltonians. We’re on a journey to become a leading, community-focused Council—unlocking the city’s f…",
+      "created": "2026-06-13T04:46:03Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5761505425?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Manager, Learning & Capability",
+      "company": "Accident Compensation Corporation New Zealand",
+      "location": "New Zealand",
+      "description": "Description About us | Mō mātou ACC is a trusted and high‑performing organisation, providing care, supporting recovery and promoting injury prevention, now and into the future. You can find more about ACC and the work we do at www.acc.co.nz. About the role | Mō te tūranga mahi As Manager, Learning & Capability, you will set and drive ACC’s enterprise learning strategy, operating at the intersection of organisational priorities and workforce capability. You will position learning as a strategic …",
+      "created": "2026-06-21T08:48:15Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5770913665?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Health & Safety Contractor – Expression of Interest",
+      "company": "OneStaff",
+      "location": "Auckland City, Auckland",
+      "description": "Health & Safety Contractor (Contract) We are currently inviting Expressions of Interest from experienced Health & Safety professionals with proven hands on experience in operational and site based environments. This opportunity forms part of a specialist contractor pool for senior practitioners. Please note, this is not an entry level advisory pathway. Key areas of responsibility may include: Conducting site audits, inspections and compliance reporting Leading incident investigations and implem…",
+      "created": "2026-06-07T08:37:18Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5754690092?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "NZ Environmental Health and Safety Manager",
+      "company": "Neptune Pacific",
+      "location": "Auckland, North Island",
+      "description": "Job Description We are currently seeking an experienced and proactive Environmental, Health & Safety Manager to lead and support EHS initiatives across our New Zealand operations. Reporting to the NZ Country Manager and working closely with the Group EHS function, this is an exciting opportunity to influence safety culture, partner with operational leaders, and help shape best practice EHS performance across the business. About the Role: As the EHS Manager, you will be the trusted subject matte…",
+      "created": "2026-06-04T04:40:01Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750778145?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Principal Engineer, Platform & Security",
+      "company": "Stuff Digital Limited",
+      "location": "New Zealand",
+      "description": "Description Build the platform that powers great engineering — and great products. More than two million Kiwis visit stuff.co.nz every month, and the engineering platform underpinning that experience is evolving fast. We're looking for a Principal Engineer to own that evolution — setting the Golden Path, embedding security at every layer, and building a platform that engineering teams genuinely want to build on. This isn't a maintenance role. You'll shape platform strategy, drive cloud-native m…",
+      "created": "2026-06-25T08:48:56Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5775226014?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Practice Lead - Analysis and Design | Wellington | Permanent",
+      "company": "",
+      "location": "New Zealand",
+      "description": "Job Type: Ongoing - Full Time Category: Location: Wellington - Wairarapa Date Advertised: 23-JUN-26 Job Reference: NZ/1932744 Job Title: Practice Lead - Analysis and Design | Wellington | Permanent Business Unit: Division: Classification: Work Location: Position Type: Job Duration:N/A Contact Name: Contact Phone/Email/Fax: Lead and shape a high-performing Analysis and Design practice within a large, complex environment Combine people leadership with technical expertise to lift capability, quali…",
+      "created": "2026-06-24T18:02:56Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5774423779?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Intern Undergraduate - Technical",
+      "company": "Trimble",
+      "location": "Christchurch, Canterbury",
+      "description": "Build the Future of Geospatial Technology as a Software Engineering Intern Ready to make a global impact and see your code used on real-world infrastructure projects? Trimble is looking for a passionate Software Engineering Intern to help develop our world-leading Trimble Access data collection software, working with cutting-edge cross-platform technologies right here in Christchurch. What Makes This Role Great: In this role, you will be embedded within a world-class development team, directly …",
+      "created": "2026-06-22T08:49:31Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5771907181?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Manager, Learning & Capability",
+      "company": "",
+      "location": "New Zealand",
+      "description": "Job Type: Ongoing - Full Time Category: Human resources, recruitment & training Location: Wellington Date Advertised: 19-JUN-26 Job Reference: 1006869_1781819322 Job Title: Manager, Learning & Capability Business Unit: Division: Classification: Work Location: Position Type: Job Duration:N/A Contact Name: Contact Phone/Email/Fax: About us | Mō mātou ACC is a trusted and high'performing organisation, providing care, supporting recovery and promoting injury prevention, now and into the future. You…",
+      "created": "2026-06-22T16:52:57Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5772280401?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Network Engineer",
+      "company": "New Zealand Government",
+      "location": "Auckland, North Island",
+      "description": "Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ government to protect New Zealand and its people. Mō te tūranga mahi – about the role We are looking for an enthusiastic Network Engineer who wants to grow their skills while helping keep our national‑scale network running safely and efficiently. You will join a supportive team that values mentorship and continuous learning, offering you a solid platform to develop a caree…",
+      "created": "2026-06-16T08:33:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764594663?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Network Engineer",
+      "company": "New Zealand Government",
+      "location": "Nelson, South Island",
+      "description": "Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ government to protect New Zealand and its people. Mō te tūranga mahi – about the role We are looking for an enthusiastic Network Engineer who wants to grow their skills while helping keep our national‑scale network running safely and efficiently. You will join a supportive team that values mentorship and continuous learning, offering you a solid platform to develop a caree…",
+      "created": "2026-06-16T08:33:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764594664?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Network Engineer",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ government to protect New Zealand and its people. Mō te tūranga mahi – about the role We are looking for an enthusiastic Network Engineer who wants to grow their skills while helping keep our national‑scale network running safely and efficiently. You will join a supportive team that values mentorship and continuous learning, offering you a solid platform to develop a caree…",
+      "created": "2026-06-16T08:33:49Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764594662?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Network Engineer",
+      "company": "",
+      "location": "New Zealand",
+      "description": "Job Type: Ongoing - Full Time Category: IT & computing Location: Nelson - Marlborough Date Advertised: 15-JUN-26 Job Reference: 9724-3 Job Title: Network Engineer Business Unit: Division: Classification: Work Location: Position Type: Job Duration:N/A Contact Name: Contact Phone/Email/Fax: Join our diverse and talented people and work at the heart of national security, providing essential intelligence to the NZ government to protect New Zealand and its people. Mō te tūranga mahi – about the role…",
+      "created": "2026-06-19T17:34:22Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5769036056?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Emerging Professionals - Media and Communication Stream",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "* Grad Programme at NZTA | Waka Kotahi * Permanent Media and Communications graduate role based in Pōneke | Wellington or Te Papaioea | Palmerston North starting February 2027 * Starting salary $69,606 Join our Te'Reanga'Pito Mata | Emerging Professionals Programme and launch your career with a pathway designed to challenge, grow, and inspire you. From day one, you'll rotate across teams, gaining broad experience and meaningful opportunities to contribute to improving the transport network and …",
+      "created": "2026-06-16T08:33:51Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764594682?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Emerging Professionals Programme - Commerce Stream",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "* Grad Programme at NZTA | Waka Kotahi * Permanent Commerce, Finance and Economics role based in Pōneke | Wellington starting February 2027 * Starting salary $69,606 Join our Te'Reanga'Pito Mata | Emerging Professionals Programme and launch your career with a pathway designed to challenge, grow, and inspire you. From day one,'you'll'rotate across teams, gaining broad experience and meaningful opportunities to contribute to improving the transport network and systems that keep our country moving…",
+      "created": "2026-06-12T08:32:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245270?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Emerging Professionals Programme - Human Resources Stream",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "* Grad Programme at NZTA | Waka Kotahi * Permanent Human Resources role based in Pōneke | Wellington starting February 2027 * Starting salary $69,606 Join our Te'Reanga'Pito Mata | Emerging Professionals Programme and launch your career with a pathway designed to challenge, grow, and inspire you. From day one,'you'll'rotate across teams, gaining broad experience and meaningful opportunities to contribute to improving the transport network and systems that keep our country moving. Be part of our…",
+      "created": "2026-06-16T08:33:51Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5764594686?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Emerging Professionals Programme - Civil Engineering Stream",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "* Graduate Programme at NZTA | Waka Kotahi * Permanent' Civil Engineering roles'based in Pōneke | Wellington and Tāmaki Makaurau | Auckland starting February 2027 * Starting salary $69,606 Join our Te'Reanga'Pito Mata | Emerging Professionals Programme and launch your career with a pathway designed to challenge, grow, and inspire you. From day one, you'll rotate across teams, gaining broad experience and meaningful opportunities to contribute to improving the transport network and systems that …",
+      "created": "2026-06-14T08:34:16Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5762725588?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Clinical Digital Implementation Specialist",
+      "company": "",
+      "location": "New Zealand",
+      "description": "Job Type: Contract/Temp Full time Category: Information Technology Location: Auckland Date Advertised: 23-JUN-26 Job Reference: ADHB24684 Job Title: Clinical Digital Implementation Specialist Business Unit: Te_whatu_ora_logo.jpg Division: Classification: Work Location: Position Type: Job Duration:N/A Contact Name: Contact Phone/Email/Fax: Auckland (primary location) with potential for regional engagement across Health New Zealand sites 12-month fixed-term, full-time role Lead implementation of …",
+      "created": "2026-06-24T17:30:30Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5774409665?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "Momentum Group",
+      "location": "Auckland, North Island",
+      "description": "Senior DevOps Engineer | Contract (12month) | Auckland (hybrid) We're partnering with a well-established organisation embarking on a significant uplift of its engineering and platform capabilities. Join them in their journey and play a pivotal role in designing and evolving secure, scalable, and highly automated delivery platforms that enable development teams to move faster and more confidently. About the role This is a hands-on senior engineering role where you'll work across infrastructure, …",
+      "created": "2026-06-20T08:19:08Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5769603818?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Emerging Professionals Programme - Property Stream",
+      "company": "New Zealand Government",
+      "location": "Waikato, North Island",
+      "description": "* Grad Programme at NZTA | Waka Kotahi * Permanent Property role based in Tāmaki Makaurau | Auckland, Kirikiriroa | Hamilton or Pōneke | Wellington starting February 2027 * Starting salary $69,606 ' Join our'Te'Reanga'Pito Mata | Emerging Professionals Programme and launch your career with a pathway designed to challenge, grow, and inspire you. From day one,'you'll'rotate across teams, gaining broad experience and meaningful opportunities to contribute to improving the transport network and sys…",
+      "created": "2026-06-12T08:32:25Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760245274?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Senior Legal AI Researcher",
+      "company": "Onit",
+      "location": "Auckland, North Island",
+      "description": "Onit’s AI Labs are building custom AI models to automate tasks in legal operations, contracts, and spend management. We’re looking for an ambitious and experienced lawyer with an interest in AI who can be a subject matter expert that ensures the quality of our models. Responsibilities Embedded within the Models team, you will collaborate closely with AI scientists, engineers, and legal researchers to bridge legal expertise and model development. Translate legal domain knowledge into actionable …",
+      "created": "2026-05-29T08:34:26Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5743755675?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Legal Compliance Manager",
+      "company": "NZ Post",
+      "location": "Wellington, Greater Wellington",
+      "description": "Legal Compliance Manager * Career-defining role. * Shape enterprise-wide compliance in a nationally significant organisation. * Provide assurance through giving leadership clear, actionable insights on compliance and risk. This is a high-impact role with direct exposure to senior leadership, where you'll shape compliance across a large complex organisation. Why join us? * Ownership and impact through shaping and influencing enterprise-wide compliance in a large, complex organisation * Strategic…",
+      "created": "2026-06-17T08:41:22Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5765808478?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Principal Advisor Cybersecurity",
+      "company": "New Zealand Government",
+      "location": "Wellington, Greater Wellington",
+      "description": "Mō mātou | About Us Our Vision: Preventing Harm. Saving Lives. Securing our Future We play a key role in the guardianship of New Zealand waterways. We’re bringing together our aroha, work and skills to achieve our outcomes of sustainable supply chains and sectors, safe people and operations, secure ports and ships, and clean seas and waterways. Our values are about who we are as individuals and the behaviours we expect from each other at Maritime NZ. Care | Kia Tika - We care for each other and…",
+      "created": "2026-06-17T08:41:22Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5765808461?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Hospital Consult Liaison Psychiatry",
+      "company": "",
+      "location": "New Zealand",
+      "description": "Job Type: Contract/Temp Part time Category: Mental Health Location: Bay of Plenty Date Advertised: 23-JUN-26 Job Reference: ROT04163 Job Title: Hospital Consult Liaison Psychiatry Business Unit: Te_whatu_ora_logo.jpg Division: Classification: Work Location: Position Type: Job Duration:N/A Contact Name: Contact Phone/Email/Fax: Hospital Consultant Liaison Psychiatrist Rotorua Hospital Part Time, Fixed Term Contract Lakes are seeking a Hospital Consultant Liaison Psychiatrist to join the Mental H…",
+      "created": "2026-06-24T18:03:16Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5774423928?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Data Engineer",
+      "company": "Northborn",
+      "location": "New Zealand",
+      "description": "About the Role We're partnering with a fast-growing, private capital-owned SaaS company in a massive growth phase to find a pivotal Data Engineer. Reporting directly to the Engineering Manager, you will sit at the intersection of data engineering, analytics, and applied AI — building the data infrastructure that powers business decisions, customer experiences, and AI-driven outcomes. This is a high-autonomy role on a platform in active evolution. You'll own the full data lifecycle — ingestion, …",
+      "created": "2026-06-04T06:34:18Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5750839272?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Change and Adoption Lead - AI CoE",
+      "company": "Datacom",
+      "location": "Auckland, North Island",
+      "description": "Are you ready to lead AI adoption that puts people first? Datacom is seeking an Implementation Change and Adoption Lead to steer transformative AI programs with a human-centric approach. You’ll shape change that people feel, understand, and own—accelerating value while empowering teams to thrive in new ways of working. If you’re passionate about bridging strategy and people, turning insights into confident action, and driving measurable adoption, this could be your next big move. What You'll Be…",
+      "created": "2026-06-23T10:30:02Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5772896149?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Change and Adoption Lead - AI CoE",
+      "company": "Datacom",
+      "location": "New Zealand",
+      "description": "Are you ready to lead AI adoption that puts people first? Datacom is seeking an Implementation Change and Adoption Lead to steer transformative AI programs with a human-centric approach. You’ll shape change that people feel, understand, and own—accelerating value while empowering teams to thrive in new ways of working. If you’re passionate about bridging strategy and people, turning insights into confident action, and driving measurable adoption, this could be your next big move. What You'll Be…",
+      "created": "2026-06-23T10:30:02Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5772896150?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Business Continuity and Disaster Recovery Architect",
+      "company": "University of Auckland",
+      "location": "Auckland, North Island",
+      "description": "Job Description Te Whiwhinga mahi | The opportunity The Chief Information Security Office is seeking an experienced Business Continuity and Disaster Recovery Architect within Digital Services. This position focuses on uplifting and maturing Business Continuity (BC) and Disaster Recovery (DR) capability across the organisation, alongside strengthening and evolving IT risk management practices as part of a growing resilience capability. The role includes implementing and embedding BC/DR framework…",
+      "created": "2026-06-19T23:21:41Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5769307551?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Accounts Assistant",
+      "company": "Trojan Holdings",
+      "location": "Queenstown, Otago",
+      "description": "Trojan Holdings Limited have investments in the Tourism, Transport and Property sectors. Every one of our businesses have a long-standing reputation of excellence in service delivery, safety, diverse product offering and innovation. We take pride in providing our services and in sharing the incredible New Zealand environment with our customers whilst protecting it for future generations. At heart, we are a proudly family-owned business, with strong family values embedded throughout. An opportun…",
+      "created": "2026-06-12T08:47:38Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760307272?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "RPO Talent Acquisition Partner, Auckland | Global Media Client",
+      "company": "Korn Ferry",
+      "location": "Auckland, North Island",
+      "description": "Talent Acquisition Partner | Auckland Korn Ferry RPO | Global Media & Advertising Client We're partnering with a globally recognised leader in the media and advertising industry and building a brand-new RPO solution from the ground up. This is a rare opportunity to join at the beginning, helping shape recruitment processes, influence hiring decisions, and deliver exceptional talent outcomes across ANZ. As a Talent Acquisition Partner, you'll act as a trusted advisor to hiring leaders, owning en…",
+      "created": "2026-06-12T08:46:40Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5760304346?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    },
+    {
+      "title": "Customer Service Representative (12 month Fixed Term)",
+      "company": "AsureQuality",
+      "location": "New Zealand",
+      "description": "Job Description Auckland or Christchurch Location We’re looking for a Customer Services Representative to join our Customer Solutions team and play a key role in delivering outstanding support to our customers. As a Customer Experience Representative, you’ll be at the centre of our customer interactions — providing high‑quality service, technical guidance, and account support to both internal and external customers. You’ll work closely with operational teams, sales, and fellow colleagues to ens…",
+      "created": "2026-06-23T00:37:15Z",
+      "redirect_url": "https://www.adzuna.co.nz/details/5772527380?utm_medium=api&utm_source=3f4bae13",
+      "pathway": "embedded_firmware"
+    }
+  ]
+}

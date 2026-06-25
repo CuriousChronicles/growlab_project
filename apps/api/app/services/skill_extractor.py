@@ -23,6 +23,9 @@ ALIASES = {
     "Javascript": "JavaScript",
     "Node": "Node.js",
     "CI CD": "CI/CD",
+    "STM32U5": "STM32",
+    "FreeRTOS": "RTOS",
+    "Gemini": "LLMs",
 }
 
 ALL_SKILLS = sorted({skill for skills in SKILL_TAXONOMY.values() for skill in skills})
@@ -58,7 +61,7 @@ def find_resume_evidence(resume_text: str, skill: str) -> list[EvidenceHit]:
         return []
     sentences = re.split(r"(?<=[.!?])\s+|\n+", resume_text)
     hits: list[EvidenceHit] = []
-    action_words = re.compile(r"\b(built|created|implemented|designed|led|integrated|deployed|tested|automated|analysed|developed)\b", re.I)
+    action_words = re.compile(r"\b(built|created|implemented|designed|delivered|completed|led|integrated|deployed|tested|automated|analysed|developed)\b", re.I)
     for sentence in sentences:
         clean = " ".join(sentence.split())
         if clean and mentions_skill(clean, skill):
