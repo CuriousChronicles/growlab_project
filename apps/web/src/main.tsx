@@ -418,6 +418,7 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
               angle: -90,
               position: "insideLeft",
               dx: 28,
+              dy: 44,
               fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
               fontSize: 14
             }}
