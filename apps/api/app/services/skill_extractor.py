@@ -38,9 +38,9 @@ class EvidenceHit:
     evidence_index: int | None = None
 
 EVIDENCE_CONFIDENCE = {
-    "resume_summary": "high",
+    "resume_summary": "medium",
     "experience": "high",
-    "project": "medium",
+    "project": "high",
     "skills_section": "low",
 }
 

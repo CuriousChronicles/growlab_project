@@ -1,11 +1,10 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import {
   CartesianGrid,
   Label,
   ReferenceArea,
-  ResponsiveContainer,
   Scatter,
   ScatterChart,
   Tooltip,
@@ -16,6 +15,8 @@ import {
   AlertCircle,
   ArrowLeft,
   ArrowRight,
+  ArrowDown,
+  ArrowUp,
   BarChart3,
   BriefcaseBusiness,
   CheckCircle2,
@@ -77,6 +78,9 @@ const statusColours: Record<SkillStatus, string> = {
   strong_proof: "#059669"
 };
 const strengthBandLabels = ["No proof", "Adjacent", "Hidden", "Strong"];
+const defaultXDomain: [number, number] = [-0.5, 3.5];
+const chartHeight = 420;
+const chartMargin = { top: 18, right: 24, bottom: 20, left: 18 };
 
 type SkillScatterPoint = SkillAnalysis & {
   x: number;
@@ -241,6 +245,8 @@ function Dashboard({ analysis, targetPathwayId, onBack, onBridge }: { analysis: 
     status,
     skills: analysis.skills.filter((skill) => skill.status === status)
   })), [analysis.skills]);
+  const topSkills = analysis.skills.slice(0, 8);
+  const maxSkillListingCount = Math.max(...topSkills.map((skill) => skill.listing_count), 1);
 
   return (
     <section className="dashboard">
@@ -272,7 +278,7 @@ function Dashboard({ analysis, targetPathwayId, onBack, onBridge }: { analysis: 
             <p>Raw counts from the selected market snapshot.</p>
           </div>
           <div className="skill-bars">
-            {analysis.skills.slice(0, 8).map((skill) => <SkillDemandBar key={skill.name} skill={skill} />)}
+            {topSkills.map((skill) => <SkillDemandBar key={skill.name} skill={skill} maxCount={maxSkillListingCount} />)}
           </div>
         </section>
 
@@ -284,8 +290,17 @@ function Dashboard({ analysis, targetPathwayId, onBack, onBridge }: { analysis: 
 
 function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
   const [selectedSkill, setSelectedSkill] = useState<SkillAnalysis | null>(null);
+  const chartWrapperRef = useRef<HTMLDivElement | null>(null);
+  const [chartWidth, setChartWidth] = useState(720);
   const maxDemand = Math.max(...skills.map((skill) => skill.demand_score), 0);
   const yMax = Math.min(100, Math.max(10, Math.ceil((maxDemand + 5) / 10) * 10));
+  const defaultYDomain = useMemo<[number, number]>(() => [0, yMax], [yMax]);
+  const [xDomain, setXDomain] = useState<[number, number]>(defaultXDomain);
+  const [yDomain, setYDomain] = useState<[number, number]>(defaultYDomain);
+  const [zoomSelection, setZoomSelection] = useState<{
+    start: { x: number; y: number };
+    end: { x: number; y: number };
+  } | null>(null);
   const points = useMemo(() => {
     const sizes = skills.map((skill) => skill.employer_count);
     const maxSize = Math.max(...sizes, 0);
@@ -294,18 +309,88 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
       ...skill,
       x: statusBandPositions[skill.status] + getSkillJitter(skill.name),
       y: skill.demand_score,
-      radius: 6 + (maxSize ? (skill.employer_count / maxSize) * 10 : 0)
+      radius: 4 + (maxSize ? (skill.employer_count / maxSize) * 6 : 0)
     }));
   }, [skills]);
+  const selectionBounds = zoomSelection ? getSelectionBounds(zoomSelection) : null;
+  const hasZoom = xDomain[0] !== defaultXDomain[0] || xDomain[1] !== defaultXDomain[1] || yDomain[0] !== defaultYDomain[0] || yDomain[1] !== defaultYDomain[1];
+
+  useEffect(() => {
+    const wrapper = chartWrapperRef.current;
+    if (!wrapper) return;
+
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      setChartWidth(Math.max(320, Math.floor(entry.contentRect.width)));
+    });
+    resizeObserver.observe(wrapper);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setYDomain(defaultYDomain);
+  }, [defaultYDomain]);
+
+  function resetZoom() {
+    setXDomain(defaultXDomain);
+    setYDomain(defaultYDomain);
+    setZoomSelection(null);
+  }
+
+  function panChart(xRatio: number, yRatio: number) {
+    setXDomain((current) => shiftDomain(current, defaultXDomain, xRatio));
+    setYDomain((current) => shiftDomain(current, defaultYDomain, yRatio));
+  }
+
+  function startZoom(event: unknown) {
+    const point = getChartDomainPoint(event, chartWidth, xDomain, yDomain);
+    if (!point) return;
+    setZoomSelection({ start: point, end: point });
+  }
+
+  function updateZoom(event: unknown) {
+    if (!zoomSelection) return;
+    const point = getChartDomainPoint(event, chartWidth, xDomain, yDomain);
+    if (!point) return;
+    setZoomSelection((current) => current ? { ...current, end: point } : current);
+  }
+
+  function finishZoom() {
+    if (!zoomSelection) return;
+
+    const bounds = getSelectionBounds(zoomSelection);
+    const hasArea = Math.abs(bounds.x2 - bounds.x1) > 0.08 && Math.abs(bounds.y2 - bounds.y1) > Math.max(1, (yDomain[1] - yDomain[0]) * 0.04);
+    if (hasArea) {
+      setXDomain([bounds.x1, bounds.x2]);
+      setYDomain([bounds.y1, bounds.y2]);
+    }
+    setZoomSelection(null);
+  }
 
   return (
     <section className="card scatter-card">
       <div className="section-heading">
-        <h3>Skill gap map</h3>
-        <p>Each dot is one skill - higher means more market demand, further right means stronger proof.</p>
+        <div>
+          <h3>Skill gap map</h3>
+          <p>Each dot is one skill - higher means more market demand, further right means stronger proof.</p>
+        </div>
+        <div className="chart-controls" aria-label="Chart zoom and pan controls">
+          <button className="secondary-button compact-button icon-button" type="button" onClick={() => panChart(-0.2, 0)} disabled={!hasZoom} aria-label="Pan chart left"><ArrowLeft size={16} /></button>
+          <button className="secondary-button compact-button icon-button" type="button" onClick={() => panChart(0.2, 0)} disabled={!hasZoom} aria-label="Pan chart right"><ArrowRight size={16} /></button>
+          <button className="secondary-button compact-button icon-button" type="button" onClick={() => panChart(0, 0.2)} disabled={!hasZoom} aria-label="Pan chart up"><ArrowUp size={16} /></button>
+          <button className="secondary-button compact-button icon-button" type="button" onClick={() => panChart(0, -0.2)} disabled={!hasZoom} aria-label="Pan chart down"><ArrowDown size={16} /></button>
+          <button className="secondary-button compact-button" type="button" onClick={resetZoom} disabled={!hasZoom}>Reset zoom</button>
+        </div>
       </div>
-      <ResponsiveContainer width="100%" height={420}>
-        <ScatterChart margin={{ top: 18, right: 24, bottom: 20, left: 18 }}>
+      <div className="scatter-chart-wrap" ref={chartWrapperRef}>
+        <ScatterChart
+          width={chartWidth}
+          height={chartHeight}
+          margin={chartMargin}
+          onMouseDown={startZoom}
+          onMouseMove={updateZoom}
+          onMouseUp={finishZoom}
+          onMouseLeave={() => setZoomSelection(null)}
+        >
           <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 3" />
           <ReferenceArea x1={-0.5} x2={1.5} y1={50} y2={100} fill="rgba(220,38,38,0.06)" stroke="none">
             <Label value="High demand · gap to close" position="insideTopLeft" fill="#991b1b" fontSize={12} fontWeight={800} />
@@ -316,7 +401,7 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
           <XAxis
             dataKey="x"
             type="number"
-            domain={[-0.5, 3.5]}
+            domain={xDomain}
             ticks={[0, 1, 2, 3]}
             tickFormatter={(value) => strengthBandLabels[Number(value)] ?? ""}
             tickLine={false}
@@ -324,7 +409,7 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
           <YAxis
             dataKey="y"
             type="number"
-            domain={[0, yMax]}
+            domain={yDomain}
             tickLine={false}
             label={{ value: "Market demand (% of roles)", angle: -90, position: "insideLeft", offset: 0 }}
           />
@@ -334,8 +419,19 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
             isAnimationActive={false}
             shape={(props: unknown) => <SkillScatterDot {...(props as SkillScatterDotProps)} onClick={setSelectedSkill} />}
           />
+          {selectionBounds ? (
+            <ReferenceArea
+              x1={selectionBounds.x1}
+              x2={selectionBounds.x2}
+              y1={selectionBounds.y1}
+              y2={selectionBounds.y2}
+              fill="rgba(37, 99, 235, 0.08)"
+              stroke="#2563eb"
+              strokeOpacity={0.45}
+            />
+          ) : null}
         </ScatterChart>
-      </ResponsiveContainer>
+      </div>
       <SkillEvidenceDrawer skill={selectedSkill} onClose={() => setSelectedSkill(null)} />
     </section>
   );
@@ -343,7 +439,50 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
 
 function getSkillJitter(name: string) {
   const hash = name.split("").reduce((acc, character) => acc + character.charCodeAt(0), 0);
-  return ((hash % 101) / 100) * 0.5 - 0.25;
+  return ((hash % 101) / 100) * 0.8 - 0.4;
+}
+
+function getSelectionBounds(selection: { start: { x: number; y: number }; end: { x: number; y: number } }) {
+  return {
+    x1: Math.min(selection.start.x, selection.end.x),
+    x2: Math.max(selection.start.x, selection.end.x),
+    y1: Math.min(selection.start.y, selection.end.y),
+    y2: Math.max(selection.start.y, selection.end.y)
+  };
+}
+
+function getChartDomainPoint(event: unknown, width: number, xDomain: [number, number], yDomain: [number, number]) {
+  const chartEvent = event as { chartX?: number; chartY?: number } | null;
+  if (!chartEvent || typeof chartEvent.chartX !== "number" || typeof chartEvent.chartY !== "number") return null;
+
+  const plotWidth = width - chartMargin.left - chartMargin.right;
+  const plotHeight = chartHeight - chartMargin.top - chartMargin.bottom;
+  const plotX = Math.min(Math.max(chartEvent.chartX - chartMargin.left, 0), plotWidth);
+  const plotY = Math.min(Math.max(chartEvent.chartY - chartMargin.top, 0), plotHeight);
+
+  return {
+    x: xDomain[0] + (plotX / plotWidth) * (xDomain[1] - xDomain[0]),
+    y: yDomain[1] - (plotY / plotHeight) * (yDomain[1] - yDomain[0])
+  };
+}
+
+function shiftDomain(current: [number, number], bounds: [number, number], ratio: number): [number, number] {
+  const span = current[1] - current[0];
+  const shift = span * ratio;
+  let nextStart = current[0] + shift;
+  let nextEnd = current[1] + shift;
+
+  if (nextStart < bounds[0]) {
+    nextStart = bounds[0];
+    nextEnd = bounds[0] + span;
+  }
+
+  if (nextEnd > bounds[1]) {
+    nextEnd = bounds[1];
+    nextStart = bounds[1] - span;
+  }
+
+  return [nextStart, nextEnd];
 }
 
 type SkillScatterDotProps = {
@@ -464,8 +603,8 @@ function Metric({ label, value }: { label: string; value: string | number }) {
   );
 }
 
-function SkillDemandBar({ skill }: { skill: SkillAnalysis }) {
-  const percent = skill.total_listings ? Math.round((skill.listing_count / skill.total_listings) * 100) : skill.demand_score;
+function SkillDemandBar({ skill, maxCount }: { skill: SkillAnalysis; maxCount: number }) {
+  const percent = Math.round((skill.listing_count / maxCount) * 100);
   return (
     <article className="skill-demand">
       <div>
