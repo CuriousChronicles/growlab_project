@@ -457,6 +457,10 @@ fieldset {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.plan-grid {
+  align-items: start;
+}
+
 .status-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -543,6 +547,7 @@ fieldset {
 }
 
 .status-card {
+  align-content: start;
   display: grid;
   gap: 14px;
 }
@@ -633,9 +638,21 @@ fieldset {
   gap: 8px;
 }
 
-.evidence-block > strong {
-  color: var(--text-primary);
-  font-size: 0.9rem;
+.evidence-block summary {
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 850;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.evidence-block summary::-webkit-details-marker {
+  display: none;
+}
+
+.evidence-block[open] summary {
+  margin-bottom: 8px;
 }
 
 .evidence-item p:last-child,

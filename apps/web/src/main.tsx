@@ -240,7 +240,7 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
             <span className={`demand demand-${role.market_demand}`}>{role.market_demand} demand</span>
             <h3>{role.label}</h3>
             <strong>{role.evidence_coverage}%</strong>
-            <p>{role.summary}</p>
+            <p>{role.label} · {role.market_demand} demand</p>
           </article>
         ))}
       </section>
@@ -256,7 +256,7 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
       </section>
 
       <section className="status-grid" aria-label="Skill status groups">
-        {grouped.map((group) => (
+        {grouped.filter((group) => group.skills.length > 0).map((group) => (
           <article className={`card status-card ${group.status}`} key={group.status}>
             <div className="status-heading">
               <div>
@@ -277,7 +277,7 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
 
 function ResumeUsed({ resumeText }: { resumeText: string }) {
   return (
-    <details className="card resume-used" open>
+    <details className="card resume-used">
       <summary>
         <span><FileText size={18} /> Resume used</span>
         <span className="resume-note">Docker is absent here; hidden proof comes from project evidence.</span>
@@ -320,7 +320,7 @@ function SkillDemandBar({ skill }: { skill: SkillAnalysis }) {
     <article className="skill-demand">
       <div>
         <strong>{skill.name}</strong>
-        <span>{skill.listing_count} listings - {skill.required_count} required - {skill.employer_count} employers</span>
+        <span>{skill.listing_count} of {skill.total_listings} roles · {skill.employer_count} employers</span>
       </div>
       <div className="bar-track" aria-hidden="true">
         <span style={{ width: `${Math.min(percent, 100)}%` }} />
@@ -336,11 +336,10 @@ function SkillEvidence({ skill }: { skill: SkillAnalysis }) {
         <h4>{skill.name}</h4>
         <span>{skill.market_label} - {skill.confidence} confidence</span>
       </div>
-      <p><strong>Market evidence:</strong> {skill.market_evidence}</p>
-      <div className="evidence-block">
-        <strong>Candidate evidence</strong>
+      <details className="evidence-block">
+        <summary>Candidate evidence</summary>
         <CandidateEvidenceList skill={skill} />
-      </div>
+      </details>
     </article>
   );
 }
@@ -411,7 +410,6 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
         <div className="candidate-evidence-empty">No linked skill evidence was returned for this action.</div>
       )}
 
-      <p className="why"><strong>Context:</strong> {item.why}</p>
     </article>
   );
 }
