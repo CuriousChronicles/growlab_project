@@ -18,7 +18,13 @@ from app.services.demand_counter import SkillDemand, count_skill_demand
 from app.services.entry_level_filter import tag_entry_level_listings
 from app.services.evidence_classifier import SkillEvidenceStatus, classify_in_demand_skills
 from app.services.paths import DATA_DIR
-from app.services.skill_extractor import EvidenceHit, extract_candidate_skill_evidence
+from app.services.skill_extractor import (
+    EvidenceHit,
+    extract_candidate_skill_evidence,
+    extract_skills,
+    find_resume_evidence,
+    truncate_excerpt,
+)
 
 
 PATHWAY_LABELS: dict[PathwayId, str] = {
@@ -59,13 +65,20 @@ def load_demo_candidate() -> DemoCandidate:
 
 def candidate_from_resume_text(resume_text: str) -> DemoCandidate:
     text = resume_text.strip() or "No resume text supplied."
+    detected_skills = sorted(extract_skills(text))
+    evidence: list[CandidateEvidenceInput] = []
+    for skill in detected_skills:
+        hits = find_resume_evidence(text, skill)
+        excerpt = hits[0].excerpt if hits else f"{skill}: Evidence detected in your resume - confirm and refine"
+        evidence.append(CandidateEvidenceInput(source="resume_summary", excerpt=excerpt))
+
     return DemoCandidate(
         name="Uploaded candidate",
         headline="Candidate supplied resume text",
         degree="Unknown",
         location="Unknown",
-        resume_summary=text,
-        evidence=[CandidateEvidenceInput(source="resume_summary", excerpt=text)],
+        resume_summary=truncate_excerpt(text),
+        evidence=evidence,
     )
 
 
@@ -118,7 +131,7 @@ def recommended_action_for(status: SkillEvidenceStatus) -> str:
 
 
 def evidence_to_response(hits: list[EvidenceHit]) -> list[CandidateEvidence]:
-    return [CandidateEvidence(source=hit.source, excerpt=hit.excerpt) for hit in hits[:3]]
+    return [CandidateEvidence(source=hit.source, excerpt=truncate_excerpt(hit.excerpt)) for hit in hits[:3]]
 
 
 def skill_response(

@@ -10,6 +10,16 @@ ALL_SKILLS = load_skill_taxonomy().all_skills
 
 """ Uses the taxonomy to scan text and produce structured evidence."""
 
+MAX_EVIDENCE_EXCERPT_CHARS = 200
+RESUME_EVIDENCE_PLACEHOLDER = "Evidence detected in your resume - confirm and refine"
+
+
+def truncate_excerpt(text: str, limit: int = MAX_EVIDENCE_EXCERPT_CHARS) -> str:
+    clean = " ".join((text or "").split())
+    if len(clean) <= limit:
+        return clean
+    return clean[: limit - 3].rstrip() + "..."
+
 def mentions_skill(text: str, skill: str) -> bool:
     haystack = text or ""
     for variant in variants_for(skill):
@@ -42,7 +52,11 @@ def find_resume_evidence(resume_text: str, skill: str) -> list[EvidenceHit]:
     for sentence in sentences:
         clean = " ".join(sentence.split())
         if clean and mentions_skill(clean, skill):
-            hits.append(EvidenceHit(source="resume_summary", excerpt=clean[:220], confidence="high"))
+            if len(clean) <= MAX_EVIDENCE_EXCERPT_CHARS:
+                excerpt = clean
+            else:
+                excerpt = f"{skill}: {RESUME_EVIDENCE_PLACEHOLDER}"
+            hits.append(EvidenceHit(source="resume_summary", excerpt=excerpt, confidence="high"))
     return hits[:3]
 
 def extract_listing_skills(listing: dict[str, Any]) -> set[str]:

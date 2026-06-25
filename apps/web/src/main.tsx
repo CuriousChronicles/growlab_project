@@ -49,6 +49,7 @@ const statusDescriptions: Record<SkillStatus, string> = {
 };
 
 const statusOrder: SkillStatus[] = ["strong_proof", "hidden_proof", "adjacent_proof", "no_proof_yet"];
+const MAX_RENDERED_EVIDENCE_CHARS = 200;
 
 function App() {
   const [request, setRequest] = useState<AnalyseRequest>({
@@ -352,7 +353,13 @@ function makeHeadline(analysis: AnalysisResponse) {
 
 function formatCandidateEvidence(skill: SkillAnalysis) {
   if (!skill.candidate_evidence.length) return "No direct candidate evidence found yet.";
-  return skill.candidate_evidence.map((evidence) => `${evidence.source}: ${evidence.excerpt}`).join(" ");
+  return truncateEvidence(skill.candidate_evidence.map((evidence) => `${evidence.source}: ${evidence.excerpt}`).join(" "));
+}
+
+function truncateEvidence(value: string) {
+  const clean = value.replace(/\s+/g, " ").trim();
+  if (clean.length <= MAX_RENDERED_EVIDENCE_CHARS) return clean;
+  return `${clean.slice(0, MAX_RENDERED_EVIDENCE_CHARS - 3).trim()}...`;
 }
 
 function formatDate(value: string) {

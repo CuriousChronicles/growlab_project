@@ -125,7 +125,7 @@ export const demoAnalysis: AnalysisResponse = {
       time_estimate: "20 minutes",
       why: "Docker is a growing signal in this selected snapshot, based on raw listing and employer counts.",
       steps: ["Add one project bullet that names the containerised setup.", "Add a short README setup note so a reviewer can verify it quickly."],
-      resume_draft: "Evidence-backed draft to review: Containerised a Python automation service with Docker to support reproducible local setup."
+      resume_draft: "Containerised a full-stack telemetry app (Node.js backend + PostgreSQL) with Docker for reproducible team demos."
     },
     {
       priority: 2,
@@ -134,7 +134,7 @@ export const demoAnalysis: AnalysisResponse = {
       time_estimate: "20 minutes",
       why: "CI/CD is a differentiator in this selected snapshot.",
       steps: ["Add a README badge or workflow note.", "Only add a resume bullet after confirming your contribution."],
-      resume_draft: "Evidence-backed draft to review: Added a GitHub Actions workflow to run Python tests on pull requests."
+      resume_draft: "Added a GitHub Actions workflow to run project tests automatically on pull requests."
     },
     {
       priority: 3,
