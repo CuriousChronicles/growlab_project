@@ -184,7 +184,7 @@ def build_skills_for(pathway: PathwayId, location: LocationId, candidate: DemoCa
     status_by_skill = {status.skill: status for status in statuses}
     skills = [
         skill_response(item, status_by_skill[item.skill], len(employers))
-        for item in demand[:20]
+        for item in demand[:30]
     ]
     return skills, listings
 

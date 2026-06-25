@@ -1,12 +1,12 @@
 {
   "taxonomy": {
-    "languages": ["Python", "TypeScript", "JavaScript", "C", "C++", "Java", "SQL"],
-    "web": ["React", "Next.js", "Node.js", "REST APIs", "GraphQL", "HTML/CSS"],
-    "data_ai": ["Pandas", "NumPy", "Machine Learning", "LLMs", "RAG", "Data Pipelines", "Data Visualisation"],
-    "cloud_devops": ["Git", "GitHub", "Docker", "CI/CD", "AWS", "Azure", "GCP", "Linux", "Testing"],
-    "databases": ["SQLite", "PostgreSQL", "MySQL", "MongoDB", "Redis"],
+    "languages": ["Python", "TypeScript", "JavaScript", "C", "C++", "Java", "SQL", "Go", "Rust"],
+    "web": ["React", "Next.js", "Node.js", "REST APIs", "GraphQL", "HTML/CSS", "Vue.js", "Tailwind CSS"],
+    "data_ai": ["Pandas", "NumPy", "Machine Learning", "LLMs", "RAG", "Data Pipelines", "Data Visualisation", "Prompt Engineering", "PyTorch", "scikit-learn", "LangChain", "Fine-tuning", "MLOps"],
+    "cloud_devops": ["Git", "GitHub", "Docker", "CI/CD", "AWS", "Azure", "GCP", "Linux", "Testing", "Kubernetes", "Terraform", "GitHub Actions", "Playwright"],
+    "databases": ["SQLite", "PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch"],
     "embedded": ["Embedded C", "STM32", "Microcontrollers", "CAN", "UART", "SPI", "I2C", "RTOS", "PCB Design"],
-    "professional": ["Technical Communication", "Project Ownership", "Agile", "Stakeholder Communication", "Team Leadership"]
+    "professional": ["Technical Communication", "Project Ownership", "Agile", "Stakeholder Communication", "Team Leadership", "Scrum"]
   },
   "aliases": {
     "Postgres": "PostgreSQL",
@@ -14,6 +14,18 @@
     "RESTful APIs": "REST APIs",
     "Github": "GitHub",
     "Docker Compose": "Docker",
-    "C/C++": "C++"
+    "C/C++": "C++",
+    "k8s": "Kubernetes",
+    "TF": "Terraform",
+    "Golang": "Go",
+    "Sklearn": "scikit-learn",
+    "Scikit": "scikit-learn",
+    "LangGraph": "LangChain",
+    "Cypress": "Playwright",
+    "Vue": "Vue.js",
+    "ML": "Machine Learning",
+    "AI/ML": "Machine Learning",
+    "Automated Testing": "Test Automation",
+    "Automation Testing": "Test Automation"
   }
 }
