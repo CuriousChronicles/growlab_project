@@ -1,5 +1,17 @@
 import React, { useMemo, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
+import {
+  CartesianGrid,
+  Label,
+  ReferenceArea,
+  ResponsiveContainer,
+  Scatter,
+  ScatterChart,
+  Tooltip,
+  XAxis,
+  YAxis
+} from "recharts";
 import {
   AlertCircle,
   ArrowLeft,
@@ -52,6 +64,25 @@ const statusDescriptions: Record<SkillStatus, string> = {
 const statusOrder: SkillStatus[] = ["strong_proof", "hidden_proof", "adjacent_proof", "no_proof_yet"];
 const MAX_RENDERED_EVIDENCE_CHARS = 200;
 const MAX_CARD_EVIDENCE_CHARS = 120;
+const statusBandPositions: Record<SkillStatus, number> = {
+  no_proof_yet: 0,
+  adjacent_proof: 1,
+  hidden_proof: 2,
+  strong_proof: 3
+};
+const statusColours: Record<SkillStatus, string> = {
+  no_proof_yet: "#dc2626",
+  adjacent_proof: "#d97706",
+  hidden_proof: "#2563eb",
+  strong_proof: "#059669"
+};
+const strengthBandLabels = ["No proof", "Adjacent", "Hidden", "Strong"];
+
+type SkillScatterPoint = SkillAnalysis & {
+  x: number;
+  y: number;
+  radius: number;
+};
 
 function App() {
   const [request, setRequest] = useState<AnalyseRequest>({
@@ -234,33 +265,158 @@ function Dashboard({ analysis, targetPathwayId, onBack, onBridge }: { analysis: 
 
       {analysis.resume_text ? <ResumeUsed resumeText={analysis.resume_text} skills={analysis.skills} /> : null}
 
-      <section className="card">
-        <div className="section-heading">
-          <h3>Top In-Demand Skills</h3>
-          <p>Raw counts from the selected market snapshot.</p>
-        </div>
-        <div className="skill-bars">
-          {analysis.skills.slice(0, 8).map((skill) => <SkillDemandBar key={skill.name} skill={skill} />)}
-        </div>
-      </section>
+      <div className="skills-insight-grid">
+        <section className="card">
+          <div className="section-heading">
+            <h3>Top In-Demand Skills</h3>
+            <p>Raw counts from the selected market snapshot.</p>
+          </div>
+          <div className="skill-bars">
+            {analysis.skills.slice(0, 8).map((skill) => <SkillDemandBar key={skill.name} skill={skill} />)}
+          </div>
+        </section>
 
-      <section className="status-grid" aria-label="Skill status groups">
-        {grouped.filter((group) => group.skills.length > 0).map((group) => (
-          <article className={`card status-card ${group.status}`} key={group.status}>
-            <div className="status-heading">
-              <div>
-                <h3>{statusLabels[group.status]}</h3>
-                <p>{statusDescriptions[group.status]}</p>
-              </div>
-              <strong>{group.skills.length}</strong>
-            </div>
-            <div className="evidence-list">
-              {group.skills.length ? group.skills.map((skill) => <SkillEvidence key={skill.name} skill={skill} />) : <p className="muted">No top skills in this group.</p>}
-            </div>
-          </article>
-        ))}
-      </section>
+        <SkillScatterPlot skills={analysis.skills} />
+      </div>
     </section>
+  );
+}
+
+function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
+  const [selectedSkill, setSelectedSkill] = useState<SkillAnalysis | null>(null);
+  const maxDemand = Math.max(...skills.map((skill) => skill.demand_score), 0);
+  const yMax = Math.min(100, Math.max(10, Math.ceil((maxDemand + 5) / 10) * 10));
+  const points = useMemo(() => {
+    const sizes = skills.map((skill) => skill.employer_count);
+    const maxSize = Math.max(...sizes, 0);
+
+    return skills.map((skill) => ({
+      ...skill,
+      x: statusBandPositions[skill.status] + getSkillJitter(skill.name),
+      y: skill.demand_score,
+      radius: 6 + (maxSize ? (skill.employer_count / maxSize) * 10 : 0)
+    }));
+  }, [skills]);
+
+  return (
+    <section className="card scatter-card">
+      <div className="section-heading">
+        <h3>Skill gap map</h3>
+        <p>Each dot is one skill - higher means more market demand, further right means stronger proof.</p>
+      </div>
+      <ResponsiveContainer width="100%" height={420}>
+        <ScatterChart margin={{ top: 18, right: 24, bottom: 20, left: 18 }}>
+          <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 3" />
+          <ReferenceArea x1={-0.5} x2={1.5} y1={50} y2={100} fill="rgba(220,38,38,0.06)" stroke="none">
+            <Label value="High demand · gap to close" position="insideTopLeft" fill="#991b1b" fontSize={12} fontWeight={800} />
+          </ReferenceArea>
+          <ReferenceArea x1={1.5} x2={3.5} y1={50} y2={100} fill="rgba(5,150,105,0.06)" stroke="none">
+            <Label value="High demand · proven" position="insideTopRight" fill="#047857" fontSize={12} fontWeight={800} />
+          </ReferenceArea>
+          <XAxis
+            dataKey="x"
+            type="number"
+            domain={[-0.5, 3.5]}
+            ticks={[0, 1, 2, 3]}
+            tickFormatter={(value) => strengthBandLabels[Number(value)] ?? ""}
+            tickLine={false}
+          />
+          <YAxis
+            dataKey="y"
+            type="number"
+            domain={[0, yMax]}
+            tickLine={false}
+            label={{ value: "Market demand (% of roles)", angle: -90, position: "insideLeft", offset: 0 }}
+          />
+          <Tooltip content={<SkillScatterTooltip />} cursor={{ stroke: "#94a3b8", strokeDasharray: "3 3" }} />
+          <Scatter
+            data={points}
+            isAnimationActive={false}
+            shape={(props: unknown) => <SkillScatterDot {...(props as SkillScatterDotProps)} onClick={setSelectedSkill} />}
+          />
+        </ScatterChart>
+      </ResponsiveContainer>
+      <SkillEvidenceDrawer skill={selectedSkill} onClose={() => setSelectedSkill(null)} />
+    </section>
+  );
+}
+
+function getSkillJitter(name: string) {
+  const hash = name.split("").reduce((acc, character) => acc + character.charCodeAt(0), 0);
+  return ((hash % 101) / 100) * 0.5 - 0.25;
+}
+
+type SkillScatterDotProps = {
+  cx?: number;
+  cy?: number;
+  payload?: SkillScatterPoint;
+  onClick: (skill: SkillAnalysis) => void;
+};
+
+function SkillScatterDot({ cx = 0, cy = 0, payload, onClick }: SkillScatterDotProps) {
+  if (!payload) return null;
+
+  return (
+    <circle
+      cx={cx}
+      cy={cy}
+      r={payload.radius}
+      fill={statusColours[payload.status]}
+      stroke="#ffffff"
+      strokeWidth={2}
+      style={{ cursor: "pointer" }}
+      tabIndex={0}
+      role="button"
+      aria-label={`Open evidence for ${payload.name}`}
+      onClick={() => onClick(payload)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick(payload);
+        }
+      }}
+    />
+  );
+}
+
+function SkillScatterTooltip({ active, payload }: { active?: boolean; payload?: Array<{ payload: SkillScatterPoint }> }) {
+  const skill = payload?.[0]?.payload;
+  if (!active || !skill) return null;
+
+  return (
+    <div className="scatter-tooltip">
+      <strong>{skill.name}</strong>
+      <span>{statusLabels[skill.status]}</span>
+      <span>{skill.demand_score}% of roles</span>
+      <span>{skill.listing_count} / {skill.total_listings} roles</span>
+      <span>{skill.employer_count} employers</span>
+    </div>
+  );
+}
+
+function SkillEvidenceDrawer({ skill, onClose }: { skill: SkillAnalysis | null; onClose: () => void }) {
+  if (!skill) return null;
+
+  return ReactDOM.createPortal(
+    <>
+      <div className="skill-drawer-overlay" onClick={onClose} />
+      <aside className="skill-drawer" aria-label={`${skill.name} evidence drawer`}>
+        <div className="skill-drawer-header">
+          <div>
+            <p className="eyebrow">{statusLabels[skill.status]}</p>
+            <h3>{skill.name}</h3>
+          </div>
+          <button className="skill-drawer-close" type="button" onClick={onClose} aria-label="Close evidence drawer">✕</button>
+        </div>
+        <div className="evidence-item-body">
+          <span className="evidence-item-label">
+            {skill.market_label} - {skill.confidence} confidence
+          </span>
+          <CandidateEvidenceList skill={skill} showFull />
+        </div>
+      </aside>
+    </>,
+    document.body
   );
 }
 
