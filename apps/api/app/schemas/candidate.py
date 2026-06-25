@@ -21,6 +21,7 @@ class DemoCandidate(BaseModel):
     degree: str = Field(min_length=1)
     location: str = Field(min_length=1)
     resume_summary: str = Field(min_length=1)
+    resume_text: str | None = None
     evidence: list[CandidateEvidence]
     portfolio_url: HttpUrl | None = None
     github_url: HttpUrl | None = None

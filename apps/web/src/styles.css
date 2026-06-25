@@ -404,6 +404,54 @@ fieldset {
   gap: 16px;
 }
 
+.resume-used {
+  background: #ffffff;
+}
+
+.resume-used summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.resume-used summary::-webkit-details-marker {
+  display: none;
+}
+
+.resume-used summary span:first-child {
+  align-items: center;
+  color: var(--text-primary);
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 850;
+  gap: 8px;
+}
+
+.resume-note {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.resume-used pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 16px 0 0;
+  max-height: 420px;
+  overflow: auto;
+  padding: 14px;
+  white-space: pre-wrap;
+}
+
 .role-grid,
 .plan-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -642,6 +690,15 @@ fieldset {
   padding: 12px;
 }
 
+.ai-refined {
+  color: var(--purple-accent);
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 850;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
 .empty-draft {
   border-left-color: var(--warning);
   color: var(--text-secondary);
@@ -698,5 +755,14 @@ fieldset {
   .form-grid,
   .metadata-grid {
     grid-template-columns: 1fr;
+  }
+
+  .resume-used summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resume-note {
+    text-align: left;
   }
 }

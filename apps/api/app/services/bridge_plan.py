@@ -1,4 +1,7 @@
+from concurrent.futures import ThreadPoolExecutor, TimeoutError
+
 from app.schemas.analysis import BridgePlanItem, SkillAnalysis
+from app.services.llm_provider import LLM_TIMEOUT_SECONDS, ResumeDraftProvider
 
 PLACEHOLDER_FRAGMENT = "Evidence detected in your resume"
 
@@ -48,7 +51,32 @@ def make_resume_draft(skill: SkillAnalysis, action_type: str) -> str | None:
     return templates.get(skill.name, f"Used {skill.name} in a practical project with visible, reviewable evidence.")
 
 
-def build_bridge_plan(skills: list[SkillAnalysis]) -> list[BridgePlanItem]:
+def refine_resume_draft(
+    skill: SkillAnalysis,
+    template_draft: str | None,
+    provider: ResumeDraftProvider | None,
+    voice_context: str,
+) -> tuple[str | None, bool]:
+    if not template_draft or provider is None:
+        return template_draft, False
+    executor = ThreadPoolExecutor(max_workers=1)
+    try:
+        future = executor.submit(provider.refine_resume_draft, skill, template_draft, voice_context)
+        refined = future.result(timeout=LLM_TIMEOUT_SECONDS)
+    except (Exception, TimeoutError):
+        executor.shutdown(wait=False, cancel_futures=True)
+        return template_draft, False
+    executor.shutdown(wait=False)
+    if not refined:
+        return template_draft, False
+    return refined, True
+
+
+def build_bridge_plan(
+    skills: list[SkillAnalysis],
+    resume_draft_provider: ResumeDraftProvider | None = None,
+    voice_context: str = "",
+) -> list[BridgePlanItem]:
     candidates = [skill for skill in skills if skill.status != "strong_proof"]
     candidates.sort(key=lambda skill: (STATUS_PRIORITY[skill.status], -skill.employer_count, -skill.required_count))
     selected = candidates[:3]
@@ -59,6 +87,12 @@ def build_bridge_plan(skills: list[SkillAnalysis]) -> list[BridgePlanItem]:
     items: list[BridgePlanItem] = []
     for index, skill in enumerate(selected, start=1):
         action_type = action_type_for(skill.status)
+        resume_draft, resume_draft_ai_refined = refine_resume_draft(
+            skill,
+            make_resume_draft(skill, action_type),
+            resume_draft_provider,
+            voice_context,
+        )
         title_prefix = {"surface": "Surface", "strengthen": "Strengthen", "build": "Build proof for"}[action_type]
         if action_type == "surface":
             steps = [
@@ -86,7 +120,8 @@ def build_bridge_plan(skills: list[SkillAnalysis]) -> list[BridgePlanItem]:
                 time_estimate=time_estimate,
                 why=f"{skill.name} is a {skill.market_label.lower()} in this selected snapshot, based on raw listing and employer counts.",
                 steps=steps,
-                resume_draft=make_resume_draft(skill, action_type),
+                resume_draft=resume_draft,
+                resume_draft_ai_refined=resume_draft_ai_refined,
             )
         )
     return items

@@ -83,12 +83,14 @@ class BridgePlanItem(BaseModel):
     why: str
     steps: list[str]
     resume_draft: str | None = None
+    resume_draft_ai_refined: bool = False
 
 
 class AnalysisResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     market_snapshot: MarketSnapshot
+    resume_text: str | None = None
     role_pathways: list[RolePathway]
     skills: list[SkillAnalysis]
     bridge_plan: list[BridgePlanItem]

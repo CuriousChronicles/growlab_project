@@ -71,6 +71,9 @@ function App() {
     try {
       const result = await analyseBridge({ ...request, use_demo_data: useDemo });
       setAnalysis(result);
+      if (useDemo && result.resume_text) {
+        setRequest((current) => ({ ...current, resume_text: result.resume_text ?? "" }));
+      }
       setScreen("dashboard");
     } catch (caught) {
       const message = caught instanceof Error ? caught.message : "GradBridge could not complete the analysis.";
@@ -227,6 +230,8 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
         </div>
       </section>
 
+      {analysis.resume_text ? <ResumeUsed resumeText={analysis.resume_text} /> : null}
+
       <section className="role-grid" aria-label="Role readiness">
         {analysis.role_pathways.map((role) => (
           <article className="card role-card" key={role.id}>
@@ -265,6 +270,18 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
         ))}
       </section>
     </section>
+  );
+}
+
+function ResumeUsed({ resumeText }: { resumeText: string }) {
+  return (
+    <details className="card resume-used" open>
+      <summary>
+        <span><FileText size={18} /> Resume used</span>
+        <span className="resume-note">Docker is absent here; hidden proof comes from project evidence.</span>
+      </summary>
+      <pre>{resumeText}</pre>
+    </details>
   );
 }
 
@@ -337,7 +354,12 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
       <p><strong>Candidate evidence found:</strong> {matchingSkill ? formatCandidateEvidence(matchingSkill) : "No linked skill evidence was returned for this action."}</p>
       <p><strong>Confidence level:</strong> {matchingSkill?.confidence ?? "medium"}</p>
       <p><strong>Recommended action:</strong> {matchingSkill?.recommended_action ?? item.steps[0]}</p>
-      {item.resume_draft ? <div className="resume-draft">{item.resume_draft}</div> : <div className="resume-draft empty-draft">No resume draft yet. Build proof first, then write the claim.</div>}
+      {item.resume_draft ? (
+        <div className="resume-draft">
+          {item.resume_draft_ai_refined ? <span className="ai-refined">AI-refined</span> : null}
+          {item.resume_draft}
+        </div>
+      ) : <div className="resume-draft empty-draft">No resume draft yet. Build proof first, then write the claim.</div>}
       <p className="why"><strong>Why this matters:</strong> {item.why}</p>
     </article>
   );

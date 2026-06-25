@@ -39,6 +39,7 @@ export interface BridgePlanItem {
   why: string;
   steps: string[];
   resume_draft?: string | null;
+  resume_draft_ai_refined?: boolean;
 }
 
 export interface AnalysisResponse {
@@ -49,6 +50,7 @@ export interface AnalysisResponse {
     captured_at: string;
     sources: string[];
   };
+  resume_text?: string | null;
   role_pathways: Array<{
     id: PathwayId;
     label: string;

@@ -18,6 +18,7 @@ from app.services.demand_counter import SkillDemand, count_skill_demand
 from app.services.entry_level_filter import tag_entry_level_listings
 from app.services.evidence_classifier import SkillEvidenceStatus, classify_in_demand_skills
 from app.services.paths import DATA_DIR
+from app.services.llm_provider import get_resume_draft_provider
 from app.services.skill_extractor import (
     EvidenceHit,
     extract_candidate_skill_evidence,
@@ -208,6 +209,11 @@ def build_role_pathways(candidate: DemoCandidate, location: LocationId) -> list[
     return role_pathways
 
 
+def resume_voice_context(candidate: DemoCandidate) -> str:
+    evidence_lines = [f"- {item.source}: {item.excerpt}" for item in candidate.evidence[:5]]
+    return "\n".join([candidate.resume_summary, *evidence_lines]).strip()
+
+
 def analyse(request: AnalyseRequest) -> AnalysisResponse:
     payload = load_snapshot_payload()
     candidate = load_demo_candidate() if request.use_demo_data else candidate_from_resume_text(request.resume_text)
@@ -223,8 +229,13 @@ def analyse(request: AnalyseRequest) -> AnalysisResponse:
             captured_at=str(payload.get("captured_at", "")),
             sources=sources,
         ),
+        resume_text=candidate.resume_text if request.use_demo_data else None,
         role_pathways=build_role_pathways(candidate, request.location),
         skills=skills,
-        bridge_plan=build_bridge_plan(skills),
+        bridge_plan=build_bridge_plan(
+            skills,
+            resume_draft_provider=get_resume_draft_provider(),
+            voice_context=resume_voice_context(candidate),
+        ),
     )
     return AnalysisResponse.model_validate(response.model_dump())

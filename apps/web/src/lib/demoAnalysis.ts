@@ -8,6 +8,38 @@ export const demoAnalysis: AnalysisResponse = {
     captured_at: "2026-06-25T10:00:00Z",
     sources: ["Cached curated snapshot"]
   },
+  resume_text: `Maya Thompson
+Auckland, New Zealand | maya.thompson@example.com | github.com/example/gradbridge-demo
+
+Final-year Computer Systems Engineering graduate with hands-on Python automation, full-stack telemetry, and embedded firmware experience. Confident with Git, GitHub, technical communication, team leadership, and student-representative responsibilities.
+
+Education
+Bachelor of Engineering with Honours, Computer Systems Engineering
+University of Auckland, expected 2026
+
+Projects
+Jarvis event automation assistant
+- Built a Python event-scraping tool that collected public event listings, normalised event data, stored deduplicated records in SQLite, and sent Telegram alerts when matching events were found.
+- Integrated Gemini LLM workflows for summarisation and classification, with configuration for prompt updates and provider settings.
+- Wrote clear setup notes and used GitHub issues to track bugs, feature requests, and release tasks.
+
+EVolocity capstone telemetry platform
+- Delivered a React and TypeScript dashboard for live wireless vehicle telemetry, paired with a Node.js backend, WebSocket streaming, and PostgreSQL storage.
+- Won Best Control Systems Project after presenting system trade-offs, testing outcomes, and implementation details to supervisors and competition judges.
+- Led sprint reviews, coordinated integration work across electrical, mechanical, and software teammates, and summarised technical decisions for the final report.
+
+Experience
+Firmware engineering intern
+- Implemented STM32U5 peripheral drivers and CAN-bus message handling in C for a prototype control board.
+- Debugged UART and I2C sensor integration issues using logic analyser traces and structured test notes.
+- Scheduled periodic control tasks with FreeRTOS and reviewed firmware changes through GitHub pull requests.
+
+Leadership
+Class student representative
+- Collected cohort feedback, communicated teaching concerns to staff, and followed up on action items after department meetings.
+
+Skills
+Python, C, TypeScript, JavaScript, React, Node.js, WebSockets, SQL, SQLite, PostgreSQL, Git, GitHub, STM32U5, CAN, FreeRTOS, UART, I2C, technical communication, team leadership.`,
   role_pathways: [
     {
       id: "ai_automation",
