@@ -330,17 +330,29 @@ function SkillDemandBar({ skill }: { skill: SkillAnalysis }) {
 }
 
 function SkillEvidence({ skill }: { skill: SkillAnalysis }) {
+  const topSources = [
+    ...new Set(
+      skill.candidate_evidence.slice(0, 2).map((e) => formatEvidenceSource(e.source))
+    )
+  ];
+
   return (
-    <article className="evidence-item">
-      <div>
-        <h4>{skill.name}</h4>
-        <span>{skill.market_label} - {skill.confidence} confidence</span>
-      </div>
-      <details className="evidence-block">
-        <summary>Candidate evidence</summary>
+    <details className="evidence-item">
+      <summary className="evidence-item-summary">
+        <strong className="evidence-item-name">{skill.name}</strong>
+        <span className="evidence-item-sources">
+          {topSources.length
+            ? topSources.map((src) => <span key={src} className="source-pill">{src}</span>)
+            : <span className="source-pill">No evidence yet</span>}
+        </span>
+      </summary>
+      <div className="evidence-item-body">
+        <span className="evidence-item-label">
+          {skill.market_label} — {skill.confidence} confidence
+        </span>
         <CandidateEvidenceList skill={skill} />
-      </details>
-    </article>
+      </div>
+    </details>
   );
 }
 

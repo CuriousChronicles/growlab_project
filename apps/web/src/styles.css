@@ -620,11 +620,48 @@ fieldset {
   padding: 12px;
 }
 
-.evidence-item span {
+.evidence-item summary {
+  list-style: none;
+}
+
+.evidence-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.evidence-item-summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.evidence-item-name {
+  color: var(--text-primary);
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  font-weight: 850;
+}
+
+.evidence-item-sources {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.evidence-item-body {
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.evidence-item-label {
   color: var(--text-muted);
-  display: block;
   font-size: 0.84rem;
-  margin-bottom: 10px;
   text-transform: capitalize;
 }
 
