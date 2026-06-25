@@ -394,9 +394,6 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
         <span>{confidence} confidence</span>
       </div>
 
-      <p className="market-signal"><strong>Market signal:</strong> {marketSignal}</p>
-      <p className="recommended-action"><strong>Recommended action:</strong> {recommendedAction}</p>
-
       {resumeDraft ? (
         <div className="resume-draft resume-draft-hero">
           <div className="resume-draft-label">
@@ -409,6 +406,9 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
           <p>{resumeDraft}</p>
         </div>
       ) : <div className="resume-draft empty-draft">No resume draft yet. Build proof first, then write the claim.</div>}
+
+      <p className="market-signal"><strong>Market signal:</strong> {marketSignal}</p>
+      <p className="recommended-action"><strong>Recommended action:</strong> {recommendedAction}</p>
 
       {matchingSkill ? (
         <details className="candidate-evidence">

@@ -817,8 +817,9 @@ fieldset {
 
 .resume-draft-hero {
   background: #ffffff;
+  margin-top: 8px;
   border: 1px solid var(--plan-accent-border);
-  border-left: 4px solid var(--plan-accent);
+  border-left: 5px solid var(--plan-accent);
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
   padding: 12px;
 }
