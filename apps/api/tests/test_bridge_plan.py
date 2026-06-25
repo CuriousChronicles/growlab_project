@@ -34,10 +34,11 @@ def test_surface_resume_draft_is_clean_docker_bullet():
 
     assert plan[0].resume_draft == "Containerised a full-stack telemetry app (Node.js backend + PostgreSQL) with Docker for reproducible team demos."
     assert plan[0].resume_draft_ai_refined is False
+    assert plan[0].resume_draft_source == "template"
     assert "highlighting" not in plan[0].resume_draft
 
 
-def test_non_surface_actions_do_not_emit_resume_drafts():
+def test_strengthen_actions_emit_resume_drafts_from_adjacent_proof():
     plan = build_bridge_plan(
         [
             skill("RAG", "adjacent_proof", "Integrated Gemini LLM workflows."),
@@ -45,7 +46,8 @@ def test_non_surface_actions_do_not_emit_resume_drafts():
     )
 
     assert plan[0].action_type == "strengthen"
-    assert plan[0].resume_draft is None
+    assert plan[0].resume_draft == "Strengthened RAG proof by extending an existing project with a focused, reviewable contribution."
+    assert plan[0].resume_draft_source == "template"
 
 
 def test_placeholder_evidence_does_not_emit_resume_draft():
@@ -61,6 +63,8 @@ def test_placeholder_evidence_does_not_emit_resume_draft():
 
 def test_llm_provider_can_refine_resume_draft_wording_only():
     class Provider:
+        model = "test-resume-model"
+
         def refine_resume_draft(self, skill: SkillAnalysis, template_draft: str, voice_context: str) -> str:
             assert skill.name == "Docker"
             assert "telemetry app" in template_draft
@@ -81,7 +85,8 @@ def test_llm_provider_can_refine_resume_draft_wording_only():
 
     assert plan[0].resume_draft == "Containerised the EVolocity telemetry app backend and PostgreSQL setup for repeatable team demos."
     assert plan[0].resume_draft_ai_refined is True
-    assert plan[0].resume_draft_refined_by == "llm"
+    assert plan[0].resume_draft_refined_by == "test-resume-model"
+    assert plan[0].resume_draft_source == "llm"
 
 
 def test_llm_provider_failure_falls_back_to_template_silently():
@@ -104,6 +109,7 @@ def test_llm_provider_failure_falls_back_to_template_silently():
     assert plan[0].resume_draft == "Containerised a full-stack telemetry app (Node.js backend + PostgreSQL) with Docker for reproducible team demos."
     assert plan[0].resume_draft_ai_refined is False
     assert plan[0].resume_draft_refined_by is None
+    assert plan[0].resume_draft_source == "template_llm_fallback"
 
 
 def test_llm_provider_timeout_falls_back_to_template_silently(monkeypatch):
@@ -131,3 +137,4 @@ def test_llm_provider_timeout_falls_back_to_template_silently(monkeypatch):
     assert plan[0].resume_draft == "Containerised a full-stack telemetry app (Node.js backend + PostgreSQL) with Docker for reproducible team demos."
     assert plan[0].resume_draft_ai_refined is False
     assert plan[0].resume_draft_refined_by is None
+    assert plan[0].resume_draft_source == "template_llm_fallback"

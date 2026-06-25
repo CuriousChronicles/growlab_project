@@ -40,7 +40,8 @@ export interface BridgePlanItem {
   steps: string[];
   resume_draft?: string | null;
   resume_draft_ai_refined?: boolean;
-  resume_draft_refined_by?: "llm" | null;
+  resume_draft_refined_by?: string | null;
+  resume_draft_source?: "llm" | "template" | "template_llm_fallback" | null;
 }
 
 export interface AnalysisResponse {

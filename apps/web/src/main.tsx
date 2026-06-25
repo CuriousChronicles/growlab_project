@@ -343,6 +343,9 @@ function SkillEvidence({ skill }: { skill: SkillAnalysis }) {
 function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysis[] }) {
   const matchingSkill = skills.find((skill) => item.title.toLowerCase().includes(skill.name.toLowerCase()));
   const actionLabel = item.action_type[0].toUpperCase() + item.action_type.slice(1);
+  const refinedModel = item.resume_draft_refined_by;
+  const showAiRefined = item.resume_draft_source === "llm" || item.resume_draft_ai_refined;
+  const showTemplateFallback = item.resume_draft_source === "template_llm_fallback";
 
   return (
     <article className={`card plan-card ${item.action_type}`}>
@@ -356,7 +359,8 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
       <p><strong>Recommended action:</strong> {matchingSkill?.recommended_action ?? item.steps[0]}</p>
       {item.resume_draft ? (
         <div className="resume-draft">
-          {item.resume_draft_refined_by === "llm" || item.resume_draft_ai_refined ? <span className="ai-refined">AI-refined</span> : null}
+          {showAiRefined ? <span className="ai-refined">AI-refined{refinedModel ? ` (${refinedModel})` : ""}</span> : null}
+          {showTemplateFallback ? <span className="template-fallback">(template)</span> : null}
           {item.resume_draft}
         </div>
       ) : <div className="resume-draft empty-draft">No resume draft yet. Build proof first, then write the claim.</div>}
