@@ -5,11 +5,9 @@ export const demoAnalysis: AnalysisResponse = {
     listing_count: 8,
     distinct_employers: 8,
     location: "Auckland",
-    role_pathway: "AI & Automation",
     captured_at: "2026-06-25T10:00:00Z",
     sources: ["Cached curated snapshot"]
   },
-  headline: "You are closest to AI & Automation roles.",
   role_pathways: [
     {
       id: "ai_automation",
@@ -37,6 +35,7 @@ export const demoAnalysis: AnalysisResponse = {
     {
       name: "Python",
       market_label: "Core demand",
+      demand_score: 100,
       listing_count: 8,
       total_listings: 8,
       employer_count: 8,
@@ -50,6 +49,7 @@ export const demoAnalysis: AnalysisResponse = {
     {
       name: "REST APIs",
       market_label: "Growing signal",
+      demand_score: 50,
       listing_count: 4,
       total_listings: 8,
       employer_count: 4,
@@ -63,6 +63,7 @@ export const demoAnalysis: AnalysisResponse = {
     {
       name: "Docker",
       market_label: "Growing signal",
+      demand_score: 50,
       listing_count: 4,
       total_listings: 8,
       employer_count: 4,
@@ -76,6 +77,7 @@ export const demoAnalysis: AnalysisResponse = {
     {
       name: "CI/CD",
       market_label: "Differentiator",
+      demand_score: 25,
       listing_count: 2,
       total_listings: 8,
       employer_count: 2,
@@ -89,6 +91,7 @@ export const demoAnalysis: AnalysisResponse = {
     {
       name: "RAG",
       market_label: "Differentiator",
+      demand_score: 25,
       listing_count: 2,
       total_listings: 8,
       employer_count: 2,
@@ -102,6 +105,7 @@ export const demoAnalysis: AnalysisResponse = {
     {
       name: "AWS",
       market_label: "Differentiator",
+      demand_score: 25,
       listing_count: 2,
       total_listings: 8,
       employer_count: 2,
@@ -117,13 +121,8 @@ export const demoAnalysis: AnalysisResponse = {
     {
       priority: 1,
       action_type: "surface",
-      skill_name: "Docker",
       title: "Surface Docker",
       time_estimate: "20 minutes",
-      market_signal: "Docker appeared in 4 of 8 relevant roles (2 listed it as required).",
-      candidate_evidence_found: "Dockerfile found for the Python automation service, but Docker is not mentioned in the resume.",
-      confidence: "medium",
-      recommended_action: "Make this proof visible in the resume or project README, and confirm you personally created or maintained it.",
       why: "Docker is a growing signal in this selected snapshot, based on raw listing and employer counts.",
       steps: ["Add one project bullet that names the containerised setup.", "Add a short README setup note so a reviewer can verify it quickly."],
       resume_draft: "Evidence-backed draft to review: Containerised a Python automation service with Docker to support reproducible local setup."
@@ -131,13 +130,8 @@ export const demoAnalysis: AnalysisResponse = {
     {
       priority: 2,
       action_type: "surface",
-      skill_name: "CI/CD",
       title: "Surface CI/CD",
       time_estimate: "20 minutes",
-      market_signal: "CI/CD appeared in 2 of 8 relevant roles (1 listed it as required).",
-      candidate_evidence_found: "GitHub Actions CI/CD workflow runs Python tests on pull requests.",
-      confidence: "medium",
-      recommended_action: "Make this proof visible only if you created or maintained the workflow.",
       why: "CI/CD is a differentiator in this selected snapshot.",
       steps: ["Add a README badge or workflow note.", "Only add a resume bullet after confirming your contribution."],
       resume_draft: "Evidence-backed draft to review: Added a GitHub Actions workflow to run Python tests on pull requests."
@@ -145,21 +139,11 @@ export const demoAnalysis: AnalysisResponse = {
     {
       priority: 3,
       action_type: "strengthen",
-      skill_name: "RAG",
       title: "Strengthen RAG",
       time_estimate: "1-3 hours",
-      market_signal: "RAG appeared in 2 of 8 relevant roles (0 listed it as required).",
-      candidate_evidence_found: "Python automation and data processing project evidence exists.",
-      confidence: "medium",
-      recommended_action: "Extend the automation project with a tiny retrieval step over local documentation.",
       why: "This is a focused gap, not a reason to start over.",
       steps: ["Index three local project notes.", "Add a small retrieval endpoint and document its limits."],
       resume_draft: null
     }
-  ],
-  methodology: [
-    "Market demand is shown as raw counts from the selected cached snapshot.",
-    "Evidence coverage is not an employability score; it only reflects visible proof against recurring skills.",
-    "Skills are classified with deterministic rules before any language-model style wording would be used."
   ]
 };

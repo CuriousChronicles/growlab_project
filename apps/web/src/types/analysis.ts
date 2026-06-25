@@ -7,7 +7,7 @@ export interface AnalyseRequest {
   resume_text: string;
   target_pathway: PathwayId;
   location: LocationId;
-  github_repo_url?: string;
+  github_repo_url?: string | null;
   use_demo_data: boolean;
 }
 
@@ -19,6 +19,7 @@ export interface CandidateEvidence {
 export interface SkillAnalysis {
   name: string;
   market_label: string;
+  demand_score: number;
   listing_count: number;
   total_listings: number;
   employer_count: number;
@@ -33,13 +34,8 @@ export interface SkillAnalysis {
 export interface BridgePlanItem {
   priority: number;
   action_type: "surface" | "strengthen" | "build";
-  skill_name: string;
   title: string;
   time_estimate: string;
-  market_signal: string;
-  candidate_evidence_found: string;
-  confidence: Confidence;
-  recommended_action: string;
   why: string;
   steps: string[];
   resume_draft?: string | null;
@@ -50,11 +46,9 @@ export interface AnalysisResponse {
     listing_count: number;
     distinct_employers: number;
     location: string;
-    role_pathway: string;
     captured_at: string;
     sources: string[];
   };
-  headline: string;
   role_pathways: Array<{
     id: PathwayId;
     label: string;
@@ -64,5 +58,4 @@ export interface AnalysisResponse {
   }>;
   skills: SkillAnalysis[];
   bridge_plan: BridgePlanItem[];
-  methodology: string[];
 }
