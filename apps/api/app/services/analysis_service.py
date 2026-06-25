@@ -18,7 +18,7 @@ from app.services.demand_counter import SkillDemand, count_skill_demand
 from app.services.entry_level_filter import tag_entry_level_listings
 from app.services.evidence_classifier import SkillEvidenceStatus, classify_in_demand_skills
 from app.services.paths import DATA_DIR
-from app.services.llm_provider import get_resume_draft_provider
+from app.services.llm_service import get_resume_draft_provider
 from app.services.skill_extractor import (
     EvidenceHit,
     extract_candidate_skill_evidence,

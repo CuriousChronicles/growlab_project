@@ -1,7 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 from app.schemas.analysis import BridgePlanItem, SkillAnalysis
-from app.services.llm_provider import LLM_TIMEOUT_SECONDS, ResumeDraftProvider
+from app.services.llm_service import LLM_TIMEOUT_SECONDS, ResumeDraftProvider, refined_by_llm
 
 PLACEHOLDER_FRAGMENT = "Evidence detected in your resume"
 
@@ -56,20 +56,20 @@ def refine_resume_draft(
     template_draft: str | None,
     provider: ResumeDraftProvider | None,
     voice_context: str,
-) -> tuple[str | None, bool]:
+) -> tuple[str | None, bool, str | None]:
     if not template_draft or provider is None:
-        return template_draft, False
+        return template_draft, False, None
     executor = ThreadPoolExecutor(max_workers=1)
     try:
         future = executor.submit(provider.refine_resume_draft, skill, template_draft, voice_context)
         refined = future.result(timeout=LLM_TIMEOUT_SECONDS)
     except (Exception, TimeoutError):
         executor.shutdown(wait=False, cancel_futures=True)
-        return template_draft, False
+        return template_draft, False, None
     executor.shutdown(wait=False)
     if not refined:
-        return template_draft, False
-    return refined, True
+        return template_draft, False, None
+    return refined, True, refined_by_llm()
 
 
 def build_bridge_plan(
@@ -87,10 +87,11 @@ def build_bridge_plan(
     items: list[BridgePlanItem] = []
     for index, skill in enumerate(selected, start=1):
         action_type = action_type_for(skill.status)
-        resume_draft, resume_draft_ai_refined = refine_resume_draft(
+        template_draft = make_resume_draft(skill, action_type)
+        resume_draft, resume_draft_ai_refined, resume_draft_refined_by = refine_resume_draft(
             skill,
-            make_resume_draft(skill, action_type),
-            resume_draft_provider,
+            template_draft,
+            resume_draft_provider if action_type in {"surface", "strengthen"} else None,
             voice_context,
         )
         title_prefix = {"surface": "Surface", "strengthen": "Strengthen", "build": "Build proof for"}[action_type]
@@ -122,6 +123,7 @@ def build_bridge_plan(
                 steps=steps,
                 resume_draft=resume_draft,
                 resume_draft_ai_refined=resume_draft_ai_refined,
+                resume_draft_refined_by=resume_draft_refined_by,
             )
         )
     return items

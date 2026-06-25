@@ -84,6 +84,7 @@ class BridgePlanItem(BaseModel):
     steps: list[str]
     resume_draft: str | None = None
     resume_draft_ai_refined: bool = False
+    resume_draft_refined_by: Literal["llm"] | None = None
 
 
 class AnalysisResponse(BaseModel):

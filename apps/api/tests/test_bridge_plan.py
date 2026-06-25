@@ -81,6 +81,7 @@ def test_llm_provider_can_refine_resume_draft_wording_only():
 
     assert plan[0].resume_draft == "Containerised the EVolocity telemetry app backend and PostgreSQL setup for repeatable team demos."
     assert plan[0].resume_draft_ai_refined is True
+    assert plan[0].resume_draft_refined_by == "llm"
 
 
 def test_llm_provider_failure_falls_back_to_template_silently():
@@ -102,6 +103,7 @@ def test_llm_provider_failure_falls_back_to_template_silently():
 
     assert plan[0].resume_draft == "Containerised a full-stack telemetry app (Node.js backend + PostgreSQL) with Docker for reproducible team demos."
     assert plan[0].resume_draft_ai_refined is False
+    assert plan[0].resume_draft_refined_by is None
 
 
 def test_llm_provider_timeout_falls_back_to_template_silently(monkeypatch):
@@ -128,3 +130,4 @@ def test_llm_provider_timeout_falls_back_to_template_silently(monkeypatch):
 
     assert plan[0].resume_draft == "Containerised a full-stack telemetry app (Node.js backend + PostgreSQL) with Docker for reproducible team demos."
     assert plan[0].resume_draft_ai_refined is False
+    assert plan[0].resume_draft_refined_by is None

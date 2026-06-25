@@ -2,21 +2,28 @@ import json
 import os
 import re
 from pathlib import Path
-from typing import Protocol
+from typing import Literal, Protocol
 
 import httpx
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from app.schemas.analysis import CandidateEvidence, SkillAnalysis
 from app.services.paths import ROOT
 
 
-LLM_TIMEOUT_SECONDS = 5.0
+LLM_TIMEOUT_SECONDS = 6.0
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 
 
 class ResumeDraftProvider(Protocol):
     def refine_resume_draft(self, skill: SkillAnalysis, template_draft: str, voice_context: str) -> str | None:
         ...
+
+
+class RefinedBulletOutput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    bullet: str = Field(min_length=1, max_length=180)
 
 
 def load_env_file(path: Path | None = None) -> None:
@@ -41,13 +48,17 @@ class GeminiFlashProvider:
         self.model = model or DEFAULT_GEMINI_MODEL
 
     def refine_resume_draft(self, skill: SkillAnalysis, template_draft: str, voice_context: str) -> str | None:
-        prompt = build_resume_draft_prompt(skill, template_draft, voice_context)
+        evidence = evidence_basis(skill.candidate_evidence)
+        if not evidence:
+            return None
+
+        prompt = build_resume_draft_prompt(skill, template_draft, voice_context, evidence)
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
         payload = {
             "contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {
                 "temperature": 0.2,
-                "maxOutputTokens": 180,
+                "maxOutputTokens": 120,
                 "responseMimeType": "application/json",
                 "thinkingConfig": {"thinkingBudget": 0},
             },
@@ -63,15 +74,19 @@ class GeminiFlashProvider:
             response.raise_for_status()
         except httpx.HTTPStatusError as exc:
             raise RuntimeError(f"Gemini request failed with status {exc.response.status_code}") from exc
+
         text = response.json()["candidates"][0]["content"]["parts"][0]["text"]
-        bullet = parse_bullet_json(text).get("bullet")
-        if not isinstance(bullet, str):
+        output = parse_bullet_json(text)
+        if output is None:
             return None
-        return validate_refined_bullet(bullet, template_draft, f"{voice_context}\n{build_voice_context(skill.candidate_evidence)}")
+        return validate_refined_bullet(output.bullet, template_draft, evidence)
 
 
 def get_resume_draft_provider() -> ResumeDraftProvider | None:
     load_env_file()
+    if os.environ.get("LLM_ENABLED", "false").strip().lower() not in {"1", "true", "yes", "on"}:
+        return None
+
     provider = os.environ.get("LLM_PROVIDER", "gemini").strip().lower()
     api_key = os.environ.get("LLM_API_KEY", "").strip()
     if not api_key or provider != "gemini":
@@ -79,42 +94,49 @@ def get_resume_draft_provider() -> ResumeDraftProvider | None:
     return GeminiFlashProvider(api_key=api_key, model=os.environ.get("LLM_MODEL"))
 
 
-def build_voice_context(evidence: list[CandidateEvidence]) -> str:
-    return "\n".join(f"- {item.source}: {item.excerpt}" for item in evidence[:3])
+def evidence_basis(evidence: list[CandidateEvidence]) -> str:
+    for item in evidence:
+        excerpt = " ".join(item.excerpt.split())
+        if excerpt and "Evidence detected in your resume" not in excerpt:
+            return f"{item.source}: {excerpt}"
+    return ""
 
 
-def build_resume_draft_prompt(skill: SkillAnalysis, template_draft: str, voice_context: str) -> str:
-    evidence_context = build_voice_context(skill.candidate_evidence)
+def build_resume_draft_prompt(skill: SkillAnalysis, template_draft: str, voice_context: str, evidence: str) -> str:
     return (
         "Rewrite one resume bullet in the candidate's own plain technical voice.\n"
-        "Ground the wording ONLY in the provided evidence and existing template.\n"
-        "Do not invent metrics, outcomes, tools, employers, awards, or responsibilities.\n"
-        "Keep the same factual claims as the template, and return JSON only.\n\n"
+        "Use ONLY the evidence excerpt below as the factual basis.\n"
+        "Never invent experience, tools, metrics, employers, awards, responsibilities, or outcomes.\n"
+        "Candidate voice examples are for style only; do not use them as facts.\n"
+        "Return one bullet, about 25 words or fewer, as JSON only.\n\n"
         f"Skill: {skill.name}\n"
-        f"Existing template bullet: {template_draft}\n\n"
-        f"Candidate voice examples:\n{voice_context or evidence_context}\n\n"
-        f"Allowed evidence:\n{evidence_context}\n\n"
-        'Return exactly: {"bullet": "one concise resume bullet"}'
+        f"Evidence excerpt, sole factual basis: {evidence}\n"
+        f"Template bullet to rewrite: {template_draft}\n"
+        f"Candidate voice/style examples:\n{voice_context or evidence}\n\n"
+        'Return exactly this JSON shape: {"bullet": "one concise resume bullet"}'
     )
 
 
-def parse_bullet_json(text: str) -> dict:
+def parse_bullet_json(text: str) -> RefinedBulletOutput | None:
     stripped = text.strip()
     if stripped.startswith("```"):
         stripped = re.sub(r"^```(?:json)?\s*", "", stripped)
         stripped = re.sub(r"\s*```$", "", stripped)
-    return json.loads(stripped)
+    try:
+        return RefinedBulletOutput.model_validate(json.loads(stripped))
+    except (json.JSONDecodeError, TypeError, ValidationError):
+        return None
 
 
 def validate_refined_bullet(bullet: str, template_draft: str, allowed_context: str = "") -> str | None:
     clean = " ".join(bullet.replace("\n", " ").split()).strip(" -")
-    if not clean or len(clean) > 220:
+    if not clean or len(clean.split()) > 28 or len(clean) > 180:
         return None
     if clean == template_draft:
         return None
     if any(marker in clean.lower() for marker in [" as an ai ", "i don't", "cannot", "unknown"]):
         return None
-    allowed_text = normalise_claim_text(f"{template_draft} {allowed_context}")
+    allowed_text = normalise_claim_text(allowed_context)
     for index, token in enumerate(re.findall(r"\b[A-Za-z][A-Za-z0-9.+#/-]*\b", clean)):
         if index == 0 and token[:1].isupper() and token[1:].islower():
             continue
@@ -123,8 +145,16 @@ def validate_refined_bullet(bullet: str, template_draft: str, allowed_context: s
     return clean
 
 
+def refined_by_llm() -> Literal["llm"]:
+    return "llm"
+
+
 def is_grounding_sensitive_token(token: str) -> bool:
-    return any(character.isdigit() for character in token) or any(character.isupper() for character in token[1:])
+    return (
+        any(character.isdigit() for character in token)
+        or any(character.isupper() for character in token[1:])
+        or (token[:1].isupper() and token[1:].islower())
+    )
 
 
 def normalise_claim_text(value: str) -> str:

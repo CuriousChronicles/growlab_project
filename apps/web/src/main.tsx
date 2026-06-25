@@ -356,7 +356,7 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
       <p><strong>Recommended action:</strong> {matchingSkill?.recommended_action ?? item.steps[0]}</p>
       {item.resume_draft ? (
         <div className="resume-draft">
-          {item.resume_draft_ai_refined ? <span className="ai-refined">AI-refined</span> : null}
+          {item.resume_draft_refined_by === "llm" || item.resume_draft_ai_refined ? <span className="ai-refined">AI-refined</span> : null}
           {item.resume_draft}
         </div>
       ) : <div className="resume-draft empty-draft">No resume draft yet. Build proof first, then write the claim.</div>}
