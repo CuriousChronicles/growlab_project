@@ -31,6 +31,8 @@ export interface SkillAnalysis {
   recommended_action: string;
 }
 
+export type ResumeDraftSource = "llm" | "template" | "template_llm_fallback";
+
 export interface BridgePlanItem {
   priority: number;
   action_type: "surface" | "strengthen" | "build";
@@ -40,6 +42,8 @@ export interface BridgePlanItem {
   steps: string[];
   resume_draft?: string | null;
   resume_draft_ai_refined?: boolean;
+  resume_draft_refined_by?: string | null;
+  resume_draft_source?: ResumeDraftSource | null;
 }
 
 export interface AnalysisResponse {

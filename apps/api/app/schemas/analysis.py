@@ -7,6 +7,7 @@ PathwayId = Literal["ai_automation", "software_fullstack", "embedded_firmware"]
 LocationId = Literal["auckland", "new_zealand", "remote"]
 SkillStatus = Literal["strong_proof", "hidden_proof", "adjacent_proof", "no_proof_yet"]
 Confidence = Literal["high", "medium", "low"]
+ResumeDraftSource = Literal["llm", "template", "template_llm_fallback"]
 
 
 class AnalyseRequest(BaseModel):
@@ -84,6 +85,8 @@ class BridgePlanItem(BaseModel):
     steps: list[str]
     resume_draft: str | None = None
     resume_draft_ai_refined: bool = False
+    resume_draft_refined_by: str | None = None
+    resume_draft_source: ResumeDraftSource | None = None
 
 
 class AnalysisResponse(BaseModel):

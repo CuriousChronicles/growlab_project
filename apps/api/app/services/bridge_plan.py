@@ -1,7 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 from app.schemas.analysis import BridgePlanItem, SkillAnalysis
-from app.services.llm_provider import LLM_TIMEOUT_SECONDS, ResumeDraftProvider
+from app.services.llm_provider import LLM_TIMEOUT_SECONDS, ResumeDraftProvider, refined_by_llm
 
 PLACEHOLDER_FRAGMENT = "Evidence detected in your resume"
 
@@ -22,7 +22,7 @@ def action_type_for(status: str) -> str:
 
 
 def make_resume_draft(skill: SkillAnalysis, action_type: str) -> str | None:
-    if action_type != "surface" or not skill.candidate_evidence:
+    if action_type not in {"surface", "strengthen"} or not skill.candidate_evidence:
         return None
 
     evidence_text = " ".join(item.excerpt for item in skill.candidate_evidence)
@@ -48,6 +48,15 @@ def make_resume_draft(skill: SkillAnalysis, action_type: str) -> str | None:
         "Testing": "Added automated checks to improve confidence in project changes before review.",
         "Linux": "Used Linux-oriented tooling to support reproducible project setup and development workflows.",
     }
+    if action_type == "strengthen":
+        strengthen_templates = {
+            name: f"Strengthened {name} proof by extending an existing project with a focused, reviewable contribution."
+            for name in templates
+        }
+        return strengthen_templates.get(
+            skill.name,
+            f"Strengthened {skill.name} proof by extending an existing project with a focused, reviewable contribution.",
+        )
     return templates.get(skill.name, f"Used {skill.name} in a practical project with visible, reviewable evidence.")
 
 
@@ -56,20 +65,20 @@ def refine_resume_draft(
     template_draft: str | None,
     provider: ResumeDraftProvider | None,
     voice_context: str,
-) -> tuple[str | None, bool]:
+) -> tuple[str | None, bool, str | None, str | None]:
     if not template_draft or provider is None:
-        return template_draft, False
+        return template_draft, False, None, "template" if template_draft else None
     executor = ThreadPoolExecutor(max_workers=1)
     try:
         future = executor.submit(provider.refine_resume_draft, skill, template_draft, voice_context)
         refined = future.result(timeout=LLM_TIMEOUT_SECONDS)
     except (Exception, TimeoutError):
         executor.shutdown(wait=False, cancel_futures=True)
-        return template_draft, False
+        return template_draft, False, None, "template_llm_fallback"
     executor.shutdown(wait=False)
     if not refined:
-        return template_draft, False
-    return refined, True
+        return template_draft, False, None, "template_llm_fallback"
+    return refined, True, refined_by_llm(provider), "llm"
 
 
 def build_bridge_plan(
@@ -87,10 +96,11 @@ def build_bridge_plan(
     items: list[BridgePlanItem] = []
     for index, skill in enumerate(selected, start=1):
         action_type = action_type_for(skill.status)
-        resume_draft, resume_draft_ai_refined = refine_resume_draft(
+        template_draft = make_resume_draft(skill, action_type)
+        resume_draft, resume_draft_ai_refined, resume_draft_refined_by, resume_draft_source = refine_resume_draft(
             skill,
-            make_resume_draft(skill, action_type),
-            resume_draft_provider,
+            template_draft,
+            resume_draft_provider if action_type in {"surface", "strengthen"} else None,
             voice_context,
         )
         title_prefix = {"surface": "Surface", "strengthen": "Strengthen", "build": "Build proof for"}[action_type]
@@ -122,6 +132,8 @@ def build_bridge_plan(
                 steps=steps,
                 resume_draft=resume_draft,
                 resume_draft_ai_refined=resume_draft_ai_refined,
+                resume_draft_refined_by=resume_draft_refined_by,
+                resume_draft_source=resume_draft_source,
             )
         )
     return items
