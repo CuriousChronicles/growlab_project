@@ -10,6 +10,7 @@ class JobListing(BaseModel):
 
     title: str
     company: str
+    source: Literal["Adzuna NZ", "fixture"] = "Adzuna NZ"
     location: str
     description: str
     created: str
