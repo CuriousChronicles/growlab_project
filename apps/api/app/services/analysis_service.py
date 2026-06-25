@@ -15,7 +15,6 @@ from app.schemas.candidate import DemoCandidate
 from app.schemas.job_snapshot import JobListing
 from app.services.bridge_plan import build_bridge_plan
 from app.services.demand_counter import SkillDemand, count_skill_demand
-from app.services.entry_level_filter import tag_entry_level_listings
 from app.services.evidence_classifier import SkillEvidenceStatus, classify_in_demand_skills
 from app.services.paths import DATA_DIR
 from app.services.llm_provider import get_resume_draft_provider
@@ -98,8 +97,7 @@ def filtered_relevant_listings(pathway: PathwayId, location: LocationId) -> list
         for listing in load_jobs()
         if listing.get("pathway") == pathway and location_matches(listing, location)
     ]
-    tagged = tag_entry_level_listings(pathway_listings)
-    return [result.listing for result in tagged if result.relevant]
+    return pathway_listings
 
 
 def demand_label(employer_count: int, distinct_employers: int) -> str:

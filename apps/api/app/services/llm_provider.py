@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from app.schemas.analysis import CandidateEvidence, SkillAnalysis
 from app.services.paths import DATA_DIR, ROOT
+from app.services.skill_extractor import mentions_skill
 
 
 LLM_TIMEOUT_SECONDS = 24.0
@@ -62,7 +63,7 @@ class GeminiFlashProvider:
         self.model = model or DEFAULT_GEMINI_MODEL
 
     def refine_resume_draft(self, skill: SkillAnalysis, template_draft: str, voice_context: str) -> str | None:
-        evidence = evidence_excerpt(skill.candidate_evidence)
+        evidence = evidence_excerpt(skill.candidate_evidence, skill.name)
         if not evidence:
             return None
 
@@ -152,10 +153,12 @@ def sleep_before_retry(attempt: int) -> None:
         sleep(0.35)
 
 
-def evidence_excerpt(evidence: list[CandidateEvidence]) -> str:
+def evidence_excerpt(evidence: list[CandidateEvidence], skill_name: str = "") -> str:
     for item in evidence:
         excerpt = " ".join(item.excerpt.split())
         if excerpt and "Evidence detected in your resume" not in excerpt:
+            if skill_name and not mentions_skill(excerpt, skill_name):
+                continue
             return excerpt
     return ""
 
@@ -250,6 +253,11 @@ def validate_refined_bullet(bullet: str, template_draft: str, allowed_context: s
     if any(marker in clean.lower() for marker in [" as an ai ", "i don't", "cannot", "unknown"]):
         return None
     allowed_text = normalise_claim_text(allowed_context)
+    if not allowed_text:
+        return clean
+    for numeric_claim in re.findall(r"\b\d+(?:\.\d+)?%?\b", clean):
+        if numeric_claim and normalise_claim_text(numeric_claim) not in allowed_text:
+            return None
     for index, token in enumerate(re.findall(r"\b[A-Za-z][A-Za-z0-9.+#/-]*\b", clean)):
         if index == 0 and token[:1].isupper() and token[1:].islower():
             continue

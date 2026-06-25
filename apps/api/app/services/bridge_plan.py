@@ -2,6 +2,7 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError
 
 from app.schemas.analysis import BridgePlanItem, SkillAnalysis
 from app.services.llm_provider import LLM_TIMEOUT_SECONDS, ResumeDraftProvider, refined_by_llm
+from app.services.skill_extractor import mentions_skill
 
 PLACEHOLDER_FRAGMENT = "Evidence detected in your resume"
 
@@ -10,6 +11,11 @@ STATUS_PRIORITY = {
     "adjacent_proof": 1,
     "no_proof_yet": 2,
     "strong_proof": 3,
+}
+
+PLAN_SKILL_GROUPS = {
+    "Git": "version_control",
+    "GitHub": "version_control",
 }
 
 
@@ -22,10 +28,14 @@ def action_type_for(status: str) -> str:
 
 
 def make_resume_draft(skill: SkillAnalysis, action_type: str) -> str | None:
-    if action_type not in {"surface", "strengthen"} or not skill.candidate_evidence:
+    if action_type != "surface" or not skill.candidate_evidence:
         return None
 
-    evidence_text = " ".join(item.excerpt for item in skill.candidate_evidence)
+    evidence_text = " ".join(
+        item.excerpt for item in skill.candidate_evidence if mentions_skill(item.excerpt, skill.name)
+    )
+    if not evidence_text:
+        return None
     if PLACEHOLDER_FRAGMENT in evidence_text:
         return None
 
@@ -48,15 +58,6 @@ def make_resume_draft(skill: SkillAnalysis, action_type: str) -> str | None:
         "Testing": "Added automated checks to improve confidence in project changes before review.",
         "Linux": "Used Linux-oriented tooling to support reproducible project setup and development workflows.",
     }
-    if action_type == "strengthen":
-        strengthen_templates = {
-            name: f"Strengthened {name} proof by extending an existing project with a focused, reviewable contribution."
-            for name in templates
-        }
-        return strengthen_templates.get(
-            skill.name,
-            f"Strengthened {skill.name} proof by extending an existing project with a focused, reviewable contribution.",
-        )
     return templates.get(skill.name, f"Used {skill.name} in a practical project with visible, reviewable evidence.")
 
 
@@ -87,10 +88,21 @@ def build_bridge_plan(
     voice_context: str = "",
 ) -> list[BridgePlanItem]:
     candidates = [skill for skill in skills if skill.status != "strong_proof"]
-    candidates.sort(key=lambda skill: (STATUS_PRIORITY[skill.status], -skill.employer_count, -skill.required_count))
-    selected = candidates[:3]
+    candidates.sort(
+        key=lambda skill: (
+            STATUS_PRIORITY[skill.status],
+            -evidence_strength(skill),
+            -skill.employer_count,
+            -skill.required_count,
+        )
+    )
+    selected = select_distinct_plan_skills(candidates, limit=3)
 
-    fallback = [skill for skill in skills if skill.status == "strong_proof"][: 3 - len(selected)]
+    fallback = select_distinct_plan_skills(
+        [skill for skill in skills if skill.status == "strong_proof"],
+        limit=3 - len(selected),
+        selected=selected,
+    )
     selected.extend(fallback)
 
     items: list[BridgePlanItem] = []
@@ -100,7 +112,7 @@ def build_bridge_plan(
         resume_draft, resume_draft_ai_refined, resume_draft_refined_by, resume_draft_source = refine_resume_draft(
             skill,
             template_draft,
-            resume_draft_provider if action_type in {"surface", "strengthen"} else None,
+            resume_draft_provider if action_type == "surface" else None,
             voice_context,
         )
         title_prefix = {"surface": "Surface", "strengthen": "Strengthen", "build": "Build proof for"}[action_type]
@@ -137,3 +149,49 @@ def build_bridge_plan(
             )
         )
     return items
+
+
+def evidence_strength(skill: SkillAnalysis) -> int:
+    source_scores = {
+        "repository": 4,
+        "project": 3,
+        "experience": 2,
+        "resume_summary": 1,
+        "skills_section": 0,
+    }
+    if not skill.candidate_evidence:
+        return -1
+    return max(source_scores.get(item.source.split(":", 1)[0], 0) for item in skill.candidate_evidence)
+
+
+def select_distinct_plan_skills(
+    skills: list[SkillAnalysis],
+    limit: int,
+    selected: list[SkillAnalysis] | None = None,
+) -> list[SkillAnalysis]:
+    chosen = list(selected or [])
+    used_groups = {plan_group_key(skill) for skill in chosen}
+    used_evidence = {signature for skill in chosen for signature in evidence_signatures(skill)}
+
+    for skill in skills:
+        if len(chosen) >= limit + len(selected or []):
+            break
+        group_key = plan_group_key(skill)
+        signatures = evidence_signatures(skill)
+        if group_key in used_groups:
+            continue
+        if signatures and used_evidence.intersection(signatures):
+            continue
+        chosen.append(skill)
+        used_groups.add(group_key)
+        used_evidence.update(signatures)
+
+    return chosen[len(selected or []):]
+
+
+def plan_group_key(skill: SkillAnalysis) -> str:
+    return PLAN_SKILL_GROUPS.get(skill.name, skill.name)
+
+
+def evidence_signatures(skill: SkillAnalysis) -> set[str]:
+    return {" ".join(item.excerpt.lower().split()) for item in skill.candidate_evidence if item.excerpt.strip()}
