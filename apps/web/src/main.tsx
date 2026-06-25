@@ -8,6 +8,7 @@ import {
   BriefcaseBusiness,
   CheckCircle2,
   ClipboardList,
+  Copy,
   FileText,
   Github,
   Loader2,
@@ -17,7 +18,7 @@ import {
   Upload
 } from "lucide-react";
 import { analyseBridge } from "./lib/api";
-import type { AnalyseRequest, AnalysisResponse, BridgePlanItem, LocationId, PathwayId, SkillAnalysis, SkillStatus } from "./types/analysis";
+import type { AnalyseRequest, AnalysisResponse, BridgePlanItem, CandidateEvidence, LocationId, PathwayId, SkillAnalysis, SkillStatus } from "./types/analysis";
 import "./styles.css";
 
 type Screen = "intake" | "dashboard" | "bridge";
@@ -50,6 +51,7 @@ const statusDescriptions: Record<SkillStatus, string> = {
 
 const statusOrder: SkillStatus[] = ["strong_proof", "hidden_proof", "adjacent_proof", "no_proof_yet"];
 const MAX_RENDERED_EVIDENCE_CHARS = 200;
+const MAX_CARD_EVIDENCE_CHARS = 120;
 
 function App() {
   const [request, setRequest] = useState<AnalyseRequest>({
@@ -335,7 +337,10 @@ function SkillEvidence({ skill }: { skill: SkillAnalysis }) {
         <span>{skill.market_label} - {skill.confidence} confidence</span>
       </div>
       <p><strong>Market evidence:</strong> {skill.market_evidence}</p>
-      <p><strong>Candidate evidence:</strong> {formatCandidateEvidence(skill)}</p>
+      <div className="evidence-block">
+        <strong>Candidate evidence</strong>
+        <CandidateEvidenceList skill={skill} />
+      </div>
     </article>
   );
 }
@@ -343,24 +348,70 @@ function SkillEvidence({ skill }: { skill: SkillAnalysis }) {
 function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysis[] }) {
   const matchingSkill = skills.find((skill) => item.title.toLowerCase().includes(skill.name.toLowerCase()));
   const actionLabel = item.action_type[0].toUpperCase() + item.action_type.slice(1);
+  const [copied, setCopied] = useState(false);
+  const skillName = matchingSkill?.name ?? item.title.replace(/^(Surface|Strengthen|Build proof for)\s+/, "");
+  const marketSignal = matchingSkill?.market_evidence ?? item.why;
+  const confidence = matchingSkill?.confidence ?? "medium";
+  const recommendedAction = matchingSkill?.recommended_action ?? item.steps[0];
+  const resumeDraft = item.resume_draft?.trim();
+  const statusClass = matchingSkill ? `status-${matchingSkill.status}` : "";
+
+  async function copyResumeDraft() {
+    if (!resumeDraft) return;
+
+    try {
+      await navigator.clipboard.writeText(resumeDraft);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  }
 
   return (
-    <article className={`card plan-card ${item.action_type}`}>
-      <span className="priority">{item.priority}</span>
-      <p className="eyebrow">{actionLabel} - {item.time_estimate}</p>
-      <h3>{item.title}</h3>
-      <p><strong>Skill:</strong> {matchingSkill?.name ?? item.title.replace(/^(Surface|Strengthen|Build proof for)\s+/, "")}</p>
-      <p><strong>Market signal:</strong> {matchingSkill?.market_evidence ?? item.why}</p>
-      <p><strong>Candidate evidence found:</strong> {matchingSkill ? formatCandidateEvidence(matchingSkill) : "No linked skill evidence was returned for this action."}</p>
-      <p><strong>Confidence level:</strong> {matchingSkill?.confidence ?? "medium"}</p>
-      <p><strong>Recommended action:</strong> {matchingSkill?.recommended_action ?? item.steps[0]}</p>
-      {item.resume_draft ? (
-        <div className="resume-draft">
-          {item.resume_draft_ai_refined ? <span className="ai-refined">AI-refined</span> : null}
-          {item.resume_draft}
+    <article className={`card plan-card ${item.action_type} ${statusClass}`}>
+      <div className="plan-card-header">
+        <div>
+          <p className="eyebrow">{actionLabel} - {item.time_estimate}</p>
+          <h3>{item.title}</h3>
+        </div>
+        <span className="priority">{item.priority}</span>
+      </div>
+
+      <div className="plan-card-meta" aria-label="Bridge plan context">
+        <span>{skillName}</span>
+        <span>{confidence} confidence</span>
+      </div>
+
+      <p className="market-signal"><strong>Market signal:</strong> {marketSignal}</p>
+      <p className="recommended-action"><strong>Recommended action:</strong> {recommendedAction}</p>
+
+      {resumeDraft ? (
+        <div className="resume-draft resume-draft-hero">
+          <div className="resume-draft-label">
+            <span>{item.resume_draft_ai_refined ? "AI-refined resume bullet" : "Resume bullet"}</span>
+            <button className="copy-button" type="button" onClick={copyResumeDraft} aria-label="Copy resume bullet">
+              {copied ? <CheckCircle2 size={16} /> : <Copy size={16} />}
+              {copied ? "Copied" : "Copy"}
+            </button>
+          </div>
+          <p>{resumeDraft}</p>
         </div>
       ) : <div className="resume-draft empty-draft">No resume draft yet. Build proof first, then write the claim.</div>}
-      <p className="why"><strong>Why this matters:</strong> {item.why}</p>
+
+      {matchingSkill ? (
+        <details className="candidate-evidence">
+          <summary>
+            <span>Candidate evidence found</span>
+            <small><CandidateEvidencePreview skill={matchingSkill} maxLength={MAX_CARD_EVIDENCE_CHARS} /></small>
+          </summary>
+          <CandidateEvidenceList skill={matchingSkill} showFull />
+        </details>
+      ) : (
+        <div className="candidate-evidence-empty">No linked skill evidence was returned for this action.</div>
+      )}
+
+      <p className="why"><strong>Context:</strong> {item.why}</p>
     </article>
   );
 }
@@ -373,15 +424,112 @@ function makeHeadline(analysis: AnalysisResponse) {
   return `You are closest to ${topRole.label} roles.`;
 }
 
-function formatCandidateEvidence(skill: SkillAnalysis) {
-  if (!skill.candidate_evidence.length) return "No direct candidate evidence found yet.";
-  return truncateEvidence(skill.candidate_evidence.map((evidence) => `${evidence.source}: ${evidence.excerpt}`).join(" "));
+function CandidateEvidencePreview({ skill, maxLength }: { skill: SkillAnalysis; maxLength: number }) {
+  if (!skill.candidate_evidence.length) return <>No direct candidate evidence found yet.</>;
+  const preview = skill.candidate_evidence
+    .map((evidence) => getRelevantEvidenceText(evidence, skill.name))
+    .join(" ");
+  return <>{truncateEvidence(preview, maxLength)}</>;
 }
 
-function truncateEvidence(value: string) {
+function CandidateEvidenceList({ skill, showFull = false }: { skill: SkillAnalysis; showFull?: boolean }) {
+  if (!skill.candidate_evidence.length) return <p className="muted">No direct candidate evidence found yet.</p>;
+
+  return (
+    <div className="candidate-evidence-list">
+      {skill.candidate_evidence.map((evidence, index) => {
+        const relevantEvidence = getRelevantEvidenceText(evidence, skill.name);
+        const fullEvidence = cleanEvidenceExcerpt(evidence.excerpt);
+        const hasMore = relevantEvidence !== fullEvidence;
+
+        return (
+          <div className="candidate-evidence-row" key={`${evidence.source}-${index}`}>
+            <span className="source-pill">{formatEvidenceSource(evidence.source)}</span>
+            <p>{highlightMatch(relevantEvidence, skill.name)}</p>
+            {showFull && hasMore ? <p className="candidate-evidence-full">{fullEvidence}</p> : null}
+            {!showFull && hasMore ? (
+              <details className="inline-evidence-more">
+                <summary>Show more</summary>
+                <p>{fullEvidence}</p>
+              </details>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function getRelevantEvidenceText(evidence: CandidateEvidence, skillName: string) {
+  const clean = cleanEvidenceExcerpt(evidence.excerpt);
+  const commaItems = clean.split(",").map((item) => item.trim()).filter(Boolean);
+
+  if (commaItems.length >= 5) {
+    const matchingIndex = commaItems.findIndex((item) => containsSkill(item, skillName));
+    if (matchingIndex >= 0) {
+      const start = Math.max(0, matchingIndex - 1);
+      const end = Math.min(commaItems.length, matchingIndex + 2);
+      const context = commaItems.slice(start, end).join(", ");
+      return `${start > 0 ? "... " : ""}${context}${end < commaItems.length ? " ..." : ""}`;
+    }
+  }
+
+  const matchIndex = clean.toLowerCase().indexOf(skillName.toLowerCase());
+  if (matchIndex < 0) return truncateEvidence(clean, MAX_RENDERED_EVIDENCE_CHARS);
+
+  const contextRadius = Math.floor((MAX_CARD_EVIDENCE_CHARS - skillName.length) / 2);
+  const start = Math.max(0, matchIndex - contextRadius);
+  const end = Math.min(clean.length, matchIndex + skillName.length + contextRadius);
+  const excerpt = `${start > 0 ? "... " : ""}${clean.slice(start, end).trim()}${end < clean.length ? " ..." : ""}`;
+  return excerpt.replace(/\s+/g, " ").trim();
+}
+
+function cleanEvidenceExcerpt(value: string) {
+  return value.replace(/^Skills:\s*/i, "").replace(/\s+/g, " ").trim();
+}
+
+function formatEvidenceSource(source: string) {
+  if (source.startsWith("repository:")) {
+    const path = source.replace("repository:", "").trim();
+    return path ? `Repository · ${path}` : "Repository";
+  }
+
+  const labels: Record<string, string> = {
+    experience: "Experience",
+    project: "Project",
+    resume: "Resume",
+    resume_summary: "Resume summary",
+    skills_section: "Skills section"
+  };
+
+  return labels[source] ?? source.replace(/_/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function containsSkill(value: string, skillName: string) {
+  const escaped = skillName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(^|\\W)${escaped}(\\W|$)`, "i").test(value);
+}
+
+function highlightMatch(value: string, skillName: string) {
+  const lowerValue = value.toLowerCase();
+  const lowerSkill = skillName.toLowerCase();
+  const matchIndex = lowerValue.indexOf(lowerSkill);
+
+  if (matchIndex < 0) return value;
+
+  return (
+    <>
+      {value.slice(0, matchIndex)}
+      <mark>{value.slice(matchIndex, matchIndex + skillName.length)}</mark>
+      {value.slice(matchIndex + skillName.length)}
+    </>
+  );
+}
+
+function truncateEvidence(value: string, maxLength: number) {
   const clean = value.replace(/\s+/g, " ").trim();
-  if (clean.length <= MAX_RENDERED_EVIDENCE_CHARS) return clean;
-  return `${clean.slice(0, MAX_RENDERED_EVIDENCE_CHARS - 3).trim()}...`;
+  if (clean.length <= maxLength) return clean;
+  return `${clean.slice(0, maxLength - 3).trim()}...`;
 }
 
 function formatDate(value: string) {

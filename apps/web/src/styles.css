@@ -628,6 +628,16 @@ fieldset {
   margin-bottom: 8px;
 }
 
+.evidence-block {
+  display: grid;
+  gap: 8px;
+}
+
+.evidence-block > strong {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
 .evidence-item p:last-child,
 .plan-card p:last-child {
   margin-bottom: 0;
@@ -644,34 +654,67 @@ fieldset {
 
 .plan-card {
   background: #ffffff;
+  --plan-accent: var(--primary);
+  --plan-accent-soft: var(--primary-soft);
+  --plan-accent-border: #bfdbfe;
+  display: grid;
+  gap: 14px;
   overflow: hidden;
   position: relative;
 }
 
 .plan-card.surface {
-  border-top: 4px solid var(--primary);
+  border-top: 4px solid var(--plan-accent);
 }
 
 .plan-card.strengthen {
-  border-top: 4px solid var(--warning);
+  --plan-accent: var(--warning);
+  --plan-accent-soft: var(--warning-soft);
+  --plan-accent-border: #fed7aa;
+  border-top: 4px solid var(--plan-accent);
 }
 
 .plan-card.build {
-  border-top: 4px solid var(--danger);
+  --plan-accent: var(--danger);
+  --plan-accent-soft: var(--danger-soft);
+  --plan-accent-border: #fecaca;
+  border-top: 4px solid var(--plan-accent);
+}
+
+.plan-card.status-strong_proof {
+  --plan-accent: var(--success);
+  --plan-accent-soft: var(--success-soft);
+  --plan-accent-border: #bbf7d0;
+}
+
+.plan-card.status-hidden_proof {
+  --plan-accent: var(--primary);
+  --plan-accent-soft: var(--primary-soft);
+  --plan-accent-border: #bfdbfe;
+}
+
+.plan-card.status-adjacent_proof {
+  --plan-accent: var(--warning);
+  --plan-accent-soft: var(--warning-soft);
+  --plan-accent-border: #fed7aa;
+}
+
+.plan-card.status-no_proof_yet {
+  --plan-accent: var(--danger);
+  --plan-accent-soft: var(--danger-soft);
+  --plan-accent-border: #fecaca;
 }
 
 .priority {
   align-items: center;
-  background: var(--text-primary);
+  background: var(--plan-accent);
   border-radius: 999px;
   color: #ffffff;
   display: grid;
+  flex: 0 0 auto;
   font-weight: 850;
   height: 30px;
   place-items: center;
-  position: absolute;
-  right: 16px;
-  top: 16px;
   width: 30px;
 }
 
@@ -679,15 +722,94 @@ fieldset {
   font-size: 0.93rem;
 }
 
+.plan-card-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.plan-card-header h3 {
+  margin-bottom: 0;
+  padding-right: 4px;
+}
+
+.plan-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.plan-card-meta span {
+  background: var(--plan-accent-soft);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 5px 9px;
+  text-transform: capitalize;
+}
+
 .resume-draft {
   background: var(--surface-subtle);
-  border-left: 3px solid var(--primary);
-  border-radius: 10px;
+  border-left: 3px solid var(--plan-accent);
+  border-radius: 8px;
   color: var(--text-primary);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.55;
-  margin-bottom: 14px;
+  margin-bottom: 0;
   padding: 12px;
+}
+
+.resume-draft-hero {
+  background: #ffffff;
+  border: 1px solid var(--plan-accent-border);
+  border-left: 4px solid var(--plan-accent);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+  padding: 12px;
+}
+
+.resume-draft-hero p {
+  color: var(--text-primary);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.resume-draft-label {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.resume-draft-label span {
+  color: var(--plan-accent);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.copy-button {
+  align-items: center;
+  background: var(--plan-accent);
+  border: 1px solid var(--plan-accent);
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 850;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 9px;
+}
+
+.copy-button:hover {
+  filter: brightness(0.94);
 }
 
 .ai-refined {
@@ -704,8 +826,142 @@ fieldset {
   color: var(--text-secondary);
 }
 
+.market-signal,
+.recommended-action {
+  margin-bottom: 0;
+}
+
+.market-signal {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.recommended-action {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.candidate-evidence {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.candidate-evidence summary {
+  cursor: pointer;
+  display: grid;
+  gap: 4px;
+  list-style: none;
+}
+
+.candidate-evidence summary::-webkit-details-marker {
+  display: none;
+}
+
+.candidate-evidence summary span {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.candidate-evidence summary small {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.candidate-evidence[open] summary small {
+  display: none;
+}
+
+.candidate-evidence p {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin: 10px 0 0;
+}
+
+.candidate-evidence-list {
+  display: grid;
+  gap: 9px;
+}
+
+.candidate-evidence-row {
+  display: grid;
+  gap: 5px;
+}
+
+.candidate-evidence-row p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.source-pill {
+  align-self: start;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-muted);
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1;
+  padding: 5px 8px;
+  width: fit-content;
+}
+
+mark {
+  background: var(--warning-soft);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-weight: 850;
+  padding: 0 2px;
+}
+
+.candidate-evidence-full,
+.inline-evidence-more p {
+  background: #ffffff;
+  border-left: 3px solid var(--border);
+  padding: 8px 10px;
+}
+
+.inline-evidence-more {
+  margin-top: 2px;
+}
+
+.inline-evidence-more summary {
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 850;
+  list-style: none;
+}
+
+.inline-evidence-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.candidate-evidence-empty {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  padding: 10px 12px;
+}
+
 .why {
   color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  margin-bottom: 0;
 }
 
 .spin {
@@ -764,5 +1020,10 @@ fieldset {
 
   .resume-note {
     text-align: left;
+  }
+
+  .resume-draft-label {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

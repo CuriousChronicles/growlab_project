@@ -11,7 +11,7 @@ from app.services.paths import ROOT
 
 
 LLM_TIMEOUT_SECONDS = 5.0
-DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
+DEFAULT_GEMINI_MODEL = "gemini-2.5-flash-lite"
 
 
 class ResumeDraftProvider(Protocol):
