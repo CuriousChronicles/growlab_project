@@ -1031,6 +1031,21 @@ fieldset {
   line-height: 1.45;
 }
 
+.plan-steps {
+  display: grid;
+  gap: 8px;
+  list-style-position: outside;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.plan-steps li {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  padding-left: 2px;
+}
+
 .candidate-evidence {
   background: var(--surface);
   border: 1px solid var(--border);

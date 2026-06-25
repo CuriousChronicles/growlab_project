@@ -96,7 +96,7 @@ def build_bridge_plan(
             -skill.required_count,
         )
     )
-    selected = select_distinct_plan_skills(candidates, limit=3)
+    selected = select_bridge_plan_skills(candidates, limit=3)
 
     fallback = select_distinct_plan_skills(
         [skill for skill in skills if skill.status == "strong_proof"],
@@ -162,6 +162,14 @@ def evidence_strength(skill: SkillAnalysis) -> int:
     if not skill.candidate_evidence:
         return -1
     return max(source_scores.get(item.source.split(":", 1)[0], 0) for item in skill.candidate_evidence)
+
+
+def select_bridge_plan_skills(skills: list[SkillAnalysis], limit: int) -> list[SkillAnalysis]:
+    selected: list[SkillAnalysis] = []
+    hidden_surfaceable = [skill for skill in skills if skill.status == "hidden_proof" and make_resume_draft(skill, "surface")]
+    selected.extend(select_distinct_plan_skills(hidden_surfaceable, limit=1))
+    selected.extend(select_distinct_plan_skills(skills, limit=limit - len(selected), selected=selected))
+    return selected
 
 
 def select_distinct_plan_skills(

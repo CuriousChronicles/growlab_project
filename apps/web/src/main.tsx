@@ -708,6 +708,9 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
 
       <p className="market-signal"><strong>Market signal:</strong> {marketSignal}</p>
       <p className="recommended-action"><strong>Recommended action:</strong> {recommendedAction}</p>
+      <ol className="plan-steps" aria-label="Action steps">
+        {item.steps.map((step) => <li key={step}>{step}</li>)}
+      </ol>
 
       {matchingSkill ? (
         <details className="candidate-evidence">

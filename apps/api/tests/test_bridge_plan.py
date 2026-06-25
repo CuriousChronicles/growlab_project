@@ -90,6 +90,26 @@ def test_surface_actions_prefer_concrete_project_evidence_over_skills_section():
     assert "telemetry app" in (plan[0].resume_draft or "")
 
 
+def test_bridge_plan_keeps_surfaceable_hidden_proof_when_build_gaps_are_larger():
+    plan = build_bridge_plan(
+        [
+            skill(
+                "Docker",
+                "hidden_proof",
+                "EVolocity telemetry app used a Docker container to run the Node.js backend and PostgreSQL database during demos.",
+                employer_count=10,
+            ),
+            skill("Testing", "no_proof_yet", "", employer_count=11),
+            skill("Linux", "no_proof_yet", "", employer_count=7),
+            skill("AWS", "no_proof_yet", "", employer_count=7),
+        ]
+    )
+
+    assert plan[0].title == "Surface Docker"
+    assert plan[0].resume_draft
+    assert any(item.action_type == "build" for item in plan[1:])
+
+
 def test_bridge_plan_does_not_repeat_git_and_github_surface_actions():
     shared_evidence = (
         "Used Git and GitHub pull requests to review firmware and capstone changes, "
