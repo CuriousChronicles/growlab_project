@@ -232,7 +232,7 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
         </div>
       </section>
 
-      {analysis.resume_text ? <ResumeUsed resumeText={analysis.resume_text} /> : null}
+      {analysis.resume_text ? <ResumeUsed resumeText={analysis.resume_text} skills={analysis.skills} /> : null}
 
       <section className="role-grid" aria-label="Role readiness">
         {analysis.role_pathways.map((role) => (
@@ -275,12 +275,17 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
   );
 }
 
-function ResumeUsed({ resumeText }: { resumeText: string }) {
+function ResumeUsed({ resumeText, skills }: { resumeText: string; skills: SkillAnalysis[] }) {
+  const firstHidden = skills.find((skill) => skill.status === "hidden_proof");
+  const note = firstHidden
+    ? `${firstHidden.name} is absent here; hidden proof comes from project evidence.`
+    : null;
+
   return (
     <details className="card resume-used">
       <summary>
         <span><FileText size={18} /> Resume used</span>
-        <span className="resume-note">Docker is absent here; hidden proof comes from project evidence.</span>
+        {note ? <span className="resume-note">{note}</span> : null}
       </summary>
       <pre>{resumeText}</pre>
     </details>
