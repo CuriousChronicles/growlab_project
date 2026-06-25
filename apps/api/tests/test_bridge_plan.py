@@ -73,7 +73,7 @@ def test_surface_actions_prefer_concrete_project_evidence_over_skills_section():
                 "hidden_proof",
                 "Skills: Python, SQL, PostgreSQL, Git, GitHub.",
                 source="skills_section",
-                employer_count=8,
+                employer_count=4,
             ),
             skill(
                 "Docker",

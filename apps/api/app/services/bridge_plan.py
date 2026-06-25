@@ -6,11 +6,12 @@ from app.services.skill_extractor import mentions_skill
 
 PLACEHOLDER_FRAGMENT = "Evidence detected in your resume"
 
-STATUS_PRIORITY = {
-    "hidden_proof": 0,
-    "adjacent_proof": 1,
-    "no_proof_yet": 2,
-    "strong_proof": 3,
+# Weight how much of the employer-demand "gap" each status represents.
+# hidden_proof is nearly solved (0.25×), adjacent needs work (0.6×), no proof = full gap (1.0×).
+PROOF_GAP_WEIGHT = {
+    "hidden_proof": 0.25,
+    "adjacent_proof": 0.6,
+    "no_proof_yet": 1.0,
 }
 
 PLAN_SKILL_GROUPS = {
@@ -90,9 +91,8 @@ def build_bridge_plan(
     candidates = [skill for skill in skills if skill.status != "strong_proof"]
     candidates.sort(
         key=lambda skill: (
-            STATUS_PRIORITY[skill.status],
+            -(skill.employer_count * PROOF_GAP_WEIGHT[skill.status]),
             -evidence_strength(skill),
-            -skill.employer_count,
             -skill.required_count,
         )
     )
