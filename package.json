@@ -1,0 +1,14 @@
+{
+  "name": "gradbridge",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Hackathon MVP for evidence-led technical graduate role readiness.",
+  "scripts": {
+    "dev": "npm --workspace apps/web run dev",
+    "build": "npm --workspace apps/web run build",
+    "preview": "npm --workspace apps/web run preview"
+  },
+  "workspaces": [
+    "apps/web"
+  ]
+}

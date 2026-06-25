@@ -1,0 +1,26 @@
+{
+  "name": "Maya Thompson",
+  "headline": "Final-year Computer Systems Engineering graduate",
+  "resume_bullets": [
+    "Built a Python automation tool that cleaned telemetry CSV files with Pandas and produced weekly data visualisation summaries for a capstone team.",
+    "Created a React and TypeScript web app for project tracking, integrating REST APIs and SQLite-backed task storage.",
+    "Implemented STM32 firmware in Embedded C for a CAN-based sensor node, including UART logging and I2C sensor reads.",
+    "Used Git and GitHub for version control across university projects and led project ownership for a multidisciplinary capstone team.",
+    "Presented technical communication updates to academic supervisors and industry mentors during sprint reviews."
+  ],
+  "repository_url": "https://github.com/example/gradbridge-demo",
+  "repository_evidence": [
+    {
+      "path": "Dockerfile",
+      "evidence": "Dockerfile found for the Python automation service, but Docker is not mentioned in the resume."
+    },
+    {
+      "path": ".github/workflows/test.yml",
+      "evidence": "GitHub Actions CI/CD workflow runs Python tests on pull requests."
+    },
+    {
+      "path": "README.md",
+      "evidence": "README documents REST API setup, SQLite database schema, and project ownership decisions."
+    }
+  ]
+}

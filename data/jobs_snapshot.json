@@ -1,0 +1,227 @@
+[
+  {
+    "id": "ai-akl-01",
+    "title": "Graduate Automation Engineer",
+    "company": "Harbour Robotics",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-20",
+    "description": "Graduate role building Python automation, REST APIs and data pipelines. Python and SQL are required; Docker and GitHub are preferred."
+  },
+  {
+    "id": "ai-akl-02",
+    "title": "Junior AI Workflow Developer",
+    "company": "Koru Digital",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-18",
+    "description": "Entry level developer using Python, LLMs, RAG, REST APIs, Git and Testing. Experience with Docker is a bonus."
+  },
+  {
+    "id": "ai-akl-03",
+    "title": "Associate Data Automation Analyst",
+    "company": "Pacific Insights",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-16",
+    "description": "Recent graduate with Python, Pandas, SQL and Data Visualisation. Technical Communication is essential for stakeholder updates."
+  },
+  {
+    "id": "ai-akl-04",
+    "title": "Graduate Integration Developer",
+    "company": "Tahi Health",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-12",
+    "description": "0-2 years experience. REST APIs, Python, PostgreSQL and Git required. Familiarity with AWS and CI/CD preferred."
+  },
+  {
+    "id": "ai-akl-05",
+    "title": "Junior Process Automation Engineer",
+    "company": "Southern Freight Tech",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-10",
+    "description": "Build internal automation with Python, SQL, Docker and Linux. Testing and Project Ownership are important."
+  },
+  {
+    "id": "ai-akl-06",
+    "title": "Graduate AI Application Engineer",
+    "company": "Fern Labs",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-08",
+    "description": "Python, TypeScript, REST APIs and LLMs required. RAG, React and GitHub are nice to have."
+  },
+  {
+    "id": "ai-akl-07",
+    "title": "Automation Test Developer",
+    "company": "Northstar Systems",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-07",
+    "description": "Junior or graduate engineer. Testing, Python, Git, CI/CD and Linux required. Familiarity with Docker preferred."
+  },
+  {
+    "id": "ai-akl-08",
+    "title": "Data Pipeline Graduate",
+    "company": "Motu Analytics",
+    "location": "Auckland",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-05",
+    "description": "Graduate data role with Python, Data Pipelines, SQL, PostgreSQL and AWS. Pandas is preferred."
+  },
+  {
+    "id": "ai-remote-01",
+    "title": "Remote Junior Automation Developer",
+    "company": "Cloud Weave",
+    "location": "Remote-friendly",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-22",
+    "description": "Entry level remote role. Python, REST APIs, GitHub and Docker required. LLMs and RAG are preferred."
+  },
+  {
+    "id": "ai-remote-02",
+    "title": "Graduate AI Support Engineer",
+    "company": "Aroha AI",
+    "location": "Remote-friendly",
+    "pathway": "ai_automation",
+    "posted_at": "2026-06-15",
+    "description": "Support AI workflow products with Python, SQL, Technical Communication and Testing. Azure is a bonus."
+  },
+  {
+    "id": "sw-akl-01",
+    "title": "Graduate Full-Stack Developer",
+    "company": "Harbour Apps",
+    "location": "Auckland",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-21",
+    "description": "React, TypeScript, Node.js, REST APIs and PostgreSQL required. Git and Testing are essential."
+  },
+  {
+    "id": "sw-akl-02",
+    "title": "Junior Software Engineer",
+    "company": "KauriPay",
+    "location": "Auckland",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-19",
+    "description": "Entry level software role using JavaScript, React, SQL, GitHub and CI/CD. Docker preferred."
+  },
+  {
+    "id": "sw-akl-03",
+    "title": "Associate Web Developer",
+    "company": "Civic Tech NZ",
+    "location": "Auckland",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-14",
+    "description": "HTML/CSS, React, REST APIs and Technical Communication required. Familiarity with TypeScript and Agile."
+  },
+  {
+    "id": "sw-akl-04",
+    "title": "Graduate Platform Developer",
+    "company": "Anchor Cloud",
+    "location": "Auckland",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-11",
+    "description": "Node.js, TypeScript, PostgreSQL, AWS, Docker and Linux. Testing is required."
+  },
+  {
+    "id": "sw-akl-05",
+    "title": "Junior Product Engineer",
+    "company": "Tui SaaS",
+    "location": "Auckland",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-09",
+    "description": "React, TypeScript, REST APIs, Git and Project Ownership. Experience with SQLite or PostgreSQL preferred."
+  },
+  {
+    "id": "sw-akl-06",
+    "title": "Graduate Backend Developer",
+    "company": "Southern Freight Tech",
+    "location": "Auckland",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-06",
+    "description": "Python, Node.js, REST APIs, SQL and Docker required. CI/CD and Linux are nice to have."
+  },
+  {
+    "id": "sw-remote-01",
+    "title": "Remote Junior Frontend Engineer",
+    "company": "Launchpad Studio",
+    "location": "Remote-friendly",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-17",
+    "description": "React, TypeScript, HTML/CSS, Testing and GitHub required for entry level product work."
+  },
+  {
+    "id": "sw-remote-02",
+    "title": "Graduate API Developer",
+    "company": "Blue Current",
+    "location": "Remote-friendly",
+    "pathway": "software_fullstack",
+    "posted_at": "2026-06-13",
+    "description": "REST APIs, PostgreSQL, TypeScript, Node.js and Technical Communication. AWS preferred."
+  },
+  {
+    "id": "fw-akl-01",
+    "title": "Graduate Firmware Engineer",
+    "company": "CircuitWorks",
+    "location": "Auckland",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-20",
+    "description": "Embedded C, C, STM32, UART and Git required. CAN and I2C preferred."
+  },
+  {
+    "id": "fw-akl-02",
+    "title": "Junior Embedded Software Engineer",
+    "company": "NavSense",
+    "location": "Auckland",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-18",
+    "description": "Microcontrollers, C++, RTOS, SPI, I2C and Testing. Technical Communication is essential."
+  },
+  {
+    "id": "fw-akl-03",
+    "title": "Graduate IoT Engineer",
+    "company": "FarmLink Devices",
+    "location": "Auckland",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-15",
+    "description": "Embedded C, Microcontrollers, CAN, REST APIs, Linux and GitHub. PCB Design preferred."
+  },
+  {
+    "id": "fw-akl-04",
+    "title": "Associate Test Firmware Engineer",
+    "company": "AeroLab",
+    "location": "Auckland",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-12",
+    "description": "Testing, C, Embedded C, UART, Python automation and CI/CD required."
+  },
+  {
+    "id": "fw-akl-05",
+    "title": "Graduate Controls Developer",
+    "company": "Southern Robotics",
+    "location": "Auckland",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-08",
+    "description": "STM32, CAN, RTOS, C++ and Project Ownership. Familiarity with Docker for toolchains is a bonus."
+  },
+  {
+    "id": "fw-akl-06",
+    "title": "Junior Hardware Software Engineer",
+    "company": "BrightGrid",
+    "location": "Auckland",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-06",
+    "description": "PCB Design, Microcontrollers, SPI, I2C, Embedded C and Technical Communication required."
+  },
+  {
+    "id": "fw-remote-01",
+    "title": "Remote Graduate Embedded Tooling Engineer",
+    "company": "EdgeOps",
+    "location": "Remote-friendly",
+    "pathway": "embedded_firmware",
+    "posted_at": "2026-06-16",
+    "description": "Python, Linux, C, Testing, Git and CI/CD for embedded tooling. STM32 preferred."
+  }
+]
