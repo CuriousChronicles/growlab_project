@@ -106,7 +106,7 @@ function App() {
         {screen === "intake" ? (
           <Intake request={request} setRequest={setRequest} onAnalyse={() => runAnalysis(false)} onDemo={() => runAnalysis(true)} isLoading={isLoading} error={error} />
         ) : null}
-        {screen === "dashboard" && analysis ? <Dashboard analysis={analysis} onBack={() => setScreen("intake")} onBridge={() => setScreen("bridge")} /> : null}
+        {screen === "dashboard" && analysis ? <Dashboard analysis={analysis} targetPathwayId={request.target_pathway} onBack={() => setScreen("intake")} onBridge={() => setScreen("bridge")} /> : null}
         {screen === "bridge" && analysis ? <BridgePlan analysis={analysis} onBack={() => setScreen("dashboard")} /> : null}
       </section>
     </main>
@@ -204,8 +204,8 @@ function ChoiceGroup({ label, icon, value, options, onChange }: {
   );
 }
 
-function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse; onBack: () => void; onBridge: () => void }) {
-  const headline = useMemo(() => makeHeadline(analysis), [analysis]);
+function Dashboard({ analysis, targetPathwayId, onBack, onBridge }: { analysis: AnalysisResponse; targetPathwayId: PathwayId; onBack: () => void; onBridge: () => void }) {
+  const headline = useMemo(() => makeHeadline(analysis, targetPathwayId), [analysis, targetPathwayId]);
   const grouped = useMemo(() => statusOrder.map((status) => ({
     status,
     skills: analysis.skills.filter((skill) => skill.status === status)
@@ -233,17 +233,6 @@ function Dashboard({ analysis, onBack, onBridge }: { analysis: AnalysisResponse;
       </section>
 
       {analysis.resume_text ? <ResumeUsed resumeText={analysis.resume_text} skills={analysis.skills} /> : null}
-
-      <section className="role-grid" aria-label="Role readiness">
-        {analysis.role_pathways.map((role) => (
-          <article className="card role-card" key={role.id}>
-            <span className={`demand demand-${role.market_demand}`}>{role.market_demand} demand</span>
-            <h3>{role.label}</h3>
-            <strong>{role.evidence_coverage}%</strong>
-            <p>{role.label} · {role.market_demand} demand</p>
-          </article>
-        ))}
-      </section>
 
       <section className="card">
         <div className="section-heading">
@@ -431,12 +420,12 @@ function PlanCard({ item, skills }: { item: BridgePlanItem; skills: SkillAnalysi
   );
 }
 
-function makeHeadline(analysis: AnalysisResponse) {
-  const topRole = [...analysis.role_pathways].sort((a, b) => b.evidence_coverage - a.evidence_coverage)[0];
+function makeHeadline(analysis: AnalysisResponse, targetPathwayId: PathwayId) {
+  const targetRole = analysis.role_pathways.find((r) => r.id === targetPathwayId);
   const hiddenCount = analysis.skills.filter((skill) => skill.status === "hidden_proof").length;
-  if (!topRole) return "Your evidence has been mapped against the selected market snapshot.";
-  if (hiddenCount > 0) return `You are closest to ${topRole.label}, with ${hiddenCount} proof point${hiddenCount === 1 ? "" : "s"} to make more visible.`;
-  return `You are closest to ${topRole.label} roles.`;
+  if (!targetRole) return "Your evidence has been mapped against the selected market snapshot.";
+  if (hiddenCount > 0) return `You have ${hiddenCount} proof point${hiddenCount === 1 ? "" : "s"} to surface for ${targetRole.label} roles.`;
+  return `Here's how to build your case for ${targetRole.label} roles.`;
 }
 
 function CandidateEvidencePreview({ skill, maxLength }: { skill: SkillAnalysis; maxLength: number }) {
