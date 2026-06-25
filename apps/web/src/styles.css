@@ -567,6 +567,8 @@ fieldset {
 }
 
 .scatter-card {
+  align-content: start;
+  align-self: start;
   display: grid;
   gap: 16px;
   padding: 20px;

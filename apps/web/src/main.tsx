@@ -79,8 +79,8 @@ const statusColours: Record<SkillStatus, string> = {
 };
 const strengthBandLabels = ["No proof", "Adjacent", "Hidden", "Strong"];
 const defaultXDomain: [number, number] = [-0.5, 3.5];
-const chartHeight = 420;
-const chartMargin = { top: 18, right: 24, bottom: 20, left: 18 };
+const chartHeight = 340;
+const chartMargin = { top: 10, right: 24, bottom: 10, left: 60 };
 
 type SkillScatterPoint = SkillAnalysis & {
   x: number;
@@ -405,13 +405,22 @@ function SkillScatterPlot({ skills }: { skills: SkillAnalysis[] }) {
             ticks={[0, 1, 2, 3]}
             tickFormatter={(value) => strengthBandLabels[Number(value)] ?? ""}
             tickLine={false}
+            style={{ fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif", fontSize: 12 }}
           />
           <YAxis
             dataKey="y"
             type="number"
             domain={yDomain}
             tickLine={false}
-            label={{ value: "Market demand (% of roles)", angle: -90, position: "insideLeft", offset: 0 }}
+            style={{ fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif", fontSize: 14 }}
+            label={{
+              value: "Market demand (% of roles)",
+              angle: -90,
+              position: "insideLeft",
+              dx: 28,
+              fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
+              fontSize: 14
+            }}
           />
           <Tooltip content={<SkillScatterTooltip />} cursor={{ stroke: "#94a3b8", strokeDasharray: "3 3" }} />
           <Scatter
